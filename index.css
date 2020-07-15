@@ -1,10 +1,61 @@
 @import url('./fonts/inter.css');
+@import url('./vendor/normalize.css');
 
-.background-color {
-    background-color: #000000;
-}
+
 
 .page {
     color: #ffffff;
     font-family: Inter;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background-color: #000000
 }
+
+.header {
+    margin: 45px 202px 0;
+}
+
+@media screen and (max-width: 700px) {
+    .header {
+        margin: 0;
+    }
+}
+
+.header__logo {
+    width: 173px;
+    height: 33px;
+}
+
+@media screen and (max-width: 700px) {
+    .header__logo {
+        width: 126px;
+        height: 24px;
+        margin: 28px 27px 0;
+    }
+}
+
+
+ .header__line {
+    opacity: 0.7;
+    border: 1px solid #545454;
+    margin: 41px 0 0;
+     
+ }
+
+ @media screen and (max-width: 700px) {
+    .header__line {
+        margin: 32px 0 0;
+    }
+ }
+
+.container {
+    margin: 36.25px;
+}
+
+/* 
+.border {
+    border: 1px solid teal;
+} */
