@@ -49,6 +49,7 @@
 .container {
   margin: 0 auto;
   padding: 0;
+  max-width: 1280px;
 }
 
 @media screen and (max-width: 700px) {
@@ -63,6 +64,13 @@
   justify-content: space-between;
   align-items: center;
   margin: 40px 0 51px;
+}
+
+@media screen and (max-width: 700px) {
+  .profile {
+    flex-direction: column;
+    max-width: 282px;
+  }
 }
 
 .profile__pic-box {
@@ -156,6 +164,9 @@
 
 .cards {
   display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 
 .cards__list {
@@ -168,7 +179,14 @@
   padding: 0;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1140px) {
+  .cards__list {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 730px) {
   .cards__list {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -180,7 +198,7 @@
   border-radius: 10px;
 }
 .card {
-  width: 282px;
+  max-width: 282px;
   background-color: white;
   display: flex;
   flex-direction: column;
