@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "web_project_4",
+			"path": "."
+		}
+	],
+	"settings": {
+		"html-to-css-autocompletion.autocompletionFilesScope": "workspace",
+		"html-to-css-autocompletion.triggerCharacters": true,
+		"liveServer.settings.multiRootWorkspaceName": "web_project_4"
+	}
+}
