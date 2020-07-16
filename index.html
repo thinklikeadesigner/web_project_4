@@ -1,90 +1,135 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./index.css">
-  <title>Around The U.S.</title>
-</head>
-<body>
-  <page class="page border">
-    <header class="header border">
-      <img src="./images/around-white.svg" alt="'Around' text logo" class="header__logo border">
-    <div class="header__line"></div>
-    </header>
-    <main class="container border">
-      <section class="profile border">
-        <img src="./images/coustou-profile-pic.jpg" alt="Jaques Cousteau close-up in a red beanie" class="profile__pic">
-        <h1 class="profile__name border">Jacques Cousteau</h1>
-        <p class="profile__occupation border">Explorer</p>
-        <button class="add border"></button>
-      </section>
-      <section class="cards border">
-        <ul class="cards__list border">
-          <li class="card border">
-            <div class="card__top border">
-              <img src="./images/yosemite.jpg" alt="river valley" class="card__pic border">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Around The U.S.</title>
+  </head>
+  <body>
+    <page class="page border">
+      <header class="header border">
+        <img
+          src="./images/around-white.svg"
+          alt="'Around' text logo"
+          class="header__logo border"
+        />
+        <div class="header__line"></div>
+      </header>
+      <main class="container border">
+        <section class="profile border">
+          <div class="profile__info">
+            <div class="profile__pic-box border">
+              <img
+                src="./images/coustou-profile-pic.jpg"
+                alt="Jaques Cousteau close-up in a red beanie"
+                class="profile__pic"
+              />
             </div>
-            <div class="card__bottom border">
-              <h2 class="card__title border">Yosemite Valley</h2>
-              <button class="heart border"></button>
+            <div class="profile__text">
+              <h1 class="profile__name border">Jacques Cousteau</h1>
+              <p class="profile__occupation border">Explorer</p>
             </div>
-          </li>
-          <li class="card">
-            <div class="card__top">
-              <img src="./images/yosemite.jpg" alt="river valley" class="card__pic">
-            </div>
-            <div class="card__bottom">
-              <h2 class="card__title">Yosemite Valley</h2>
-              <button class="heart"></button>
-            </div>
-          </li>
-          <li class="card">
-            <div class="card__top">
-              <img src="./images/yosemite.jpg" alt="river valley" class="card__pic">
-            </div>
-            <div class="card__bottom">
-              <h2 class="card__title">Yosemite Valley</h2>
-              <button class="heart"></button>
-            </div>
-          </li>
-          <li class="card">
-            <div class="card__top">
-              <img src="./images/yosemite.jpg" alt="river valley" class="card__pic">
-            </div>
-            <div class="card__bottom">
-              <h2 class="card__title">Yosemite Valley</h2>
-              <button class="heart"></button>
-            </div>
-          </li>
-          <li class="card">
-            <div class="card__top">
-              <img src="./images/yosemite.jpg" alt="river valley" class="card__pic">
-            </div>
-            <div class="card__bottom">
-              <h2 class="card__title">Yosemite Valley</h2>
-              <button class="heart"></button>
-            </div>
-          </li>
-          <li class="card">
-            <div class="card__top">
-              <img src="./images/yosemite.jpg" alt="river valley" class="card__pic">
-            </div>
-            <div class="card__bottom">
-              <h2 class="card__title">Yosemite Valley</h2>
-              <button class="heart"></button>
-            </div>
-          </li>
-        </ul>
 
-      </section>
-    </main>
-    <footer class="footer">
-       <p class="copyright">© 2020 Around The U.S.</p>
-    </footer>
-  </page>
-  <script src="./index.js"></script>
-</body>
+            <div class="edit">
+              <img src="./images/pencil.svg" alt="" class="pencil" />
+            </div>
+          </div>
+
+          <div class="add__container border">
+            <div class="add border">
+              <img src="./images/plus.svg" alt="" class="plu" />
+            </div>
+          </div>
+        </section>
+        <section class="cards border">
+          <ul class="cards__list border">
+            <li class="card border">
+              <div class="card__top border">
+                <img
+                  src="./images/yosemite.jpg"
+                  alt="river valley"
+                  class="card__pic border"
+                />
+              </div>
+              <div class="card__bottom border">
+                <h2 class="card__title border">Yosemite Valley</h2>
+                <button class="heart border"></button>
+              </div>
+            </li>
+            <li class="card">
+              <div class="card__top">
+                <img
+                  src="./images/yosemite.jpg"
+                  alt="river valley"
+                  class="card__pic"
+                />
+              </div>
+              <div class="card__bottom">
+                <h2 class="card__title">Yosemite Valley</h2>
+                <button class="heart"></button>
+              </div>
+            </li>
+            <li class="card">
+              <div class="card__top">
+                <img
+                  src="./images/yosemite.jpg"
+                  alt="river valley"
+                  class="card__pic"
+                />
+              </div>
+              <div class="card__bottom">
+                <h2 class="card__title">Yosemite Valley</h2>
+                <button class="heart"></button>
+              </div>
+            </li>
+            <li class="card">
+              <div class="card__top">
+                <img
+                  src="./images/yosemite.jpg"
+                  alt="river valley"
+                  class="card__pic"
+                />
+              </div>
+              <div class="card__bottom">
+                <h2 class="card__title">Yosemite Valley</h2>
+                <button class="heart"></button>
+              </div>
+            </li>
+            <li class="card">
+              <div class="card__top">
+                <img
+                  src="./images/yosemite.jpg"
+                  alt="river valley"
+                  class="card__pic"
+                />
+              </div>
+              <div class="card__bottom">
+                <h2 class="card__title">Yosemite Valley</h2>
+                <button class="heart"></button>
+              </div>
+            </li>
+            <li class="card">
+              <div class="card__top">
+                <img
+                  src="./images/yosemite.jpg"
+                  alt="river valley"
+                  class="card__pic"
+                />
+              </div>
+              <div class="card__bottom">
+                <h2 class="card__title">Yosemite Valley</h2>
+                <button class="heart"></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="copyright">© 2020 Around The U.S.</p>
+      </footer>
+    </page>
+    <script src="./index.js"></script>
+  </body>
 </html>
-
