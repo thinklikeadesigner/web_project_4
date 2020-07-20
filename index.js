@@ -6,30 +6,22 @@ const nameInput = document.querySelector(".form__input_type_name");
 const jobInput = document.querySelector(".form__input_type_info");
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
+const submitButton = document.querySelector(".form__button");
 
 function togglePopUp() {
   popUp.classList.toggle("popUp_open");
-  console.log("why won't this work");
+  console.log("toggleEditPopUp");
 }
 
-function togglePopUpOdd() {
-  popUp.classList.toggle("popUp_open");
-  popUp.classList.toggle("popUp_open");
-}
+closeButton.addEventListener("click", togglePopUp);
 
-closeButton.addEventListener("click", togglePopUpOdd);
 pencil.addEventListener("click", togglePopUp);
 
-// function formSubmitHandler(e) {
-//   e.preventDefault();
-//   profileName.textContent = nameInput.value;
-//   profileJob.textContent = jobInput.value;
-//   togglePopUp();
-// }
-
-form.addEventListener("submit", function (e) {
+submitButton.addEventListener("click", function (e) {
   e.preventDefault();
+
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
+
   togglePopUp();
 });
