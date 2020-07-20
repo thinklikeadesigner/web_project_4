@@ -7,7 +7,7 @@
 
 **Pages**
 
-* [Link to the project in Pages](thinklikeadesigner.github.io/web_project_4)
+* [Link to the project in Pages](https://thinklikeadesigner.github.io/web_project_4/)
 
 **Images**
 
