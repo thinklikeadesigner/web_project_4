@@ -8,16 +8,19 @@
     <title>Around The U.S.</title>
   </head>
 
-  <body>
+  <body class="background">
     <page class="page border">
       <header class="header border">
-        <img
-          src="./images/around-white.svg"
-          alt="'Around' text logo"
-          class="header__logo border"
-        />
-        <div class="header__line"></div>
+        <div class="header__container">
+          <img
+            src="./images/around-white.svg"
+            alt="'Around' text logo"
+            class="header__logo border"
+          />
+          <div class="header__line"></div>
+        </div>
       </header>
+
       <main class="container border">
         <section class="profile border">
           <div class="profile__info">
@@ -30,8 +33,10 @@
             </div>
             <div class="profile__text">
               <div class="top-text">
-                <h1 class="profile__name border">Jacques Cousteau</h1>
-                <button class="edit">
+                <h1 class="profile__name border">
+                  Jacques Cousteau
+                </h1>
+                <button type="button" class="edit">
                   <img src="./images/pencil.svg" alt="" class="pencil" />
                 </button>
               </div>
@@ -41,7 +46,7 @@
             </div>
           </div>
           <div class="add__container border">
-            <button class="add border">
+            <button type="button" class="add border">
               <img src="./images/plus.svg" alt="" class="plus" />
             </button>
           </div>
@@ -163,42 +168,12 @@
                 </div>
               </div>
             </li>
-            <li class="card border">
-              <div class="card__top border">
-                <img
-                  src="./images/yosemite.jpg"
-                  alt="river valley"
-                  class="card__pic border"
-                />
-              </div>
-              <div class="card__bottom border">
-                <div class="card__text">
-                  <h2 class="card__title border">
-                    Yosemitsdfgsdfgdsfge Valley
-                  </h2>
-                  <button class="heart border">
-                    <img
-                      src="./images/heart.svg"
-                      alt="heart shaped like button"
-                      class="heart__pic"
-                    />
-                  </button>
-                </div>
-              </div>
-            </li>
           </ul>
         </section>
       </main>
       <div class="popUp">
         <form action="#" class="form">
           <h2 class="edit__profile">Edit profile</h2>
-          <button class="popUp__close-button">
-            <img
-              src="./images/x.svg"
-              alt="close button"
-              class="popUp_close-button-pic"
-            />
-          </button>
           <input
             type="text"
             class="form__input form__input_type_name"
@@ -216,6 +191,13 @@
           <div class="form__line"></div>
           <button type="submit" class="form__button">Save</button>
         </form>
+        <button type="button" class="popUp__close-button">
+          <img
+            src="./images/x.svg"
+            alt="close button"
+            class="popUp_close-button-pic"
+          />
+        </button>
       </div>
       <footer class="footer">
         <footer class="footer__text">
@@ -226,35 +208,3 @@
     <script src="./index.js"></script>
   </body>
 </html>
-
-<!-- const pencil = document.querySelector(".edit");
-const closeButton = document.querySelector(".popUp__close-button");
-const popUp = document.querySelector(".popUp");
-const form = document.querySelector(".form");
-const nameInput = document.querySelector(".form__input_type_name");
-const jobInput = document.querySelector(".form__input_type_info");
-const profileName = document.querySelector(".profile__name");
-const profileJob = document.querySelector(".profile__job");
-
-function openEditPopUp() {
-  popUp.classList.add("popUp_open");
-  console.log("open");
-}
-function closeEditPopUp() {
-  popUp.classList.remove("popUp_open");
-  console.log("close");
-}
-
-function formSubmitHandler(e) {
-  e.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  console.log("added content");
-  closeEditPopUp();
-  console.log("submit close");
-}
-
-closeButton.addEventListener("click", closeEditPopUp);
-pencil.addEventListener("click", openEditPopUp);
-
-form.addEventListener("click", formSubmitHandler); -->

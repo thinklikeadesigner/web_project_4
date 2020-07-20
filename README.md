@@ -2,15 +2,28 @@
 
 ### Overview
 
-* Figma
-* Images
+- Pages link
+- Description and Functionality
+- Technologies and Techniques
 
-**Pages**
+**Pages link**
 
-* [Link to the project in Pages](https://thinklikeadesigner.github.io/web_project_4/)
+- [Link to the project in Pages](https://thinklikeadesigner.github.io/web_project_4/)
 
-**Images**
+**Description and Functionality**
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+This project is a site that allows you to make a profile and post pictures. So far, the user can add their name and a short description about themself. Using JavaScript, the user can:
 
-Have fun with JavaScript!
+1. open and close a modal
+2. edit the contents of a form
+3. save the changes so the website reflects the user input from the form
+
+**Technologies and Techniques**
+
+I used these functions in the following ways:
+
+```
+querySelector()
+addEventListener()
+preventDefault()
+```

@@ -15,11 +15,31 @@
 }
 
 .header {
-  margin: 45px auto 0;
-  min-width: 882px;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+  justify-content: center;
+}
+
+.header__container {
+  margin: 45px 199px;
+  min-width: 882px;
+}
+
+@media screen and (max-width: 1140px) {
+  .header__container {
+    margin: 45px;
+    min-width: 584px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .header__container {
+    margin: 28px 27px;
+    min-width: 282px;
+    width: 100%;
+  }
 }
 
 .header__logo {
@@ -30,15 +50,15 @@
 
 @media screen and (max-width: 1140px) {
   .header__logo {
-    margin: 28px 27px 0;
+    margin: 0 0 41px;
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .header__logo {
     width: 126px;
     height: 24px;
-    margin: 28px 27px 0;
+    margin: 28px 27px 32;
   }
 }
 
@@ -48,12 +68,10 @@
 }
 
 .container {
-  margin: 0 199px;
   padding: 0;
-  max-width: 1280px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .container {
     max-width: 282px;
     margin: 0 19px;
@@ -83,7 +101,7 @@
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .profile {
     flex-direction: column;
     min-width: 282px;
@@ -101,7 +119,7 @@
   margin: 0 22.5px 0 0;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .profile__pic-box {
     width: 168.75px;
     display: flex;
@@ -130,7 +148,7 @@
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .profile__info {
     flex-direction: column;
     margin: 0;
@@ -150,9 +168,10 @@
   line-height: 1.33;
   margin: 0 0 16px;
   min-width: 380px;
+  display: contents;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .profile__name {
     font-size: 22px;
     line-height: calc(56 / 22);
@@ -168,7 +187,7 @@
   margin: 0;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .profile__job {
     font-size: 14px;
     line-height: calc(17 / 14);
@@ -182,7 +201,7 @@
   align-items: baseline;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .top-text {
     flex-direction: row;
     display: flex;
@@ -191,7 +210,7 @@
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .top-text {
     flex-direction: row;
     display: flex;
@@ -208,6 +227,18 @@
   border-radius: 10px;
 }
 
+.edit__span {
+  display: inline-block;
+  margin-left: 31px;
+}
+
+@media screen and (max-width: 750px) {
+  .edit__span {
+    margin-left: 12px;
+    align-self: center;
+  }
+}
+
 .edit {
   height: 24px;
   width: 24px;
@@ -217,18 +248,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  margin-left: 24px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .edit {
     height: 18px;
     width: 18px;
+    margin-left: 12px;
   }
 }
 
 .pencil {
   background-size: contain;
   background-repeat: no-repeat;
+  position: absolute;
+  top: 25%;
+  right: 25%;
 }
 
 .edit:hover {
@@ -255,7 +292,7 @@
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .add {
     width: 282px;
     height: 50px;
@@ -364,10 +401,6 @@
   align-items: center;
   justify-content: space-around;
 }
-/* 
-.border {
-  border: 1px solid teal;
-} */
 
 .popUp {
   background-color: #00000052;
@@ -394,35 +427,34 @@
   height: 330px;
   border-radius: 10px;
   background: #ffffff;
-  opacity: none;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
-  position: relative;
+  padding: 36px 34px;
+  box-sizing: border-box;
 }
 
 .edit__profile {
   color: black;
-  margin: 28px 36px 54px;
+  margin: 0 0 43px;
   font-weight: 900;
   font-size: 24px;
   line-height: calc(29 / 24);
 }
 
 .form__button {
-  width: 358px;
+  max-width: 358px;
+  width: 100%;
   height: 50.15px;
   background: black;
   color: white;
   font-size: 18px;
   line-height: calc(22 / 18);
   border-radius: 2px;
+  justify-self: center;
   align-self: center;
-  margin-top: 18.26px;
-  margin-bottom: 36px;
   border: none;
-  padding: none;
+  padding: 0;
 }
 .form__button:hover {
   opacity: 0.8;
@@ -430,9 +462,9 @@
 
 .form__line {
   height: 0;
-  width: 358px;
+  max-width: 358px;
+  width: 100%;
   border: 0.01px solid black;
-  align-self: center;
   margin: 0 0 29.74px;
   padding: 0 36px;
   padding: 0;
@@ -440,10 +472,11 @@
 }
 
 .form__input {
-  margin: 0 36px 10.26px;
+  margin: 0;
   border: none;
   font-size: 14px;
   line-height: calc(17 / 14);
+  min-height: 29.26px;
 }
 
 .popUp__close-button {
@@ -451,8 +484,8 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: -30px;
-  right: -30px;
+  top: 373px;
+  right: 302px;
   height: 31px;
   width: 31px;
   background-color: transparent;
@@ -468,34 +501,48 @@
 
 .footer {
   width: 100%;
-  margin: 0 199px;
-  padding: 0;
+
+  max-width: 882px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  height: 100%;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1140px) {
   .footer {
-    margin: 0 19px;
-    display: flex;
+    margin: 0 auto;
+
+    max-width: 584px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .footer {
+    margin: 0 auto;
+    max-width: 282px;
+    width: 100%;
   }
 }
 
 .footer__text {
-  max-width: 882px;
-  margin: 0 199px;
-  width: 100%;
+  flex-direction: column;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media screen and (max-width: 1140px) {
   .footer__text {
     max-width: 578px;
-    width: 100%;
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .footer__text {
     max-width: 282px;
-    margin: 0 19px;
+
     width: 100%;
   }
 }
@@ -504,15 +551,15 @@
   font-size: 18px;
   line-height: calc(22 / 18);
   color: #545454;
-  margin: 66px 0 60px;
+  padding: 66px 0 60px;
   max-width: 318px;
+  margin: 0;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   .copyright {
     font-size: 14px;
     line-height: calc(17 / 14);
-    margin: 48px 0 36px;
-    max-width: 282px;
+    margin: 0;
   }
 }

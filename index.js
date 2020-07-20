@@ -11,17 +11,20 @@ const submitButton = document.querySelector(".form__button");
 function togglePopUp() {
   popUp.classList.toggle("popUp_open");
   console.log("toggleEditPopUp");
+  return;
 }
 
+pencil.addEventListener("click", togglePopUp);
 closeButton.addEventListener("click", togglePopUp);
 
-pencil.addEventListener("click", togglePopUp);
-
-submitButton.addEventListener("click", function (e) {
+function formSubmitHandler(e) {
   e.preventDefault();
 
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
 
   togglePopUp();
-});
+  return;
+}
+
+form.addEventListener("submit", formSubmitHandler);
