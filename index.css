@@ -459,6 +459,10 @@
   outline: none;
 }
 
+.popUp__close-button:hover {
+  opacity: 0.8;
+}
+
 .footer {
   width: 100%;
   margin: 0 199px;
