@@ -4,38 +4,32 @@ const popUp = document.querySelector(".popUp");
 const form = document.querySelector(".form");
 const nameInput = document.querySelector(".form__input_type_name");
 const jobInput = document.querySelector(".form__input_type_info");
+const profileName = document.querySelector(".profile__name");
+const profileJob = document.querySelector(".profile__job");
 
 function togglePopUp() {
   popUp.classList.toggle("popUp_open");
-  console.log(open);
+  console.log("why won't this work");
 }
 
+function togglePopUpOdd() {
+  popUp.classList.toggle("popUp_open");
+  popUp.classList.toggle("popUp_open");
+}
+
+closeButton.addEventListener("click", togglePopUpOdd);
 pencil.addEventListener("click", togglePopUp);
-closeButton.addEventListener("click", togglePopUp);
+
+// function formSubmitHandler(e) {
+//   e.preventDefault();
+//   profileName.textContent = nameInput.value;
+//   profileJob.textContent = jobInput.value;
+//   togglePopUp();
+// }
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-
-  const profileName = document.querySelector(".profile__name");
-  const profileJob = document.querySelector(".profile__job");
-
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-
-  console.log(nameInput.value, jobInput.value);
   togglePopUp();
 });
-
-// form.addEventListener("submit", function (e) {
-//   e.preventDefault();
-
-//   console.log(nameInput.value, jobInput.value);
-// });
-
-// form__input_type_name
-// form__input_type_job
-
-// card__nalue_type_name
-// card__value_type_job
-
-// <input type="text class=" value="kate">
