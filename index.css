@@ -388,7 +388,9 @@
 }
 
 .form {
-  width: 430px;
+  max-width: 430px;
+  min-width: 250px;
+  width: 50%;
   height: 330px;
   border-radius: 10px;
   background: #ffffff;
@@ -430,14 +432,15 @@
   height: 0;
   width: 358px;
   border: 0.01px solid black;
-  margin: 0 36px 29.74px;
+  align-self: center;
+  margin: 0 0 29.74px;
+  padding: 0 36px;
   padding: 0;
   opacity: 0.2;
 }
 
 .form__input {
-  margin-left: 36px;
-  margin-bottom: 10.26px;
+  margin: 0 36px 10.26px;
   border: none;
   font-size: 14px;
   line-height: calc(17 / 14);
