@@ -4,7 +4,7 @@
 }
 @media screen and (max-width: 1140px) {
   .header__container {
-    margin: 45px;
+    margin: 45px 45px 0;
     min-width: 584px;
     width: 100%;
   }
