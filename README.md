@@ -24,6 +24,8 @@ I used these functions in the following ways:
 
 
 querySelector() *was used to select elements from html*
+
 addEventListener() *was used to check for user actions on page*
+
 preventDefault() *was used to prevent website from following default behavior*
 
