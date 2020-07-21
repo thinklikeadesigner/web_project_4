@@ -1,3 +1,5 @@
+@import url("./__pic/heart__pic.css");
+
 .heart {
   min-height: 31px;
   width: 31px;
@@ -8,4 +10,5 @@
   border: none;
   transition: 0.3s;
   outline: none;
+  padding: 0;
 }

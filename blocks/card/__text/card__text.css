@@ -1,6 +1,8 @@
 .card__text {
-  max-width: 248px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 21px 0 15px;
+  box-sizing: border-box;
 }

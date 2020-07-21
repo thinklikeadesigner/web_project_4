@@ -15,6 +15,10 @@
   margin-left: 24px;
 }
 
+.edit:hover {
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 750px) {
   .edit {
     min-height: 18px;

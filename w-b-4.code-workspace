@@ -1,7 +1,8 @@
 {
-    "folders": [
-        {
-            "path": "."
-        }
-    ]
+  "folders": [
+    {
+      "name": "web_project_4",
+      "path": "."
+    }
+  ]
 }
