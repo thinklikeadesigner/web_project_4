@@ -6,13 +6,13 @@
 }
 
 @media screen and (max-width: 1140px) {
-  .footer\_\_text {
+  .footer__text {
     max-width: 578px;
   }
 }
 
 @media screen and (max-width: 750px) {
-  .footer\_\_text {
+  .footer__text {
     max-width: 282px;
     width: 100%;
   }

@@ -3,15 +3,9 @@
   align-items: center;
   justify-content: center;
 }
-@media screen and (max-width: 750px) {
-  .profile\_\_info {
-    flex-direction: column;
-    margin: 0;
-  }
-}
 
 @media screen and (max-width: 1140px) {
-  .profile\_\_info {
+  .profile__info {
     flex-direction: column;
     margin: 0;
   }
