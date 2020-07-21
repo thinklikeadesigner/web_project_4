@@ -1,0 +1,17 @@
+.copyright {
+  font-size: 18px;
+  line-height: calc(22 / 18);
+  color: #545454;
+  padding: 66px 0 60px;
+  max-width: 318px;
+  margin: 0;
+}
+
+@media screen and (max-width: 750px) {
+  .copyright {
+    font-size: 14px;
+    line-height: calc(17 / 14);
+    margin: 0;
+    padding: 48px 0 36px;
+  }
+}

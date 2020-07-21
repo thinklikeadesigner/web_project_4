@@ -1,0 +1,19 @@
+.footer__text {
+  flex-direction: column;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 1140px) {
+  .footer\_\_text {
+    max-width: 578px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .footer\_\_text {
+    max-width: 282px;
+    width: 100%;
+  }
+}

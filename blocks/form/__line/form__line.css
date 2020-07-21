@@ -1,0 +1,9 @@
+.form__line {
+  max-width: 358px;
+  width: 100%;
+  border: 0.01px solid black;
+  margin: 0 0 29.74px;
+  padding: 0 36px;
+  padding: 0;
+  opacity: 0.2;
+}

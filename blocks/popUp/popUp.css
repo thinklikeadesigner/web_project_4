@@ -1,0 +1,14 @@
+@import url("./__close-button/popUp__close-button.css");
+.popUp {
+  background-color: #00000052;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}

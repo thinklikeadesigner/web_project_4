@@ -1,0 +1,11 @@
+.edit__span {
+  display: inline-block;
+  margin-left: 31px;
+}
+
+@media screen and (max-width: 750px) {
+  .edit\_\_span {
+    margin-left: 12px;
+    align-self: center;
+  }
+}

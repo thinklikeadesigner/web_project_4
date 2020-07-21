@@ -1,0 +1,24 @@
+@import url("./__container/edit__container.css");
+@import url("./__profile/edit__profile.css");
+@import url("./__span/edit__span.css");
+
+.edit {
+  min-height: 24px;
+  width: 24px;
+  border: 1px solid #ffffff;
+  background-color: #000000;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-left: 24px;
+}
+
+@media screen and (max-width: 750px) {
+  .edit {
+    min-height: 18px;
+    width: 18px;
+    margin-left: 12px;
+  }
+}
