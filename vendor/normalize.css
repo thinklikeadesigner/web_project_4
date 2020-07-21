@@ -350,12 +350,11 @@ template {
   display: none;
 }
 
-
-.scrollbar-webkit::-webkit-scrollbar {
+/* .scrollbar-webkit::-webkit-scrollbar {
   display: none;
-} */
+}
 
-/* .scrollbar-microsoft {
+.scrollbar-microsoft {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
+} */
