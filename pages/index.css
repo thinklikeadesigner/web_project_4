@@ -8,12 +8,7 @@
 @import url("../blocks/add/add.css");
 @import url("../blocks/cards/cards.css");
 @import url("../blocks/card/card.css");
-<<<<<<< HEAD
 @import url("../blocks/modal/modal.css");
 @import url("../blocks/modal/_open/modal_open.css");
-=======
-@import url("../blocks/popUp/popup.css");
-@import url("../blocks/popUp/_open/popup_open.css");
->>>>>>> c85fa64625af4fcc7bb1be00885658af1269b9f9
 @import url("../blocks/form/form.css");
 @import url("../blocks/footer/footer.css");
