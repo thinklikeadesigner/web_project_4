@@ -10,35 +10,23 @@ const jobInput = document.querySelector(".form__input_type_info");
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
-function openmodal() {
+function openModal() {
   modal.classList.add("modal_open");
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 }
 
-function closemodal() {
+function closeModal() {
   modal.classList.remove("modal_open");
-}
-
-function preFill() {
-  if ((modal["class"] = "modal_open")) {
-    console.log("opened modal");
-    nameInput.value = profileName.textContent;
-    console.log('changed value="" for name');
-    jobInput.value = profileJob.textContent;
-    console.log('changed value="" for job');
-  }
 }
 
 function formSubmitHandler(e) {
   e.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closemodal();
+  closeModal();
 }
 
-editButton.addEventListener("click", openmodal);
-editButton.addEventListener("click", preFill);
-
-closeButton.addEventListener("click", closemodal);
-closeButton.addEventListener("click", preFill);
-
+editButton.addEventListener("click", openModal);
+closeButton.addEventListener("click", closeModal);
 form.addEventListener("submit", formSubmitHandler);
