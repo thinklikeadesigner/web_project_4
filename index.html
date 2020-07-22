@@ -139,20 +139,24 @@
         <p class="footer__copyright">© 2020 Around The U.S.</p>
       </footer>
       <div class="popup">
-        <form action="#" class="form">
+        <form action="#" class="form" name="profile">
           <h2 class="form__title">Edit profile</h2>
           <input
+            name="name"
             type="text"
             class="form__input form__input_type_name"
             placeholder="Name"
-            value="hi"
+            value=""
+            required
           />
 
           <input
             type="text"
+            name="input-info"
             class="form__input form__input_type_info"
             placeholder="About me"
             value=""
+            required
           />
 
           <button type="submit" class="form__button">Save</button>
