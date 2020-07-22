@@ -1,4 +1,4 @@
-@import url("./__close-button/popUp__close-button.css");
+@import url("./__close-button/popup__close-button.css");
 .popup {
   background-color: #00000052;
   display: none;
