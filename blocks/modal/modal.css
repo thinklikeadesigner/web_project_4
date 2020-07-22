@@ -1,5 +1,5 @@
-@import url("./__close-button/popUp__close-button.css");
-.popup {
+@import url("./__close-button/modal__close-button.css");
+.modal {
   background-color: #00000052;
   display: none;
   align-items: center;
