@@ -10,6 +10,10 @@
   background-position: center;
 }
 
+.profile__edit:hover {
+  opacity: 0.6;
+}
+
 @media screen and (max-width: 750px) {
   .profile__edit {
     min-height: 18px;

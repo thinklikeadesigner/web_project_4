@@ -9,14 +9,14 @@
 }
 
 @media screen and (max-width: 1140px) {
-  .cards\_\_list {
+  .cards__list {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
 }
 
 @media screen and (max-width: 730px) {
-  .cards\_\_list {
+  .cards__list {
     grid-template-columns: 1fr;
   }
 }

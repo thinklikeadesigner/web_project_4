@@ -1,4 +1,4 @@
-.popUp__close-button {
+.popup__close-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,12 +18,12 @@
   background-position: center;
 }
 
-.popUp__close-button:hover {
+.popup__close-button:hover {
   opacity: 0.8;
 }
 
 @media screen and (max-width: 880px) {
-  .popUp__close-button {
+  .popup__close-button {
     top: calc(50% - 207px);
     right: calc(50% - 132px);
   }

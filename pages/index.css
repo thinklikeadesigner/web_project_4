@@ -5,14 +5,11 @@
 @import url("../blocks/header/header.css");
 @import url("../blocks/container/container.css");
 @import url("../blocks/profile/profile.css");
-@import url("../blocks/edit/edit.css");
 @import url("../blocks/add/add.css");
 @import url("../blocks/cards/cards.css");
 @import url("../blocks/card/card.css");
 @import url("../blocks/heart/heart.css");
-@import url("../blocks/liked/liked.css");
-@import url("../blocks/popUp/popUp.css");
-@import url("../blocks/popUp/_open/popUp_open.css");
+@import url("../blocks/popup/popup.css");
+@import url("../blocks/popup/_open/popup_open.css");
 @import url("../blocks/form/form.css");
 @import url("../blocks/footer/footer.css");
-@import url("../blocks/copyright/copyright.css");
