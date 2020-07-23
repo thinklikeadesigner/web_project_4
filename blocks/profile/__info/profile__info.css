@@ -9,10 +9,3 @@
     margin: 0;
   }
 }
-
-@media screen and (max-width: 750px) {
-  .profile__info {
-    flex-direction: column;
-    margin: 0;
-  }
-}
