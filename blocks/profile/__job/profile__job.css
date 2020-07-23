@@ -5,7 +5,7 @@
   margin: 16px 0;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 1140px) {
   .profile__job {
     font-size: 14px;
     line-height: calc(17 / 14);
@@ -13,3 +13,13 @@
     margin: 0;
   }
 }
+
+/* 
+@media screen and (max-width: 750px) {
+  .profile__job {
+    font-size: 14px;
+    line-height: calc(17 / 14);
+    text-align: center;
+    margin: 0;
+  }
+} */
