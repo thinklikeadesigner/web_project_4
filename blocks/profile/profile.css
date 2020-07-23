@@ -4,6 +4,7 @@
 @import url("./__pic/profile__pic.css");
 @import url("./__edit/profile__edit.css");
 @import url("./__text/profile__text.css");
+
 .profile {
   display: flex;
   width: 100%;

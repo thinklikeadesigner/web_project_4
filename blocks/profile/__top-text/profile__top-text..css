@@ -1,0 +1,11 @@
+.profile__top-text {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 750px) {
+  .profile__top-text {
+    text-align: center;
+  }
+}
