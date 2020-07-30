@@ -45,90 +45,7 @@
         </section>
         <section class="cards">
           <ul class="cards__list">
-            <li class="card">
-              <img
-                src="./images/yosemite.jpg"
-                alt="river valley"
-                class="card__pic"
-              />
 
-              <div class="card__text">
-                <h2 class="card__title">
-                  Yosemite Valley
-                </h2>
-                <button class="card__heart"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/lake-louise.jpg"
-                alt="river valley"
-                class="card__pic"
-              />
-
-              <div class="card__text">
-                <h2 class="card__title">
-                  Lake Louise
-                </h2>
-                <button class="card__heart"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/bald-mountains.png"
-                alt="river valley"
-                class="card__pic"
-              />
-
-              <div class="card__text">
-                <h2 class="card__title">
-                  Bald Mountains
-                </h2>
-                <button class="card__heart"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/latemar.jpg"
-                alt="river valley"
-                class="card__pic"
-              />
-
-              <div class="card__text">
-                <h2 class="card__title">
-                  Latemar
-                </h2>
-                <button class="card__heart"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/vanois-national.jpg"
-                alt="river valley"
-                class="card__pic"
-              />
-
-              <div class="card__text">
-                <h2 class="card__title">
-                  Vanoise National Park
-                </h2>
-                <button class="card__heart"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/lago-di-braies.jpg"
-                alt="river valley"
-                class="card__pic"
-              />
-
-              <div class="card__text">
-                <h2 class="card__title">
-                  Lago di Braies
-                </h2>
-                <button class="card__heart"></button>
-              </div>
-            </li>
           </ul>
         </section>
       </main>
@@ -136,13 +53,14 @@
       <footer class="footer">
         <p class="footer__copyright">© 2020 Around The U.S.</p>
       </footer>
-      <div class="modal">
+      
+      <div class="modal ">
         <form action="#" class="form" name="profile">
-          <h2 class="form__title">Edit profile</h2>
+          <h2 class="form__title"></h2>
           <input
             name="name"
             type="text"
-            class="form__input form__input_type_name"
+            class="form__input form__input_type_top"
             placeholder="Name"
             value=""
             required
@@ -151,7 +69,7 @@
           <input
             type="text"
             name="input-info"
-            class="form__input form__input_type_info"
+            class="form__input form__input_type_bottom"
             placeholder="About me"
             value=""
             required
@@ -162,6 +80,16 @@
         <button type="button" class="modal__close-button"></button>
       </div>
     </div>
+    </div>
+    <template id="card__template">
+      <li class="card">
+        <img src="" alt="" class="card__pic" />
+        <div class="card__text">
+          <h2 class="card__title"></h2>
+          <button class="card__heart"></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
