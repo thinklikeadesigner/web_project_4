@@ -16,4 +16,5 @@
 .card__heart:hover {
   opacity: 0.6;
   cursor: pointer;
+  transform: scale(1.3);
 }

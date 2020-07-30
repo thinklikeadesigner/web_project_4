@@ -52,6 +52,7 @@ const formHeader = document.querySelector(".form__title");
 const cardTemplate = document.querySelector("#card__template").content;
 const cardElement = cardTemplate.cloneNode(true);
 const cardsList = document.querySelector(".cards__list");
+const heart = document.querySelector(".card__heart");
 
 function toggleModal() {
   modal.classList.toggle("modal_open");
@@ -79,7 +80,7 @@ function setAttributes(element, attribute) {
 function addCard(titleValue, imageValue) {
   cardElement.querySelector(".card__title").textContent = titleValue;
   cardElement.querySelector(".card__pic").src = imageValue;
-  cardsList.append(cardElement);
+  cardsList.prepend(cardElement);
 }
 
 editButton.addEventListener("click", () => {
@@ -120,6 +121,12 @@ addButton.addEventListener("click", () => {
 });
 closeButton.addEventListener("click", toggleModal);
 form.addEventListener("submit", formSubmitHandler);
+heart.addEventListener("click", function (evt) {
+  evt.preventDefault(evt);
+  heart.classList.toggle("card__heart_active");
+});
 // initialCards.forEach((task) => {
 //   return addCard(initialCards.name, initialCards.link);
 // });
+
+console.log();
