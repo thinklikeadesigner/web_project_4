@@ -1,32 +1,6 @@
 // const list = document.querySelector(".cards__list");
 
 // // array of tasks for today
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
 
 // // convert the array of tasks for today to an array of elements
 
@@ -49,8 +23,6 @@ const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
 const formHeader = document.querySelector(".form__title");
-const cardTemplate = document.querySelector("#card__template").content;
-const cardElement = cardTemplate.cloneNode(true);
 const cardsList = document.querySelector(".cards__list");
 const heart = document.querySelector(".card__heart");
 
@@ -78,8 +50,19 @@ function setAttributes(element, attribute) {
 }
 
 function addCard(titleValue, imageValue) {
+  const cardTemplate = document.querySelector("#card__template").content;
+  const cardElement = cardTemplate.cloneNode(true);
+
   cardElement.querySelector(".card__title").textContent = titleValue;
   cardElement.querySelector(".card__pic").src = imageValue;
+
+  document
+    .querySelector(".card__heart")
+    .addEventListener("click", function (evt) {
+      evt.target.classList.toggle("card__heart_active");
+      console.log("liked");
+    });
+
   cardsList.prepend(cardElement);
 }
 
@@ -121,12 +104,44 @@ addButton.addEventListener("click", () => {
 });
 closeButton.addEventListener("click", toggleModal);
 form.addEventListener("submit", formSubmitHandler);
-heart.addEventListener("click", function (evt) {
-  evt.preventDefault(evt);
-  heart.classList.toggle("card__heart_active");
-});
+
+// heart.addEventListener("click", function (evt) {
+//   evt.preventDefault(evt);
+//   heart.classList.toggle("card__heart_active");
+// });
 // initialCards.forEach((task) => {
 //   return addCard(initialCards.name, initialCards.link);
 // });
 
-console.log();
+console.log("jsfiddle example" + "https://jsfiddle.net/496tafdu/2/");
+
+const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg",
+  },
+];
+
+initialCards.forEach((data) => {
+  addCard(data.name, data.link);
+});
