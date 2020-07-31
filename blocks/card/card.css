@@ -5,8 +5,7 @@
 @import url("./__heart/_active/card__heart_active.css");
 
 .card {
-  width: 282px;
-  height: 361px;
+  max-width: 282px;
   background-color: white;
   display: flex;
   flex-direction: column;
