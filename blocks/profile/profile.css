@@ -4,11 +4,11 @@
 @import url("./__pic/profile__pic.css");
 @import url("./__edit/profile__edit.css");
 @import url("./__text/profile__text.css");
+@import url("./__container/profile__container.css");
 
 .profile {
   display: flex;
-  width: 100%;
-  max-width: 882px;
+  width: 882px;
   justify-content: space-between;
   align-items: center;
   margin: 36.25px 0 47.25px;
@@ -17,6 +17,7 @@
 @media screen and (max-width: 1140px) {
   .profile {
     flex-direction: column;
+    width: 100%;
     min-width: 282px;
     margin: 38.25px 0 0;
     justify-content: center;
