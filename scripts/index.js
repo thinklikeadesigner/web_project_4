@@ -56,7 +56,7 @@ function addCard(titleValue, imageValue) {
   cardElement.querySelector(".card__title").textContent = titleValue;
   cardElement.querySelector(".card__pic").src = imageValue;
 
-  document
+  cardElement
     .querySelector(".card__heart")
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("card__heart_active");
@@ -104,14 +104,6 @@ addButton.addEventListener("click", () => {
 });
 closeButton.addEventListener("click", toggleModal);
 form.addEventListener("submit", formSubmitHandler);
-
-// heart.addEventListener("click", function (evt) {
-//   evt.preventDefault(evt);
-//   heart.classList.toggle("card__heart_active");
-// });
-// initialCards.forEach((task) => {
-//   return addCard(initialCards.name, initialCards.link);
-// });
 
 console.log("jsfiddle example" + "https://jsfiddle.net/496tafdu/2/");
 
