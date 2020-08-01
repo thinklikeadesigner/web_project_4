@@ -1,7 +1,7 @@
 .modal__card {
   position: relative;
   max-height: 75vw;
-  max-width: 75vw;
+  max-width: calc(75vw - 30px);
   object-fit: contain;
 }
 
@@ -20,7 +20,7 @@
 
 @media screen and (max-width: 1140px) {
   .modal__card {
-    min-width: 240px;
+    min-width: 200px;
   }
 }
 
