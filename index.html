@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="./pages/index.css" type="text/css" />
     <title>Around The U.S.</title>
   </head>
-
   <body class="black-background">
     <div class="page">
       <header class="header">
@@ -23,7 +22,6 @@
           />
         </div>
       </header>
-
       <main class="container">
         <section class="profile">
           <div class="profile__container">
@@ -33,61 +31,71 @@
                 alt="Jaques Cousteau close-up in a red beanie"
                 class="profile__pic"
               />
-  
+
               <div class="profile__text">
                 <h1 class="profile__name">Jacques Cousteau</h1>
-               
+
                 <button type="button" class="profile__edit"></button>
-  
+
                 <p class="profile__job">Explorer</p>
               </div>
             </div>
-  
+
             <button type="button" class="add"></button>
           </div>
-         
         </section>
         <section class="cards">
-          <ul class="cards__list">
-          </ul>
+          <ul class="cards__list"></ul>
         </section>
       </main>
-
       <footer class="footer">
         <p class="footer__copyright">© 2020 Around The U.S.</p>
       </footer>
-      
-      <div class="modal ">
-        <form action="#" class="form" name="form">
-          <h2 class="form__title"></h2>
-          <input
-            name=""
-            type="text"
-            class="form__input form__input_type_top"
-            placeholder=""
-            value=""
-            required
-          />
-
-          <input
-            type="text"
-            name=""
-            class="form__input form__input_type_bottom"
-            placeholder=""
-            value=""
-            required
-          />
-
-          <button type="submit" class="form__button">Save</button>
-        </form>
-        <button type="button" class="modal__close-button"></button>
+      <div class="modal">
+        <div class="form__container">
+          <form action="#" class="form" name="form">
+            <h2 class="form__title"></h2>
+            <input
+              name="top-input"
+              type="text"
+              class="form__input form__input_type_top"
+              placeholder=""
+              value=""
+              required
+            />
+            <input
+              type="text"
+              name="bottom-input"
+              class="form__input form__input_type_bottom"
+              placeholder=""
+              value=""
+              required
+            />
+            <button type="submit" class="form__button">Save</button>
+          </form>
+          <button type="button" class="modal__close-button"></button>
+        </div>
       </div>
-    </div>
+      <div class="modal modal__pic">
+        <div class="modal__container">
+          <div class="modal__card">
+            <img
+              src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1680&q=80"
+              alt=""
+              class="img"
+            />
+          </div>
+
+          <button
+            type="button"
+            class="modal__close-button modal__close-button_pic"
+          ></button>
+        </div>
+      </div>
     </div>
     <template id="card__template">
       <li class="card">
         <img src="" alt="" class="card__pic" />
-        
         <div class="card__text">
           <h2 class="card__title"></h2>
           <button class="card__heart"></button>

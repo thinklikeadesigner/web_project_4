@@ -1,0 +1,29 @@
+.modal__card {
+  position: relative;
+  max-height: 75vw;
+  max-width: 75vw;
+  object-fit: contain;
+}
+
+.modal__container {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 1140px) {
+  .modal__card {
+    min-width: 240px;
+  }
+}
+
+body {
+  overflow-y: scroll;
+}
