@@ -1,10 +1,7 @@
 @import url("./__close-button/modal__close-button.css");
 .modal {
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 300ms, linear 300ms;
+  display: none;
   align-items: center;
   justify-content: center;
   position: fixed;

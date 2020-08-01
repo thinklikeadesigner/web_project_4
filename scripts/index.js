@@ -1,3 +1,4 @@
+
 // const list = document.querySelector(".cards__list");
 
 // // array of tasks for today
@@ -7,47 +8,36 @@
 // // add the element to the DOM by unfolding the array
 // list.append(...taskElements);
 
+
 const editButton = document.querySelector(".profile__edit");
 const closeButton = document.querySelector(".modal__close-button");
-const addButton = document.querySelector(".add");
 
 const modal = document.querySelector(".modal");
 const form = document.querySelector(".form");
 
-const topInput = document.querySelector(".form__input_type_top");
-const bottomInput = document.querySelector(".form__input_type_bottom");
-const titleInput = document.querySelector(".form__input_type_title");
-const urlInput = document.querySelector(".form__input_type_image");
+const nameInput = document.querySelector(".form__input_type_name");
+const jobInput = document.querySelector(".form__input_type_info");
 
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
+
 
 const formHeader = document.querySelector(".form__title");
 const cardsList = document.querySelector(".cards__list");
 const heart = document.querySelector(".card__heart");
 
-function toggleModal() {
-  modal.classList.toggle("modal_open");
+
+function closeModal() {
+  modal.classList.remove("modal_open");
 }
 
 function formSubmitHandler(e) {
   e.preventDefault();
-  if (modal.classList.contains("modal_add") === false) {
-    profileName.textContent = topInput.value;
-    profileJob.textContent = bottomInput.value;
-  } else {
-    addCard(topInput.value, bottomInput.value);
-  }
-  toggleModal();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+  closeModal();
 }
 
-function edit() {}
-
-function setAttributes(element, attribute) {
-  for (var key in attribute) {
-    element.setAttribute(key, attribute[key]);
-  }
-}
 
 function addCard(titleValue, imageValue) {
   const cardTemplate = document.querySelector("#card__template").content;
@@ -145,3 +135,4 @@ const initialCards = [
 initialCards.forEach((data) => {
   addCard(data.name, data.link);
 });
+
