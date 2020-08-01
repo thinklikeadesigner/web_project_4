@@ -41,8 +41,6 @@ function formSubmitHandler(e) {
   toggleModal();
 }
 
-function edit() {}
-
 function setAttributes(element, attribute) {
   for (var key in attribute) {
     element.setAttribute(key, attribute[key]);
@@ -99,6 +97,8 @@ addButton.addEventListener("click", () => {
     name: "image",
     value: "",
   });
+  topInput.value = "";
+  bottomInput.value = "";
 
   toggleModal();
 });
