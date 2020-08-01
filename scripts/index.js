@@ -12,6 +12,7 @@ const closeButton = document.querySelector(".modal__close-button");
 const addButton = document.querySelector(".add");
 
 const modal = document.querySelector(".modal");
+const modalPic = document.querySelector(".modal__pic");
 const form = document.querySelector(".form");
 
 const topInput = document.querySelector(".form__input_type_top");
@@ -41,8 +42,6 @@ function formSubmitHandler(e) {
   toggleModal();
 }
 
-function edit() {}
-
 function setAttributes(element, attribute) {
   for (var key in attribute) {
     element.setAttribute(key, attribute[key]);
@@ -55,7 +54,7 @@ function addCard(titleValue, imageValue) {
 
   cardElement.querySelector(".card__title").textContent = titleValue;
   cardElement.querySelector(".card__pic").src = imageValue;
-
+  cardElement.querySelector(".card").addEventListener("click", togglePic);
   cardElement
     .querySelector(".card__heart")
     .addEventListener("click", function (evt) {
@@ -64,6 +63,10 @@ function addCard(titleValue, imageValue) {
     });
 
   cardsList.prepend(cardElement);
+}
+
+function togglePic() {
+  modalPic.classList.toggle("modal_open");
 }
 
 editButton.addEventListener("click", () => {
@@ -99,10 +102,16 @@ addButton.addEventListener("click", () => {
     name: "image",
     value: "",
   });
+  topInput.value = "";
+  bottomInput.value = "";
 
   toggleModal();
 });
 closeButton.addEventListener("click", toggleModal);
+document
+  .querySelector(".modal__close-button_pic")
+  .addEventListener("click", togglePic);
+
 form.addEventListener("submit", formSubmitHandler);
 
 console.log("jsfiddle example" + "https://jsfiddle.net/496tafdu/2/");

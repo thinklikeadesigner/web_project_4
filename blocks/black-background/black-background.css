@@ -1,3 +1,4 @@
 .black-background {
   background-color: black;
+  overflow-y: hidden;
 }

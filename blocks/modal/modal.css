@@ -1,4 +1,6 @@
 @import url("./__close-button/modal__close-button.css");
+@import url("./__card/modal__card.css");
+
 .modal {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
