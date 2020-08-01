@@ -54,7 +54,7 @@ function addCard(titleValue, imageValue) {
 
   cardElement.querySelector(".card__title").textContent = titleValue;
   cardElement.querySelector(".card__pic").src = imageValue;
-  cardElement.querySelector(".card").addEventListener("click", togglePic);
+  cardElement.querySelector(".card__pic").addEventListener("click", togglePic);
   cardElement
     .querySelector(".card__heart")
     .addEventListener("click", function (evt) {
