@@ -95,6 +95,10 @@ const list = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card__template").content;
 
 initialCards.forEach((data) => {
+  newCard(data.name, data.link);
+});
+
+function newCard(title, url) {
   const cardElement = cardTemplate.cloneNode(true);
 
   const cardPic = cardElement.querySelector(".card__pic");
@@ -102,8 +106,8 @@ initialCards.forEach((data) => {
   const cardHeart = cardElement.querySelector(".card__heart");
   const cardDelete = cardElement.querySelector(".card__delete-btn");
 
-  cardTitle.textContent = data.name;
-  cardPic.src = data.link;
+  cardTitle.textContent = title;
+  cardPic.src = url;
 
   cardHeart.addEventListener("click", (e) =>
     e.target.classList.toggle("card__heart_active")
@@ -115,24 +119,16 @@ initialCards.forEach((data) => {
   });
 
   list.prepend(cardElement);
-});
-
-function newCard(title, url) {
-  initialCards.unshift([(name = title), (link = url)]);
 }
 
 function AddFormSubmitHandler(e) {
   e.preventDefault();
-  let newTitle = inputTitle.value;
-  let newUrl = inputUrl.value;
-
-  newCard(newTitle, newUrl);
-  console.log(newCard(newTitle, newUrl));
+  newCard(inputTitle.value, inputUrl.value);
 
   toggleAddWindow();
+  inputTitle.value = "";
+  inputUrl.value = "";
 }
-
-initialCards.name = "";
 
 const newCardPic = document.querySelector(".card__pic");
 
@@ -149,7 +145,7 @@ function toggleModalPic() {
 
 newCardPic.addEventListener("click", () => {
   const open = newCardPic.closest(".card__pic");
-  const img = document.querySelector(".img");
+  const img = document.querySelector(".modal__img");
 
   img.src = open.src;
   toggleModalPic();
