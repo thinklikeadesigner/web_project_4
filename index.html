@@ -51,29 +51,60 @@
       <footer class="footer">
         <p class="footer__copyright">© 2020 Around The U.S.</p>
       </footer>
-      <div class="modal">
+      <div class="modal modal_type_edit">
         <div class="form__container">
-          <form action="#" class="form" name="form">
-            <h2 class="form__title"></h2>
+          <form action="#" class="form form_edit" name="form">
+            <h2 class="form__title">Edit Profile</h2>
             <input
-              name="top-input"
+              name="Name"
               type="text"
-              class="form__input form__input_type_top"
-              placeholder=""
+              class="form__input form__input_type_name"
+              placeholder="Name"
               value=""
               required
             />
             <input
               type="text"
-              name="bottom-input"
-              class="form__input form__input_type_bottom"
-              placeholder=""
+              name="job"
+              class="form__input form__input_type_job"
+              placeholder="About Me"
               value=""
               required
             />
             <button type="submit" class="form__button">Save</button>
           </form>
-          <button type="button" class="modal__close-button"></button>
+          <button
+            type="button"
+            class="modal__close-button modal__close-button_edit"
+          ></button>
+        </div>
+      </div>
+      <div class="modal modal_type_add">
+        <div class="form__container">
+          <form action="#" class="form form_add" name="form">
+            <h2 class="form__title">New Place</h2>
+            <input
+              name="Title"
+              type="text"
+              class="form__input form__input_type_title"
+              placeholder="Title"
+              value=""
+              required
+            />
+            <input
+              type="url"
+              name="image url"
+              class="form__input form__input_type_url"
+              placeholder="Image URL"
+              value=""
+              required
+            />
+            <button type="submit" class="form__button">Save</button>
+          </form>
+          <button
+            type="button"
+            class="modal__close-button modal__close-button_add"
+          ></button>
         </div>
       </div>
       <div class="modal modal__pic">
@@ -96,6 +127,7 @@
     <template id="card__template">
       <li class="card">
         <img src="" alt="" class="card__pic" />
+        <img src="./images/delete.svg" alt="" class="card__delete-btn" />
         <div class="card__text">
           <h2 class="card__title"></h2>
           <button class="card__heart"></button>

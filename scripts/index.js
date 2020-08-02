@@ -1,120 +1,68 @@
-// const list = document.querySelector(".cards__list");
+//open edit button
 
-// // array of tasks for today
-
-// // convert the array of tasks for today to an array of elements
-
-// // add the element to the DOM by unfolding the array
-// list.append(...taskElements);
-
-const editButton = document.querySelector(".profile__edit");
-const closeButton = document.querySelector(".modal__close-button");
-const addButton = document.querySelector(".add");
-
-const modal = document.querySelector(".modal");
-const modalPic = document.querySelector(".modal__pic");
-const form = document.querySelector(".form");
-
-const topInput = document.querySelector(".form__input_type_top");
-const bottomInput = document.querySelector(".form__input_type_bottom");
-const titleInput = document.querySelector(".form__input_type_title");
-const urlInput = document.querySelector(".form__input_type_image");
-
+//make togglewindow and edit specific modal
+//add modal_open
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
+const inputName = document.querySelector(".form__input_type_name");
+const inputJob = document.querySelector(".form__input_type_job");
+const inputTitle = document.querySelector(".form__input_type_title");
+const inputUrl = document.querySelector(".form__input_type_url");
+const closeButtonEdit = document.querySelector(".modal__close-button_edit");
+const closeButtonAdd = document.querySelector(".modal__close-button_add");
+const addButton = document.querySelector(".add");
+const addModalWindow = document.querySelector(".modal_type_add");
 
-const formHeader = document.querySelector(".form__title");
-const cardsList = document.querySelector(".cards__list");
-const heart = document.querySelector(".card__heart");
+const formEdit = document.querySelector(".form_edit");
+const formAdd = document.querySelector(".form_add");
+const editButton = document.querySelector(".profile__edit");
+const editModalWindow = document.querySelector(".modal_type_edit");
 
-function toggleModal() {
+function toggleEditWindow() {
+  toggleModalWindow(editModalWindow);
+}
+
+function toggleAddWindow() {
+  toggleModalWindow(addModalWindow);
+}
+
+function toggleModalWindow(modal) {
   modal.classList.toggle("modal_open");
 }
 
-function formSubmitHandler(e) {
-  e.preventDefault();
-  if (modal.classList.contains("modal_add") === false) {
-    profileName.textContent = topInput.value;
-    profileJob.textContent = bottomInput.value;
-  } else {
-    addCard(topInput.value, bottomInput.value);
-  }
-  toggleModal();
-}
-
-function setAttributes(element, attribute) {
-  for (var key in attribute) {
-    element.setAttribute(key, attribute[key]);
-  }
-}
-
-function addCard(titleValue, imageValue) {
-  const cardTemplate = document.querySelector("#card__template").content;
-  const cardElement = cardTemplate.cloneNode(true);
-
-  cardElement.querySelector(".card__title").textContent = titleValue;
-  cardElement.querySelector(".card__pic").src = imageValue;
-  cardElement.querySelector(".card__pic").addEventListener("click", togglePic);
-  cardElement
-    .querySelector(".card__heart")
-    .addEventListener("click", function (evt) {
-      evt.target.classList.toggle("card__heart_active");
-      console.log("liked");
-    });
-
-  cardsList.prepend(cardElement);
-}
-
-function togglePic() {
-  modalPic.classList.toggle("modal_open");
-}
-
 editButton.addEventListener("click", () => {
-  modal.classList.remove("modal_add");
-  formHeader.textContent = "Edit Profile";
-  setAttributes(topInput, {
-    placeholder: "Name",
-    name: "name",
-    value: "",
-  });
-
-  setAttributes(bottomInput, {
-    placeholder: "About Me",
-    name: "job",
-    value: "",
-  });
-  topInput.value = profileName.textContent;
-  bottomInput.value = profileJob.textContent;
-
-  toggleModal();
+  if (!editModalWindow.classList.contains("modal_open")) {
+    inputName.value = profileName.textContent;
+    inputJob.value = profileJob.textContent;
+  }
+  toggleEditWindow();
 });
-addButton.addEventListener("click", () => {
-  modal.classList.add("modal_add");
-  formHeader.textContent = "New Place";
-  setAttributes(topInput, {
-    placeholder: "Title",
-    name: "title",
-    value: "",
-  });
 
-  setAttributes(bottomInput, {
-    placeholder: "Image URL",
-    name: "image",
-    value: "",
-  });
-  topInput.value = "";
-  bottomInput.value = "";
+//make close button work, still specific to edit modal
 
-  toggleModal();
-});
-closeButton.addEventListener("click", toggleModal);
-document
-  .querySelector(".modal__close-button_pic")
-  .addEventListener("click", togglePic);
+closeButtonEdit.addEventListener("click", toggleEditWindow);
 
-form.addEventListener("submit", formSubmitHandler);
+//make submit button work
 
-console.log("jsfiddle example" + "https://jsfiddle.net/496tafdu/2/");
+function editFormSubmitHandler(e) {
+  e.preventDefault();
+  profileName.textContent = inputName.value;
+  profileJob.textContent = inputJob.value;
+  toggleEditWindow();
+}
+
+formEdit.addEventListener("submit", editFormSubmitHandler);
+formAdd.addEventListener("submit", AddFormSubmitHandler);
+
+//make add button modal work
+
+addButton.addEventListener("click", toggleAddWindow);
+
+//close button for add modal
+
+closeButtonAdd.addEventListener("click", toggleAddWindow);
+
+//now, use forEach method to add cards
 
 const initialCards = [
   {
@@ -143,7 +91,70 @@ const initialCards = [
   },
 ];
 
+const list = document.querySelector(".cards__list");
+const cardTemplate = document.querySelector("#card__template").content;
+
 initialCards.forEach((data) => {
-  addCard(data.name, data.link);
+  const cardElement = cardTemplate.cloneNode(true);
+
+  const cardPic = cardElement.querySelector(".card__pic");
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardHeart = cardElement.querySelector(".card__heart");
+  const cardDelete = cardElement.querySelector(".card__delete-btn");
+
+  cardTitle.textContent = data.name;
+  cardPic.src = data.link;
+
+  cardHeart.addEventListener("click", (e) =>
+    e.target.classList.toggle("card__heart_active")
+  );
+
+  cardDelete.addEventListener("click", () => {
+    const listItem = cardDelete.closest(".card");
+    listItem.remove();
+  });
+
+  list.prepend(cardElement);
 });
-// so tired
+
+function newCard(title, url) {
+  initialCards.unshift([(name = title), (link = url)]);
+}
+
+function AddFormSubmitHandler(e) {
+  e.preventDefault();
+  let newTitle = inputTitle.value;
+  let newUrl = inputUrl.value;
+
+  newCard(newTitle, newUrl);
+  console.log(newCard(newTitle, newUrl));
+
+  toggleAddWindow();
+}
+
+initialCards.name = "";
+
+const newCardPic = document.querySelector(".card__pic");
+
+const modalPic = document.querySelector(".modal__pic");
+
+function toggleModalPic() {
+  toggleModalWindow(modalPic);
+}
+
+// newCardPic.addEventListener("click", () => {
+//   console.log("modal pic click");
+//   toggleModalPic();
+// });
+
+newCardPic.addEventListener("click", () => {
+  const open = newCardPic.closest(".card__pic");
+  const img = document.querySelector(".img");
+
+  img.src = open.src;
+  toggleModalPic();
+});
+
+const closeModalPic = document.querySelector(".modal__close-button_pic");
+
+closeModalPic.addEventListener("click", toggleModalPic);
