@@ -130,36 +130,31 @@ function AddFormSubmitHandler(e) {
   inputUrl.value = "";
 }
 
-// const modalPic = document.querySelector(".modal__pic");
 
-// function toggleModalPic() {
-//   toggleModalWindow(imgModalWindow);
-// }
-// const img = document.querySelector(".modal__img");
-// const newCardPic = document.querySelector(".card__pic");
 
-// newCardPic.addEventListener("click", () => {
-//   // img.src = newCardPic.src;
-//   toggleImgWindow();
-// });
 
-// const closeButtonImg = document.querySelector(".modal__close-button_pic");
+//selects the picture from inside the card created from template
+const newCardPic = document.querySelector(".card__pic");
 
-// closeButtonImg.addEventListener("click", toggleImgWindow);
+//selects the modal where I want to add the modal image
+const imgModalWindow = document.querySelector(".modal__type_pic");
 
-console.log("hi");
+//modal image that will appear
+const img = document.querySelector(".modal__img");
 
+//selects modal's close button
+const closeButtonImg = document.querySelector(".modal__close-button_pic");
+
+//this function opens and closes the modal 
 function toggleImgWindow() {
   toggleModalWindow(imgModalWindow);
 }
 
-const imgModalWindow = document.querySelector(".modal__type_pic");
-const closeButtonImg = document.querySelector(".modal__close-button_pic");
-const newCardPic = document.querySelector(".card__pic");
-const img = document.querySelector(".modal__img");
+//event listener for when user clicks on picture. takes img from card, and inserts into modal
 newCardPic.addEventListener("click", () => {
   img.src = newCardPic.src;
   toggleImgWindow();
 });
 
+//event listener to close the modal
 closeButtonImg.addEventListener("click", toggleImgWindow);
