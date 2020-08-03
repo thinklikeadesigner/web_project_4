@@ -121,6 +121,7 @@ initialCards.forEach((data) => {
 });
 
 closeButtonImg.addEventListener("click", toggleImgWindow);
+imgModal.addEventListener("click", toggleImgWindow);
 closeButtonEdit.addEventListener("click", toggleEditWindow);
 closeButtonAdd.addEventListener("click", toggleAddWindow);
 
