@@ -118,6 +118,11 @@ function newCard(title, url) {
     listItem.remove();
   });
 
+  cardPic.addEventListener("click", () => {
+    img.src = cardPic.src;
+    toggleImgWindow();
+  });
+
   list.prepend(cardElement);
 }
 
@@ -148,10 +153,10 @@ function toggleImgWindow() {
 }
 
 //event listener for when user clicks on picture. takes img from card, and inserts into modal
-newCardPic.addEventListener("click", () => {
-  img.src = newCardPic.src;
-  toggleImgWindow();
-});
+// newCardPic.addEventListener("click", () => {
+//   img.src = newCardPic.src;
+//   toggleImgWindow();
+// });
 
 //event listener to close the modal
 closeButtonImg.addEventListener("click", toggleImgWindow);
