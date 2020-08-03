@@ -44,8 +44,8 @@ const imgModalWindow = document.querySelector(".modal_type_pic");
 const formEdit = document.querySelector(".form_edit");
 const formAdd = document.querySelector(".form_add");
 
-const addButton = document.querySelector(".add");
-const editButton = document.querySelector(".profile__edit");
+const addButton = document.querySelector(".profile__add-btn");
+const editButton = document.querySelector(".profile__edit-btn");
 
 const list = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card__template").content;
