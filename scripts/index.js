@@ -119,7 +119,9 @@ function newCard(title, url) {
   });
 
   cardPic.addEventListener("click", () => {
-    img.src = cardPic.src;
+    img.src = url;
+    const modalCaption = document.querySelector(".modal__caption");
+    modalCaption.textContent = title;
     toggleImgWindow();
   });
 
