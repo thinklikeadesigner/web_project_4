@@ -130,27 +130,37 @@ function AddFormSubmitHandler(e) {
   inputUrl.value = "";
 }
 
-const newCardPic = document.querySelector(".card__pic");
+// const modalPic = document.querySelector(".modal__pic");
 
-const modalPic = document.querySelector(".modal__pic");
-
-function toggleModalPic() {
-  toggleModalWindow(modalPic);
-}
+// function toggleModalPic() {
+//   toggleModalWindow(imgModalWindow);
+// }
+// const img = document.querySelector(".modal__img");
+// const newCardPic = document.querySelector(".card__pic");
 
 // newCardPic.addEventListener("click", () => {
-//   console.log("modal pic click");
-//   toggleModalPic();
+//   // img.src = newCardPic.src;
+//   toggleImgWindow();
 // });
 
+// const closeButtonImg = document.querySelector(".modal__close-button_pic");
+
+// closeButtonImg.addEventListener("click", toggleImgWindow);
+
+console.log("hi");
+
+function toggleImgWindow() {
+  toggleModalWindow(imgModalWindow);
+}
+
+const imgModalWindow = document.querySelector(".modal__type_pic");
+const closeButtonImg = document.querySelector(".modal__close-button_pic");
+const newCardPic = document.querySelector(".card__pic");
 newCardPic.addEventListener("click", () => {
-  const open = newCardPic.closest(".card__pic");
   const img = document.querySelector(".modal__img");
 
-  img.src = open.src;
-  toggleModalPic();
+  img.src = newCardPic.src;
+  toggleImgWindow();
 });
 
-const closeModalPic = document.querySelector(".modal__close-button_pic");
-
-closeModalPic.addEventListener("click", toggleModalPic);
+closeButtonImg.addEventListener("click", toggleImgWindow);
