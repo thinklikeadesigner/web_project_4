@@ -66,6 +66,10 @@ closeButtonAdd.addEventListener("click", toggleAddWindow);
 
 const initialCards = [
   {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+  },
+  {
     name: "Yosemite Valley",
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
   },
@@ -74,20 +78,16 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
   },
   {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
     name: "Latemar",
     link: "https://code.s3.yandex.net/web-code/latemar.jpg",
   },
   {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
     name: "Lago di Braies",
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
   },
 ];
 
@@ -95,6 +95,10 @@ const list = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card__template").content;
 
 initialCards.forEach((data) => {
+  newCard(data.name, data.link);
+});
+
+function newCard(title, url) {
   const cardElement = cardTemplate.cloneNode(true);
 
   const cardPic = cardElement.querySelector(".card__pic");
@@ -102,8 +106,8 @@ initialCards.forEach((data) => {
   const cardHeart = cardElement.querySelector(".card__heart");
   const cardDelete = cardElement.querySelector(".card__delete-btn");
 
-  cardTitle.textContent = data.name;
-  cardPic.src = data.link;
+  cardTitle.textContent = title;
+  cardPic.src = url;
 
   cardHeart.addEventListener("click", (e) =>
     e.target.classList.toggle("card__heart_active")
@@ -115,46 +119,47 @@ initialCards.forEach((data) => {
   });
 
   list.prepend(cardElement);
-});
-
-function newCard(title, url) {
-  initialCards.unshift([(name = title), (link = url)]);
 }
 
 function AddFormSubmitHandler(e) {
   e.preventDefault();
-  let newTitle = inputTitle.value;
-  let newUrl = inputUrl.value;
-
-  newCard(newTitle, newUrl);
-  console.log(newCard(newTitle, newUrl));
+  newCard(inputTitle.value, inputUrl.value);
 
   toggleAddWindow();
+  inputTitle.value = "";
+  inputUrl.value = "";
 }
 
-initialCards.name = "";
+// const modalPic = document.querySelector(".modal__pic");
 
-const newCardPic = document.querySelector(".card__pic");
-
-const modalPic = document.querySelector(".modal__pic");
-
-function toggleModalPic() {
-  toggleModalWindow(modalPic);
-}
+// function toggleModalPic() {
+//   toggleModalWindow(imgModalWindow);
+// }
+// const img = document.querySelector(".modal__img");
+// const newCardPic = document.querySelector(".card__pic");
 
 // newCardPic.addEventListener("click", () => {
-//   console.log("modal pic click");
-//   toggleModalPic();
+//   // img.src = newCardPic.src;
+//   toggleImgWindow();
 // });
 
-newCardPic.addEventListener("click", () => {
-  const open = newCardPic.closest(".card__pic");
-  const img = document.querySelector(".img");
+// const closeButtonImg = document.querySelector(".modal__close-button_pic");
 
-  img.src = open.src;
-  toggleModalPic();
+// closeButtonImg.addEventListener("click", toggleImgWindow);
+
+console.log("hi");
+
+function toggleImgWindow() {
+  toggleModalWindow(imgModalWindow);
+}
+
+const imgModalWindow = document.querySelector(".modal__type_pic");
+const closeButtonImg = document.querySelector(".modal__close-button_pic");
+const newCardPic = document.querySelector(".card__pic");
+const img = document.querySelector(".modal__img");
+newCardPic.addEventListener("click", () => {
+  img.src = newCardPic.src;
+  toggleImgWindow();
 });
 
-const closeModalPic = document.querySelector(".modal__close-button_pic");
-
-closeModalPic.addEventListener("click", toggleModalPic);
+closeButtonImg.addEventListener("click", toggleImgWindow);
