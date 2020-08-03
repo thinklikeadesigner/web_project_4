@@ -1,69 +1,3 @@
-//open edit button
-
-//make togglewindow and edit specific modal
-//add modal_open
-const profileName = document.querySelector(".profile__name");
-const profileJob = document.querySelector(".profile__job");
-const inputName = document.querySelector(".form__input_type_name");
-const inputJob = document.querySelector(".form__input_type_job");
-const inputTitle = document.querySelector(".form__input_type_title");
-const inputUrl = document.querySelector(".form__input_type_url");
-const closeButtonEdit = document.querySelector(".modal__close-button_edit");
-const closeButtonAdd = document.querySelector(".modal__close-button_add");
-const addButton = document.querySelector(".add");
-const addModalWindow = document.querySelector(".modal_type_add");
-
-const formEdit = document.querySelector(".form_edit");
-const formAdd = document.querySelector(".form_add");
-const editButton = document.querySelector(".profile__edit");
-const editModalWindow = document.querySelector(".modal_type_edit");
-
-function toggleEditWindow() {
-  toggleModalWindow(editModalWindow);
-}
-
-function toggleAddWindow() {
-  toggleModalWindow(addModalWindow);
-}
-
-function toggleModalWindow(modal) {
-  modal.classList.toggle("modal_open");
-}
-
-editButton.addEventListener("click", () => {
-  if (!editModalWindow.classList.contains("modal_open")) {
-    inputName.value = profileName.textContent;
-    inputJob.value = profileJob.textContent;
-  }
-  toggleEditWindow();
-});
-
-//make close button work, still specific to edit modal
-
-closeButtonEdit.addEventListener("click", toggleEditWindow);
-
-//make submit button work
-
-function editFormSubmitHandler(e) {
-  e.preventDefault();
-  profileName.textContent = inputName.value;
-  profileJob.textContent = inputJob.value;
-  toggleEditWindow();
-}
-
-formEdit.addEventListener("submit", editFormSubmitHandler);
-formAdd.addEventListener("submit", AddFormSubmitHandler);
-
-//make add button modal work
-
-addButton.addEventListener("click", toggleAddWindow);
-
-//close button for add modal
-
-closeButtonAdd.addEventListener("click", toggleAddWindow);
-
-//now, use forEach method to add cards
-
 const initialCards = [
   {
     name: "Bald Mountains",
@@ -91,41 +25,47 @@ const initialCards = [
   },
 ];
 
+const profileName = document.querySelector(".profile__name");
+const profileJob = document.querySelector(".profile__job");
+
+const inputName = document.querySelector(".form__input_type_name");
+const inputJob = document.querySelector(".form__input_type_job");
+const inputTitle = document.querySelector(".form__input_type_title");
+const inputUrl = document.querySelector(".form__input_type_url");
+
+const closeButtonEdit = document.querySelector(".modal__close-button_edit");
+const closeButtonAdd = document.querySelector(".modal__close-button_add");
+const closeButtonImg = document.querySelector(".modal__close-button_pic");
+
+const addModalWindow = document.querySelector(".modal_type_add");
+const editModalWindow = document.querySelector(".modal_type_edit");
+const imgModalWindow = document.querySelector(".modal_type_pic");
+
+const formEdit = document.querySelector(".form_edit");
+const formAdd = document.querySelector(".form_add");
+
+const addButton = document.querySelector(".add");
+const editButton = document.querySelector(".profile__edit");
+
 const list = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card__template").content;
 
-initialCards.forEach((data) => {
-  newCard(data.name, data.link);
-});
+const imgModal = document.querySelector(".modal__img");
 
-function newCard(title, url) {
-  const cardElement = cardTemplate.cloneNode(true);
+function toggleModalWindow(modal) {
+  modal.classList.toggle("modal_open");
+}
 
-  const cardPic = cardElement.querySelector(".card__pic");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const cardHeart = cardElement.querySelector(".card__heart");
-  const cardDelete = cardElement.querySelector(".card__delete-btn");
+function toggleEditWindow() {
+  toggleModalWindow(editModalWindow);
+}
 
-  cardTitle.textContent = title;
-  cardPic.src = url;
+function toggleAddWindow() {
+  toggleModalWindow(addModalWindow);
+}
 
-  cardHeart.addEventListener("click", (e) =>
-    e.target.classList.toggle("card__heart_active")
-  );
-
-  cardDelete.addEventListener("click", () => {
-    const listItem = cardDelete.closest(".card");
-    listItem.remove();
-  });
-
-  cardPic.addEventListener("click", () => {
-    img.src = url;
-    const modalCaption = document.querySelector(".modal__caption");
-    modalCaption.textContent = title;
-    toggleImgWindow();
-  });
-
-  list.prepend(cardElement);
+function toggleImgWindow() {
+  toggleModalWindow(imgModalWindow);
 }
 
 function AddFormSubmitHandler(e) {
@@ -137,28 +77,61 @@ function AddFormSubmitHandler(e) {
   inputUrl.value = "";
 }
 
-//selects the picture from inside the card created from template
-const newCardPic = document.querySelector(".card__pic");
-
-//selects the modal where I want to add the modal image
-const imgModalWindow = document.querySelector(".modal__type_pic");
-
-//modal image that will appear
-const img = document.querySelector(".modal__img");
-
-//selects modal's close button
-const closeButtonImg = document.querySelector(".modal__close-button_pic");
-
-//this function opens and closes the modal
-function toggleImgWindow() {
-  toggleModalWindow(imgModalWindow);
+function editFormSubmitHandler(e) {
+  e.preventDefault();
+  profileName.textContent = inputName.value;
+  profileJob.textContent = inputJob.value;
+  toggleEditWindow();
 }
 
-//event listener for when user clicks on picture. takes img from card, and inserts into modal
-// newCardPic.addEventListener("click", () => {
-//   img.src = newCardPic.src;
-//   toggleImgWindow();
-// });
+function newCard(title, url) {
+  const cardElement = cardTemplate.cloneNode(true);
 
-//event listener to close the modal
+  const cardPic = cardElement.querySelector(".card__pic");
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardHeart = cardElement.querySelector(".card__heart");
+  const cardDelete = cardElement.querySelector(".card__delete-btn");
+
+  cardPic.src = url;
+  cardPic.setAttribute("alt", title);
+  cardTitle.textContent = title;
+
+  cardHeart.addEventListener("click", (e) =>
+    e.target.classList.toggle("card__heart_active")
+  );
+
+  cardDelete.addEventListener("click", () => {
+    const listItem = cardDelete.closest(".card");
+    listItem.remove();
+  });
+
+  cardPic.addEventListener("click", () => {
+    imgModal.src = url;
+    imgModal.setAttribute("alt", title);
+    const modalCaption = document.querySelector(".modal__caption");
+    modalCaption.textContent = title;
+    toggleImgWindow();
+  });
+
+  list.prepend(cardElement);
+}
+
+initialCards.forEach((data) => {
+  newCard(data.name, data.link);
+});
+
 closeButtonImg.addEventListener("click", toggleImgWindow);
+closeButtonEdit.addEventListener("click", toggleEditWindow);
+closeButtonAdd.addEventListener("click", toggleAddWindow);
+
+formEdit.addEventListener("submit", editFormSubmitHandler);
+formAdd.addEventListener("submit", AddFormSubmitHandler);
+
+addButton.addEventListener("click", toggleAddWindow);
+editButton.addEventListener("click", () => {
+  if (!editModalWindow.classList.contains("modal_open")) {
+    inputName.value = profileName.textContent;
+    inputJob.value = profileJob.textContent;
+  }
+  toggleEditWindow();
+});

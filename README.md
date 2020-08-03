@@ -17,11 +17,13 @@ This project is a site that allows you to make a profile and post pictures. So f
 1. open and close a modal
 2. edit the contents of a form
 3. save the changes so the website reflects the user input from the form
+4. Delete button deletes cards
+5. Add button adds cards
+6. Clicking on picture enlarges the picture
 
 **Technologies and Techniques**
 
 I used these functions in the following ways:
-
 
 **querySelector()** was used to select elements from html
 
@@ -29,3 +31,6 @@ I used these functions in the following ways:
 
 **preventDefault()** was used to prevent website from following default behavior
 
+**forEach()** was used to add cards from an array
+
+**prepend()** was used along with <template> to add an entire card to the page at once.

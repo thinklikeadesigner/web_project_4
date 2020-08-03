@@ -1,20 +1,12 @@
 .modal__close-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   top: -33px;
   right: -36px;
   min-height: 31px;
   width: 31px;
   background-color: transparent;
-  z-index: 10;
-  padding: 0;
-  margin: 0;
   border: none;
-  outline: none;
-  background-image: url("../../../images/x.svg");
-  background-repeat: no-repeat;
+  background-image: url(../../../images/x.svg);
   background-position: center;
 }
 
