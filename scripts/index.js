@@ -66,6 +66,10 @@ closeButtonAdd.addEventListener("click", toggleAddWindow);
 
 const initialCards = [
   {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+  },
+  {
     name: "Yosemite Valley",
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
   },
@@ -74,20 +78,16 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
   },
   {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
     name: "Latemar",
     link: "https://code.s3.yandex.net/web-code/latemar.jpg",
   },
   {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
     name: "Lago di Braies",
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
   },
 ];
 
@@ -156,9 +156,8 @@ function toggleImgWindow() {
 const imgModalWindow = document.querySelector(".modal__type_pic");
 const closeButtonImg = document.querySelector(".modal__close-button_pic");
 const newCardPic = document.querySelector(".card__pic");
+const img = document.querySelector(".modal__img");
 newCardPic.addEventListener("click", () => {
-  const img = document.querySelector(".modal__img");
-
   img.src = newCardPic.src;
   toggleImgWindow();
 });
