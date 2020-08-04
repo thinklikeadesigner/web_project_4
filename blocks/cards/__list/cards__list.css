@@ -1,6 +1,5 @@
 .cards__list {
   list-style: none;
-  list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 18px;

@@ -56,23 +56,11 @@ function toggleModalWindow(modal) {
   modal.classList.toggle("modal_open");
 }
 
-function toggleEditWindow() {
-  toggleModalWindow(editModalWindow);
-}
-
-function toggleAddWindow() {
-  toggleModalWindow(addModalWindow);
-}
-
-function toggleImgWindow() {
-  toggleModalWindow(imgModalWindow);
-}
-
 function AddFormSubmitHandler(e) {
   e.preventDefault();
   newCard(inputTitle.value, inputUrl.value);
 
-  toggleAddWindow();
+  toggleModalWindow(addModalWindow);
   inputTitle.value = "";
   inputUrl.value = "";
 }
@@ -81,7 +69,7 @@ function editFormSubmitHandler(e) {
   e.preventDefault();
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
-  toggleEditWindow();
+  toggleModalWindow(editModalWindow);
 }
 
 function newCard(title, url) {
@@ -108,9 +96,11 @@ function newCard(title, url) {
   cardPic.addEventListener("click", () => {
     imgModal.src = url;
     imgModal.setAttribute("alt", title);
+
     const modalCaption = document.querySelector(".modal__caption");
     modalCaption.textContent = title;
-    toggleImgWindow();
+
+    toggleModalWindow(imgModalWindow);
   });
 
   list.prepend(cardElement);
@@ -120,19 +110,20 @@ initialCards.forEach((data) => {
   newCard(data.name, data.link);
 });
 
-closeButtonImg.addEventListener("click", toggleImgWindow);
-imgModal.addEventListener("click", toggleImgWindow);
-closeButtonEdit.addEventListener("click", toggleEditWindow);
-closeButtonAdd.addEventListener("click", toggleAddWindow);
+closeButtonImg.addEventListener("click", () => { toggleModalWindow(imgModalWindow); });
+imgModal.addEventListener("click", () => { toggleModalWindow(imgModalWindow); });
+closeButtonEdit.addEventListener("click", () => { toggleModalWindow(editModalWindow); });
+closeButtonAdd.addEventListener("click", () => { toggleModalWindow(addModalWindow); });
 
 formEdit.addEventListener("submit", editFormSubmitHandler);
 formAdd.addEventListener("submit", AddFormSubmitHandler);
 
-addButton.addEventListener("click", toggleAddWindow);
+addButton.addEventListener("click", () => { toggleModalWindow(addModalWindow); });
 editButton.addEventListener("click", () => {
   if (!editModalWindow.classList.contains("modal_open")) {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
   }
-  toggleEditWindow();
+  toggleModalWindow(editModalWindow);
+
 });
