@@ -1,0 +1,9 @@
+.form__input-error_visible {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #ff0000;
+}
