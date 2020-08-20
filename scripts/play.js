@@ -26,14 +26,14 @@ function hasInvalidInput(inputList) {
   });
 }
 
-function toggleButtonState(inputList, buttonElement) {
-  console.log(hasInvalidInput(inputList));
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add("button_inactive");
-  } else {
-    buttonElement.classList.remove("button_inactive");
-  }
-}
+// function toggleButtonState(inputList, buttonElement) {
+//   console.log(hasInvalidInput(inputList));
+//   if (hasInvalidInput(inputList)) {
+//     buttonElement.classList.add("button_inactive");
+//   } else {
+//     buttonElement.classList.remove("button_inactive");
+//   }
+// }
 
 function setEventListeners(formElement) {
   const inputList = Array.from(formElement.querySelectorAll(".form__input"));
