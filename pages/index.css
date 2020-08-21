@@ -9,8 +9,6 @@
 @import url("../blocks/card/card.css");
 @import url("../blocks/modal/modal.css");
 @import url("../blocks/modal/_open/modal_open.css");
-
 @import url("../blocks/form/__button/_disabled/form__button_disabled.css");
 @import url("../blocks/form/form.css");
-@import url("../blocks/form/__input-error/_visible/form__input-error_visible.css");
 @import url("../blocks/footer/footer.css");

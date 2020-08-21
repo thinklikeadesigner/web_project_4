@@ -58,11 +58,11 @@ function toggleModalWindow(modal) {
 
 function AddFormSubmitHandler(e) {
   e.preventDefault();
-  newCard(inputTitle.value, inputUrl.value);
+  list.prepend(newCard(inputTitle.value, inputUrl.value));
 
   toggleModalWindow(addModalWindow);
-  inputTitle.value = "";
-  inputUrl.value = "";
+
+  formAdd.reset();
 }
 
 function editFormSubmitHandler(e) {
@@ -103,27 +103,38 @@ function newCard(title, url) {
     toggleModalWindow(imgModalWindow);
   });
 
-  list.prepend(cardElement);
+  return cardElement;
 }
 
 initialCards.forEach((data) => {
-  newCard(data.name, data.link);
+  list.prepend(newCard(data.name, data.link));
 });
 
-closeButtonImg.addEventListener("click", () => { toggleModalWindow(imgModalWindow); });
-imgModal.addEventListener("click", () => { toggleModalWindow(imgModalWindow); });
-closeButtonEdit.addEventListener("click", () => { toggleModalWindow(editModalWindow); });
-closeButtonAdd.addEventListener("click", () => { toggleModalWindow(addModalWindow); });
+closeButtonImg.addEventListener("click", () => {
+  toggleModalWindow(imgModalWindow);
+});
+imgModal.addEventListener("click", () => {
+  toggleModalWindow(imgModalWindow);
+});
+closeButtonEdit.addEventListener("click", () => {
+  toggleModalWindow(editModalWindow);
+  formEdit.reset();
+});
+closeButtonAdd.addEventListener("click", () => {
+  toggleModalWindow(addModalWindow);
+  formAdd.reset();
+});
 
 formEdit.addEventListener("submit", editFormSubmitHandler);
 formAdd.addEventListener("submit", AddFormSubmitHandler);
 
-addButton.addEventListener("click", () => { toggleModalWindow(addModalWindow); });
+addButton.addEventListener("click", () => {
+  toggleModalWindow(addModalWindow);
+});
 editButton.addEventListener("click", () => {
   if (!editModalWindow.classList.contains("modal_open")) {
     inputName.value = profileName.textContent;
     inputJob.value = profileJob.textContent;
   }
   toggleModalWindow(editModalWindow);
-
 });
