@@ -66,7 +66,11 @@
               value=""
               required
             />
-            <span class="form__input-error" id="name-input-error"></span>
+            <span
+              name="errortext"
+              class="form__input-error"
+              id="name-input-error"
+            ></span>
             <input
               id="job-input"
               minlength="2"
@@ -82,7 +86,8 @@
             <button type="submit" class="form__button">Save</button>
           </form>
           <button
-            type="button"
+            id="close-button"
+            type="reset"
             class="modal__close-button modal__close-button_edit"
           ></button>
         </div>
@@ -117,7 +122,7 @@
             <button type="submit" class="form__button">Save</button>
           </form>
           <button
-            type="button"
+            type="reset"
             class="modal__close-button modal__close-button_add"
           ></button>
         </div>
@@ -126,6 +131,7 @@
       <div class="modal modal_type_pic">
         <div class="modal__container">
           <button
+            id="close-button"
             type="button"
             class="modal__close-button modal__close-button_pic"
           ></button>

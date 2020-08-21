@@ -130,6 +130,7 @@ formAdd.addEventListener("submit", AddFormSubmitHandler);
 
 addButton.addEventListener("click", () => {
   toggleModalWindow(addModalWindow);
+  document.addEventListener("keydown", keydownCloseAdd);
 });
 editButton.addEventListener("click", () => {
   if (!editModalWindow.classList.contains("modal_open")) {
@@ -137,4 +138,27 @@ editButton.addEventListener("click", () => {
     inputJob.value = profileJob.textContent;
   }
   toggleModalWindow(editModalWindow);
+  document.addEventListener("keydown", keydownCloseEdit);
 });
+
+function closeModal(modal) {
+  modal.classList.remove("modal_open");
+}
+
+function keydownCloseEdit(evt) {
+  if (evt.key === "Escape") {
+    console.log("esc");
+    toggleModalWindow(editModalWindow);
+    document.removeEventListener("keydown", keydownCloseEdit);
+  }
+}
+
+function keydownCloseAdd(evt) {
+  if (evt.key === "Escape") {
+    console.log("esc");
+    toggleModalWindow(addModalWindow);
+    document.removeEventListener("keydown", keydownCloseAdd);
+  }
+}
+
+//added esc
