@@ -52,7 +52,9 @@ function enableValidation({
     const inputs = Array.from(form.querySelectorAll(inputSelector));
     const button = form.querySelector(submitButtonSelector);
 
-    toggleButtonState(inputs, button, rest);
+    if (form == formAdd) {
+      toggleButtonState(inputs, button, rest);
+    }
 
     inputs.forEach((input) => {
       input.addEventListener("input", function () {
