@@ -52,21 +52,6 @@ const cardTemplate = document.querySelector("#card__template").content;
 
 const imgModal = document.querySelector(".modal__img");
 
-function errorMessageReset({
-  formSelector,
-  inputSelector,
-  submitButtonSelector,
-  ...rest
-}) {
-  const forms = Array.from(document.querySelectorAll(formSelector));
-  forms.forEach((form) => {
-    const inputs = Array.from(form.querySelectorAll(inputSelector));
-    inputs.forEach((input) => {
-      hideInputError(form, input, rest);
-    });
-  });
-}
-
 function toggleModalWindow(modal) {
   modal.classList.toggle("modal_open");
 }
@@ -181,25 +166,9 @@ closeButtonImg.addEventListener("click", () => {
 closeButtonEdit.addEventListener("click", () => {
   toggleModalWindow(editModalWindow);
   formEdit.reset();
-  errorMessageReset({
-    formSelector: ".form",
-    inputSelector: ".form__input",
-    submitButtonSelector: ".form__button",
-    inactiveButtonClass: "form__button_disabled",
-    inputErrorClass: "form__input_error_line",
-    errorClass: "form__input_error_visible",
-  });
 });
 
 closeButtonAdd.addEventListener("click", () => {
   toggleModalWindow(addModalWindow);
   formAdd.reset();
-  errorMessageReset({
-    formSelector: ".form",
-    inputSelector: ".form__input",
-    submitButtonSelector: ".form__button",
-    inactiveButtonClass: "form__button_disabled",
-    inputErrorClass: "form__input_error_line",
-    errorClass: "form__input_error_visible",
-  });
 });
