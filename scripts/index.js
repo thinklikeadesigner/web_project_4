@@ -53,6 +53,20 @@ const cardTemplate = document.querySelector("#card__template").content;
 
 const imgModal = document.querySelector(".modal__img");
 
+const enableReset = () => {
+  const formList = Array.from(document.querySelectorAll(".form"));
+  formList.forEach((formElement) => {
+    resetEventListeners(formElement);
+  });
+};
+
+const resetEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement);
+  });
+};
+
 function toggleModalWindow(modal) {
   modal.classList.toggle("modal_open");
 }
@@ -120,10 +134,12 @@ closeButtonImg.addEventListener("click", () => {
 closeButtonEdit.addEventListener("click", () => {
   toggleModalWindow(editModalWindow);
   formEdit.reset();
+  enableReset();
 });
 closeButtonAdd.addEventListener("click", () => {
   toggleModalWindow(addModalWindow);
   formAdd.reset();
+  enableReset();
 });
 
 formEdit.addEventListener("submit", editFormSubmitHandler);
