@@ -25,7 +25,6 @@ const initialCards = [
   },
 ];
 
-const modal = document.querySelector(".modal");
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
@@ -53,109 +52,37 @@ const cardTemplate = document.querySelector("#card__template").content;
 
 const imgModal = document.querySelector(".modal__img");
 
-const errorReset = () => {
-  const forms = Array.from(document.querySelectorAll(".form"));
+function errorMessageReset({
+  formSelector,
+  inputSelector,
+  submitButtonSelector,
+  ...rest
+}) {
+  const forms = Array.from(document.querySelectorAll(formSelector));
   forms.forEach((form) => {
-    const inputs = Array.from(form.querySelectorAll(".form__input"));
+    const inputs = Array.from(form.querySelectorAll(inputSelector));
     inputs.forEach((input) => {
-      hideInputError(form, input);
+      hideInputError(form, input, rest);
     });
   });
-};
+}
 
 function toggleModalWindow(modal) {
   modal.classList.toggle("modal_open");
 }
 
-function AddFormSubmitHandler(e) {
-  e.preventDefault();
+function AddFormSubmitHandler(evt) {
+  evt.preventDefault();
   list.prepend(newCard(inputTitle.value, inputUrl.value));
-
   toggleModalWindow(addModalWindow);
-
   formAdd.reset();
 }
 
-function editFormSubmitHandler(e) {
-  e.preventDefault();
+function editFormSubmitHandler(evt) {
+  evt.preventDefault();
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
   toggleModalWindow(editModalWindow);
-}
-
-function newCard(title, url) {
-  const cardElement = cardTemplate.cloneNode(true);
-
-  const cardPic = cardElement.querySelector(".card__pic");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const cardHeart = cardElement.querySelector(".card__heart");
-  const cardDelete = cardElement.querySelector(".card__delete-btn");
-
-  cardPic.src = url;
-  cardPic.setAttribute("alt", title);
-  cardTitle.textContent = title;
-
-  cardHeart.addEventListener("click", (e) =>
-    e.target.classList.toggle("card__heart_active")
-  );
-
-  cardDelete.addEventListener("click", () => {
-    const listItem = cardDelete.closest(".card");
-    listItem.remove();
-  });
-
-  cardPic.addEventListener("click", () => {
-    imgModal.src = url;
-    imgModal.setAttribute("alt", title);
-    toggleModalWindow(imgModalWindow);
-    const modalCaption = document.querySelector(".modal__caption");
-    modalCaption.textContent = title;
-    if (event.target == imgModalWindow) {
-      toggleModalWindow(imgModalWindow);
-    }
-    document.addEventListener("keydown", keydownClose);
-  });
-
-  return cardElement;
-}
-
-initialCards.forEach((data) => {
-  list.prepend(newCard(data.name, data.link));
-});
-
-closeButtonImg.addEventListener("click", () => {
-  toggleModalWindow(imgModalWindow);
-});
-
-closeButtonEdit.addEventListener("click", () => {
-  toggleModalWindow(editModalWindow);
-  formEdit.reset();
-  errorReset();
-});
-closeButtonAdd.addEventListener("click", () => {
-  toggleModalWindow(addModalWindow);
-  formAdd.reset();
-  errorReset();
-});
-
-formEdit.addEventListener("submit", editFormSubmitHandler);
-formAdd.addEventListener("submit", AddFormSubmitHandler);
-
-addButton.addEventListener("click", () => {
-  toggleModalWindow(addModalWindow);
-  document.addEventListener("keydown", keydownClose);
-});
-editButton.addEventListener("click", () => {
-  if (!editModalWindow.classList.contains("modal_open")) {
-    inputName.value = profileName.textContent;
-    inputJob.value = profileJob.textContent;
-  }
-  toggleModalWindow(editModalWindow);
-  document.addEventListener("keydown", keydownClose);
-});
-
-function closeModal(modal) {
-  modal.classList.remove("modal_open");
 }
 
 function keydownClose(evt) {
@@ -170,21 +97,109 @@ function keydownClose(evt) {
       toggleModalWindow(imgModalWindow);
       document.removeEventListener("keydown", keydownClose);
     } else {
-      console.log("hi");
+      return;
     }
   }
 }
 
-window.onclick = function (event) {
-  if (event.target == addModalWindow) {
+function closeClickModal(evt) {
+  if (evt.target == addModalWindow) {
     toggleModalWindow(addModalWindow);
-  } else if (event.target == editModalWindow) {
+    window.removeEventListener("click", closeClickModal);
+  } else if (evt.target == editModalWindow) {
     toggleModalWindow(editModalWindow);
-  } else if (event.target == imgModalWindow) {
+    window.removeEventListener("click", closeClickModal);
+  } else if (evt.target == imgModalWindow) {
     toggleModalWindow(imgModalWindow);
+    window.removeEventListener("click", closeClickModal);
   } else {
-    {
-      return;
-    }
+    return;
   }
-};
+}
+
+function newCard(title, url) {
+  const cardElement = cardTemplate.cloneNode(true);
+
+  const cardPic = cardElement.querySelector(".card__pic");
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardHeart = cardElement.querySelector(".card__heart");
+  const cardDelete = cardElement.querySelector(".card__delete-btn");
+
+  cardPic.src = url;
+  cardPic.setAttribute("alt", title);
+  cardTitle.textContent = title;
+
+  cardHeart.addEventListener("click", (evt) =>
+    evt.target.classList.toggle("card__heart_active")
+  );
+
+  cardDelete.addEventListener("click", () => {
+    const listItem = cardDelete.closest(".card");
+    listItem.remove();
+  });
+
+  cardPic.addEventListener("click", () => {
+    imgModal.src = url;
+    imgModal.setAttribute("alt", title);
+    toggleModalWindow(imgModalWindow);
+    const modalCaption = document.querySelector(".modal__caption");
+    modalCaption.textContent = title;
+    window.addEventListener("click", closeClickModal);
+    document.addEventListener("keydown", keydownClose);
+  });
+
+  return cardElement;
+}
+
+initialCards.forEach((data) => {
+  list.prepend(newCard(data.name, data.link));
+});
+
+formEdit.addEventListener("submit", editFormSubmitHandler);
+formAdd.addEventListener("submit", AddFormSubmitHandler);
+
+addButton.addEventListener("click", () => {
+  toggleModalWindow(addModalWindow);
+  document.addEventListener("keydown", keydownClose);
+  window.addEventListener("click", closeClickModal);
+});
+
+editButton.addEventListener("click", () => {
+  if (!editModalWindow.classList.contains("modal_open")) {
+    inputName.value = profileName.textContent;
+    inputJob.value = profileJob.textContent;
+  }
+  toggleModalWindow(editModalWindow);
+  document.addEventListener("keydown", keydownClose);
+  window.addEventListener("click", closeClickModal);
+});
+
+closeButtonImg.addEventListener("click", () => {
+  toggleModalWindow(imgModalWindow);
+});
+
+closeButtonEdit.addEventListener("click", () => {
+  toggleModalWindow(editModalWindow);
+  formEdit.reset();
+  errorMessageReset({
+    formSelector: ".form",
+    inputSelector: ".form__input",
+    submitButtonSelector: ".form__button",
+    inactiveButtonClass: "form__button_disabled",
+    inputErrorClass: "form__input_error_line",
+    errorClass: "form__input_error_visible",
+  });
+});
+
+closeButtonAdd.addEventListener("click", () => {
+  toggleModalWindow(addModalWindow);
+  formAdd.reset();
+  errorMessageReset({
+    formSelector: ".form",
+    inputSelector: ".form__input",
+    submitButtonSelector: ".form__button",
+    inactiveButtonClass: "form__button_disabled",
+    inputErrorClass: "form__input_error_line",
+    errorClass: "form__input_error_visible",
+  });
+});
