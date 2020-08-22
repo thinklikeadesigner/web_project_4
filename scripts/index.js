@@ -57,44 +57,12 @@ function toggleModalWindow(modal) {
   modal.classList.toggle("modal_open");
 }
 
-function keydownClose(evt) {
-  if (evt.key === "Escape") {
-    if (addModalWindow.classList.contains("modal_open")) {
-      toggleModalWindow(addModalWindow);
-      document.removeEventListener("keydown", keydownClose);
-    } else if (editModalWindow.classList.contains("modal_open")) {
-      toggleModalWindow(editModalWindow);
-      document.removeEventListener("keydown", keydownClose);
-    } else if (imgModalWindow.classList.contains("modal_open")) {
-      toggleModalWindow(imgModalWindow);
-      document.removeEventListener("keydown", keydownClose);
-    } else {
-      console.log("hi");
-    }
-  }
-}
-
-function windowClick(event) {
-  if (event.target == addModalWindow) {
-    toggleModalWindow(addModalWindow);
-    window.removeEventListener("click", windowClick);
-  } else if (event.target == editModalWindow) {
-    toggleModalWindow(editModalWindow);
-    window.removeEventListener("click", windowClick);
-  } else if (event.target == imgModalWindow) {
-    toggleModalWindow(imgModalWindow);
-    window.removeEventListener("click", windowClick);
-  } else {
-    {
-      return;
-    }
-  }
-}
-
 function AddFormSubmitHandler(e) {
   e.preventDefault();
   list.prepend(newCard(inputTitle.value, inputUrl.value));
+
   toggleModalWindow(addModalWindow);
+
   formAdd.reset();
 }
 
@@ -112,7 +80,6 @@ function newCard(title, url) {
   const cardTitle = cardElement.querySelector(".card__title");
   const cardHeart = cardElement.querySelector(".card__heart");
   const cardDelete = cardElement.querySelector(".card__delete-btn");
-  const modalCaption = cardElement.querySelector(".modal__caption");
 
   cardPic.src = url;
   cardPic.setAttribute("alt", title);
@@ -130,15 +97,13 @@ function newCard(title, url) {
   cardPic.addEventListener("click", () => {
     imgModal.src = url;
     imgModal.setAttribute("alt", title);
-    modalCaption.textContent = title;
-
     toggleModalWindow(imgModalWindow);
-
+    const modalCaption = document.querySelector(".modal__caption");
+    modalCaption.textContent = title;
     if (event.target == imgModalWindow) {
       toggleModalWindow(imgModalWindow);
     }
     document.addEventListener("keydown", keydownClose);
-    window.addEventListener("click", windowClick);
   });
 
   return cardElement;
@@ -155,14 +120,10 @@ closeButtonImg.addEventListener("click", () => {
 closeButtonEdit.addEventListener("click", () => {
   toggleModalWindow(editModalWindow);
   formEdit.reset();
-  hideInputError(formEdit, inputName);
-  hideInputError(formEdit, inputJob);
 });
 closeButtonAdd.addEventListener("click", () => {
   toggleModalWindow(addModalWindow);
   formAdd.reset();
-  hideInputError(formAdd, inputTitle);
-  hideInputError(formAdd, inputUrl);
 });
 
 formEdit.addEventListener("submit", editFormSubmitHandler);
@@ -171,7 +132,6 @@ formAdd.addEventListener("submit", AddFormSubmitHandler);
 addButton.addEventListener("click", () => {
   toggleModalWindow(addModalWindow);
   document.addEventListener("keydown", keydownClose);
-  window.addEventListener("click", windowClick);
 });
 editButton.addEventListener("click", () => {
   if (!editModalWindow.classList.contains("modal_open")) {
@@ -180,5 +140,39 @@ editButton.addEventListener("click", () => {
   }
   toggleModalWindow(editModalWindow);
   document.addEventListener("keydown", keydownClose);
-  window.addEventListener("click", windowClick);
 });
+
+function closeModal(modal) {
+  modal.classList.remove("modal_open");
+}
+
+function keydownClose(evt) {
+  if (evt.key === "Escape") {
+    if (addModalWindow.classList.contains("modal_open")) {
+      toggleModalWindow(addModalWindow);
+      document.removeEventListener("keydown", keydownClose);
+    } else if (editModalWindow.classList.contains("modal_open")) {
+      toggleModalWindow(editModalWindow);
+      document.removeEventListener("keydown", keydownClose);
+    } else if (imgModalWindow.classList.contains("modal_open")) {
+      toggleModalWindow(imgModalWindow);
+      document.removeEventListener("keydown", keydownClose);
+    } else {
+      console.log("hi");
+    }
+  }
+}
+
+window.onclick = function (event) {
+  if (event.target == addModalWindow) {
+    toggleModalWindow(addModalWindow);
+  } else if (event.target == editModalWindow) {
+    toggleModalWindow(editModalWindow);
+  } else if (event.target == imgModalWindow) {
+    toggleModalWindow(imgModalWindow);
+  } else {
+    {
+      return;
+    }
+  }
+};
