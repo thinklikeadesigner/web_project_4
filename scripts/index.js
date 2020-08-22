@@ -97,10 +97,12 @@ function newCard(title, url) {
   cardPic.addEventListener("click", () => {
     imgModal.src = url;
     imgModal.setAttribute("alt", title);
-
+    toggleModalWindow(imgModalWindow);
     const modalCaption = document.querySelector(".modal__caption");
     modalCaption.textContent = title;
-
+    if (event.target == imgModalWindow) {
+      toggleModalWindow(imgModalWindow);
+    }
     document.addEventListener("keydown", keydownClose);
   });
 
@@ -114,11 +116,6 @@ initialCards.forEach((data) => {
 closeButtonImg.addEventListener("click", () => {
   toggleModalWindow(imgModalWindow);
 });
-
-// imgModal.addEventListener("click", () => {
-//   toggleModalWindow(imgModalWindow);
-//   document.addEventListener("keydown", keydownClose);
-// });
 
 closeButtonEdit.addEventListener("click", () => {
   toggleModalWindow(editModalWindow);
@@ -149,14 +146,6 @@ function closeModal(modal) {
   modal.classList.remove("modal_open");
 }
 
-// function keydownCloseEdit(evt) {
-//   if (evt.key === "Escape") {
-//     console.log("esc");
-//     toggleModalWindow(editModalWindow);
-//     document.removeEventListener("keydown", keydownCloseEdit);
-//   }
-// }
-
 function keydownClose(evt) {
   if (evt.key === "Escape") {
     if (addModalWindow.classList.contains("modal_open")) {
@@ -174,7 +163,16 @@ function keydownClose(evt) {
   }
 }
 
-// modal.addEventListener("click", modalClick);
-// function modalClick() {
-//   addModalWindow.classList.remove("modal_open");
-// }
+window.onclick = function (event) {
+  if (event.target == addModalWindow) {
+    toggleModalWindow(addModalWindow);
+  } else if (event.target == editModalWindow) {
+    toggleModalWindow(editModalWindow);
+  } else if (event.target == imgModalWindow) {
+    toggleModalWindow(imgModalWindow);
+  } else {
+    {
+      return;
+    }
+  }
+};
