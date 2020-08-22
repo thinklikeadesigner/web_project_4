@@ -36,30 +36,32 @@ function toggleButtonState(inputs, button, { inactiveButtonClass, ...rest }) {
   }
 }
 
-function enableValidation({
-  formSelector,
-  inputSelector,
-  submitButtonSelector,
-  ...rest
-}) {
-  const forms = Array.from(document.querySelectorAll(formSelector));
+function setEventListeners(
+  form,
+  { inputSelector, submitButtonSelector, ...rest }
+) {
+  const inputs = Array.from(form.querySelectorAll(inputSelector));
 
+  const button = form.querySelector(submitButtonSelector);
+
+  toggleButtonState(inputs, button, rest);
+
+  inputs.forEach((input) => {
+    input.addEventListener("input", function () {
+      checkInputValidity(form, input);
+      toggleButtonState(inputs, button);
+    });
+  });
+}
+
+function enableValidation({ formSelector, ...rest }) {
+  const forms = Array.from(document.querySelectorAll(formSelector));
   forms.forEach((form) => {
     form.addEventListener("submit", function (evt) {
       evt.preventDefault();
     });
 
-    const inputs = Array.from(form.querySelectorAll(inputSelector));
-    const button = form.querySelector(submitButtonSelector);
-
-    toggleButtonState(inputs, button, rest);
-
-    inputs.forEach((input) => {
-      input.addEventListener("input", function () {
-        checkInputValidity(form, input, rest);
-        toggleButtonState(inputs, button, rest);
-      });
-    });
+    setEventListeners(form, rest);
   });
 }
 

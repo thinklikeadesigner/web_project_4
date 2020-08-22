@@ -22,7 +22,7 @@ function checkInputValidity(form, input, rest) {
   }
 }
 
-function toggleSubmitButton(inputs, button, { inactiveButtonClass, ...rest }) {
+function toggleButtonState(inputs, button, { inactiveButtonClass, ...rest }) {
   const isInvalid = inputs.some((input) => {
     return !input.validity.valid;
   });
@@ -55,7 +55,7 @@ function enableValidation({
     inputs.forEach((input) => {
       input.addEventListener("input", () => {
         checkInputValidity(form, input, rest);
-        toggleSubmitButton(inputs, button, rest);
+        toggleButtonState(inputs, button, rest);
       });
     });
   });
@@ -64,8 +64,8 @@ function enableValidation({
 enableValidation({
   formSelector: ".form",
   inputSelector: ".form__input",
-  submitButtonSelector: ".form__save-button",
-  inactiveButtonClass: "form__save-button_disabled",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_visible",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_error_line",
+  errorClass: "form__input_error_visible",
 });
