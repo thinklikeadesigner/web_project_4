@@ -53,17 +53,13 @@ const cardTemplate = document.querySelector("#card__template").content;
 
 const imgModal = document.querySelector(".modal__img");
 
-const enableReset = () => {
-  const formList = Array.from(document.querySelectorAll(".form"));
-  formList.forEach((formElement) => {
-    resetEventListeners(formElement);
-  });
-};
-
-const resetEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
-  inputList.forEach((inputElement) => {
-    hideInputError(formElement, inputElement);
+const errorReset = () => {
+  const forms = Array.from(document.querySelectorAll(".form"));
+  forms.forEach((form) => {
+    const inputs = Array.from(form.querySelectorAll(".form__input"));
+    inputs.forEach((input) => {
+      hideInputError(form, input);
+    });
   });
 };
 
@@ -134,12 +130,12 @@ closeButtonImg.addEventListener("click", () => {
 closeButtonEdit.addEventListener("click", () => {
   toggleModalWindow(editModalWindow);
   formEdit.reset();
-  enableReset();
+  errorReset();
 });
 closeButtonAdd.addEventListener("click", () => {
   toggleModalWindow(addModalWindow);
   formAdd.reset();
-  enableReset();
+  errorReset();
 });
 
 formEdit.addEventListener("submit", editFormSubmitHandler);
