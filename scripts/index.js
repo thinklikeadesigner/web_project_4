@@ -82,23 +82,21 @@ function keydownClose(evt) {
       toggleModalWindow(imgModalWindow);
       document.removeEventListener("keydown", keydownClose);
     } else {
-      return;
     }
   }
 }
 
 function closeClickModal(evt) {
-  if (evt.target == addModalWindow) {
+  if (evt.target === addModalWindow) {
     toggleModalWindow(addModalWindow);
     window.removeEventListener("click", closeClickModal);
-  } else if (evt.target == editModalWindow) {
+  } else if (evt.target === editModalWindow) {
     toggleModalWindow(editModalWindow);
     window.removeEventListener("click", closeClickModal);
-  } else if (evt.target == imgModalWindow) {
+  } else if (evt.target === imgModalWindow) {
     toggleModalWindow(imgModalWindow);
     window.removeEventListener("click", closeClickModal);
   } else {
-    return;
   }
 }
 

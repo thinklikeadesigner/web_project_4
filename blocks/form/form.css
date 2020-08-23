@@ -4,7 +4,7 @@
 @import url("./__title/form__title.css");
 @import url("./__input/_error/form__input_error.css");
 @import url("./__input/_error/_line/form__input_error_line.css");
-@import url("./__input/_error/_visible/form_input_error_visible.css");
+@import url("./__input/_error/_visible/form__input_error_visible.css");
 
 .form {
   min-width: 320px;

@@ -35,7 +35,11 @@
               <div class="profile__text">
                 <h1 class="profile__name">Jacques Cousteau</h1>
 
-                <button type="button" class="profile__edit-btn"></button>
+                <button
+                  type="button"
+                  aria-label="Profile Edit Button"
+                  class="profile__edit-btn"
+                ></button>
 
                 <p class="profile__job">Explorer</p>
               </div>
@@ -43,6 +47,7 @@
 
             <button
               type="button"
+              aria-label="Card Add Button"
               id="addButton"
               class="profile__add-btn"
             ></button>
@@ -56,7 +61,6 @@
         <p class="footer__copyright">© 2020 Around The U.S.</p>
       </footer>
       <div class="modal modal_type_edit">
-        <div class="blocker" name="edit-blocker"></div>
         <div class="modal__container">
           <form action="#" class="form form_edit" name="formEdit" novalidate>
             <h2 class="form__title">Edit Profile</h2>
@@ -71,11 +75,7 @@
               value=""
               required
             />
-            <span
-              name="errortext"
-              class="form__input_error"
-              id="name-input-error"
-            ></span>
+            <span class="form__input_error" id="name-input-error"></span>
             <input
               id="job-input"
               minlength="2"
@@ -91,7 +91,7 @@
             <button type="submit" class="form__button">Save</button>
           </form>
           <button
-            id="close-button"
+            aria-label="Close Button"
             type="reset"
             class="modal__close-button modal__close-button_edit"
           ></button>
@@ -135,22 +135,22 @@
           </form>
           <button
             type="reset"
+            aria-label="Close Button"
             class="modal__close-button modal__close-button_add"
           ></button>
         </div>
       </div>
 
       <div class="modal modal_type_pic">
-        <div class="blocker" name="pic-blocker"></div>
         <div class="modal__container">
           <button
-            id="close-button"
+            aria-label="Close Button "
             type="button"
             class="modal__close-button modal__close-button_pic"
           ></button>
           <figure class="modal__figure">
             <img src="" alt="" class="modal__img" />
-            <figcaption class="modal__caption">HELLOOASDFAGWEGA</figcaption>
+            <figcaption class="modal__caption"></figcaption>
           </figure>
         </div>
       </div>

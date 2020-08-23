@@ -28,7 +28,6 @@ function hasInvalidInput(inputs) {
 }
 
 function toggleButtonState(inputs, button, { inactiveButtonClass, ...rest }) {
-  console.log(hasInvalidInput(inputs));
   if (hasInvalidInput(inputs)) {
     button.classList.add(inactiveButtonClass);
   } else {
