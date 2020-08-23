@@ -75,7 +75,7 @@
               value=""
               required
             />
-            <span class="form__input_error" id="name-input-error"></span>
+            <span class="form__input-error" id="name-input-error"></span>
             <input
               id="job-input"
               minlength="2"
@@ -87,7 +87,7 @@
               value=""
               required
             />
-            <span class="form__input_error" id="job-input-error"></span>
+            <span class="form__input-error" id="job-input-error"></span>
             <button type="submit" class="form__button">Save</button>
           </form>
           <button
@@ -99,7 +99,6 @@
       </div>
 
       <div id="modal" class="modal modal_type_add">
-        <div class="blocker" name="add-blocker"></div>
         <div class="modal__container">
           <form
             id="form"
@@ -120,7 +119,7 @@
               value=""
               required
             />
-            <span class="form__input_error" id="title-input-error"></span>
+            <span class="form__input-error" id="title-input-error"></span>
             <input
               id="url-input"
               type="url"
@@ -130,7 +129,7 @@
               value=""
               required
             />
-            <span class="form__input_error" id="url-input-error"></span>
+            <span class="form__input-error" id="url-input-error"></span>
             <button type="submit" class="form__button">Save</button>
           </form>
           <button
@@ -158,10 +157,15 @@
     <template id="card__template">
       <li class="card">
         <img src="" alt="" class="card__pic" />
-        <img src="./images/delete.svg" alt="" class="card__delete-btn" />
+        <img
+          src="./images/delete.svg"
+          alt=""
+          aria-label="Delete Button"
+          class="card__delete-btn"
+        />
         <div class="card__text">
           <h2 class="card__title"></h2>
-          <button class="card__heart"></button>
+          <button aria-label="Like Button" class="card__heart"></button>
         </div>
       </li>
     </template>

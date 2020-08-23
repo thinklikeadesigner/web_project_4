@@ -44,7 +44,7 @@ function enableValidation({
   const forms = Array.from(document.querySelectorAll(formSelector));
 
   forms.forEach((form) => {
-    form.addEventListener("submit", function (evt) {
+    form.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
 
@@ -56,7 +56,7 @@ function enableValidation({
     }
 
     inputs.forEach((input) => {
-      input.addEventListener("input", function () {
+      input.addEventListener("input", () => {
         checkInputValidity(form, input, rest);
         toggleButtonState(inputs, button, rest);
       });
@@ -69,6 +69,6 @@ enableValidation({
   inputSelector: ".form__input",
   submitButtonSelector: ".form__button",
   inactiveButtonClass: "form__button_disabled",
-  inputErrorClass: "form__input_error_line",
-  errorClass: "form__input_error_visible",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_visible",
 });

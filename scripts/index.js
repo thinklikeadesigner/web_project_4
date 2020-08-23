@@ -81,7 +81,6 @@ function keydownClose(evt) {
     } else if (imgModalWindow.classList.contains("modal_open")) {
       toggleModalWindow(imgModalWindow);
       document.removeEventListener("keydown", keydownClose);
-    } else {
     }
   }
 }
@@ -96,7 +95,6 @@ function closeClickModal(evt) {
   } else if (evt.target === imgModalWindow) {
     toggleModalWindow(imgModalWindow);
     window.removeEventListener("click", closeClickModal);
-  } else {
   }
 }
 

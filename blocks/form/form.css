@@ -2,9 +2,9 @@
 @import url("./__button/_disabled/form__button_disabled.css");
 @import url("./__input/form__input.css");
 @import url("./__title/form__title.css");
-@import url("./__input/_error/form__input_error.css");
-@import url("./__input/_error/_line/form__input_error_line.css");
-@import url("./__input/_error/_visible/form__input_error_visible.css");
+@import url("./__input-error/form__input-error.css");
+@import url("./__input-error/_visible/form__input-error_visible.css");
+@import url("./__input/_type/_error/form__input_type_error.css");
 
 .form {
   min-width: 320px;
