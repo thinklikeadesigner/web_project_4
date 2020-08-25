@@ -97,7 +97,18 @@ function closeClickModal(evt) {
     window.removeEventListener("click", closeClickModal);
   }
 }
+class Card {
+  constructor(data, cardSelector) {
+    this.cardSelector = cardSelector;
+  }
 
+  _getTemplate() {
+    const cardElement = document
+      .querySelector("#card__template")
+      .content.querySelector(".card")
+      .cloneNode(true);
+  }
+}
 function newCard(title, url) {
   const cardElement = cardTemplate.cloneNode(true);
 
