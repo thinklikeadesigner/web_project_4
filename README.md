@@ -27,6 +27,8 @@ This project is a site that allows you to make a profile and post pictures. So f
 
 I used these functions in the following ways:
 
+Principles of OOP were applied. Functionalities are split into modules which contain classes.
+
 **querySelector()** was used to select elements from html
 
 **addEventListener()** was used to check for user actions on page

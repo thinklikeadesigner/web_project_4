@@ -21,27 +21,26 @@ class Card {
       .addEventListener("click", (evt) =>
         evt.target.classList.toggle("card__heart_active")
       );
-    this._element
-      .querySelector(".card__delete-btn")
-      .addEventListener("click", () => {
-        const listItem = this._element
-          .querySelector(".card__delete-btn")
-          .closest(".card");
-        listItem.remove();
-      });
-    this._element.querySelector(".card__pic").addEventListener("click", () => {
+    this._deleteBtn.addEventListener("click", () => {
+      this._deleteBtn.closest(".card").remove();
+    });
+    this._cardPic.addEventListener("click", () => {
       handleModalOpen(this._title, this._url);
     });
   }
 
   _setElements() {
-    this._element.querySelector(".card__pic").src = this._url;
-    this._element.querySelector(".card__pic").setAttribute("alt", this._title);
-    this._element.querySelector(".card__title").textContent = this._title;
+    this._cardPic.src = this._url;
+    this._cardPic.setAttribute("alt", this._title);
+    this._cardTitle.textContent = this._title;
   }
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardPic = this._element.querySelector(".card__pic");
+    this._cardTitle = this._element.querySelector(".card__title");
+    this._deleteBtn = this._element.querySelector(".card__delete-btn");
+
     this._setEventListeners();
     this._setElements();
 
