@@ -1,3 +1,25 @@
+const imgModal = document.querySelector(".modal__img");
+const imgModalWindow = document.querySelector(".modal_type_pic");
+const addModalWindow = document.querySelector(".modal_type_add");
+const editModalWindow = document.querySelector(".modal_type_edit");
+function handleModalOpen(title, url) {
+  imgModal.src = url;
+  imgModal.setAttribute("alt", title);
+  toggleModalWindow(imgModalWindow);
+  const modalCaption = document.querySelector(".modal__caption");
+  modalCaption.textContent = title;
+}
+
+function toggleModalWindow(modal) {
+  if (modal.classList.contains("modal_open")) {
+    window.removeEventListener("click", closeClickModal);
+    document.removeEventListener("keydown", keydownClose);
+  } else {
+    window.addEventListener("click", closeClickModal);
+    document.addEventListener("keydown", keydownClose);
+  }
+  modal.classList.toggle("modal_open");
+}
 function keydownClose(evt) {
   if (evt.key === "Escape") {
     if (addModalWindow.classList.contains("modal_open")) {
@@ -19,30 +41,13 @@ function closeClickModal(evt) {
     toggleModalWindow(imgModalWindow);
   }
 }
-
-function toggleModalWindow(modal) {
-  if (modal.classList.contains("open_modal")) {
-    closeModal(modal);
-  } else {
-    openModal(modal);
-  }
-}
-
-function closeModal(modal) {
-  modal.classList.remove("open_modal");
-  window.removeEventListener("click", closeClickModal);
-  document.removeEventListener("keydown", keydownClose);
-}
-function openModal() {
-  modal.classList.add("open_modal");
-  window.addEventListener("click", closeClickModal);
-  document.addEventListener("keydown", keydownClose);
-}
-
 export {
-  keydownClose,
-  closeClickModal,
+  handleModalOpen,
+  imgModal,
+  imgModalWindow,
   toggleModalWindow,
-  closeModal,
-  openModal,
+  closeClickModal,
+  keydownClose,
+  addModalWindow,
+  editModalWindow,
 };

@@ -1,3 +1,14 @@
+import {
+  toggleModalWindow,
+  addModalWindow,
+  editModalWindow,
+  keydownClose,
+  closeClickModal,
+  imgModalWindow,
+} from "./utils.js";
+import Card from "./card.js";
+import formValidator from "./formValidator.js";
+
 const initialCards = [
   {
     name: "Bald Mountains",
@@ -25,6 +36,15 @@ const initialCards = [
   },
 ];
 
+const settings = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_visible",
+};
+
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 
@@ -37,10 +57,6 @@ const closeButtonEdit = document.querySelector(".modal__close-button_edit");
 const closeButtonAdd = document.querySelector(".modal__close-button_add");
 const closeButtonImg = document.querySelector(".modal__close-button_pic");
 
-const addModalWindow = document.querySelector(".modal_type_add");
-const editModalWindow = document.querySelector(".modal_type_edit");
-const imgModalWindow = document.querySelector(".modal_type_pic");
-
 const formEdit = document.querySelector(".form_edit");
 const formAdd = document.querySelector(".form_add");
 
@@ -48,20 +64,11 @@ const addButton = document.querySelector(".profile__add-btn");
 const editButton = document.querySelector(".profile__edit-btn");
 
 const list = document.querySelector(".cards__list");
-const cardTemplate = document.querySelector("#card__template").content;
 
-const imgModal = document.querySelector(".modal__img");
-
-function toggleModalWindow(modal) {
-  if (modal.classList.contains("modal_open")) {
-    window.removeEventListener("click", closeClickModal);
-    document.removeEventListener("keydown", keydownClose);
-  } else {
-    window.addEventListener("click", closeClickModal);
-    document.addEventListener("keydown", keydownClose);
-  }
-  modal.classList.toggle("modal_open");
-}
+const validateAdd = new formValidator(settings, formAdd);
+const validateEdit = new formValidator(settings, formEdit);
+validateEdit.enableValidation();
+validateAdd.enableValidation();
 
 function AddFormSubmitHandler(evt) {
   evt.preventDefault();
@@ -78,119 +85,6 @@ function editFormSubmitHandler(evt) {
   profileJob.textContent = inputJob.value;
   toggleModalWindow(editModalWindow);
 }
-
-function keydownClose(evt) {
-  if (evt.key === "Escape") {
-    if (addModalWindow.classList.contains("modal_open")) {
-      toggleModalWindow(addModalWindow);
-    } else if (editModalWindow.classList.contains("modal_open")) {
-      toggleModalWindow(editModalWindow);
-    } else if (imgModalWindow.classList.contains("modal_open")) {
-      toggleModalWindow(imgModalWindow);
-    }
-  }
-}
-
-function closeClickModal(evt) {
-  if (evt.target === addModalWindow) {
-    toggleModalWindow(addModalWindow);
-  } else if (evt.target === editModalWindow) {
-    toggleModalWindow(editModalWindow);
-  } else if (evt.target === imgModalWindow) {
-    toggleModalWindow(imgModalWindow);
-  }
-}
-class Card {
-  constructor(title, url, cardSelector) {
-    this._title = title;
-    this._url = url;
-    this.cardSelector = cardSelector;
-  }
-
-  _getTemplate() {
-    const cardElement = document
-      .querySelector("#card__template")
-      .content.querySelector(".card")
-      .cloneNode(true);
-
-    return cardElement;
-  }
-
-  _setEventListeners() {
-    this._element
-      .querySelector(".card__heart")
-      .addEventListener("click", (evt) =>
-        evt.target.classList.toggle("card__heart_active")
-      );
-    this._element
-      .querySelector(".card__delete-btn")
-      .addEventListener("click", () => {
-        const listItem = this._element
-          .querySelector(".card__delete-btn")
-          .closest(".card");
-        listItem.remove();
-      });
-    this._element.querySelector(".card__pic").addEventListener("click", () => {
-      handleModalOpen(this._title, this._url);
-    });
-  }
-
-  _setElements() {
-    this._element.querySelector(".card__pic").src = this._url;
-    this._element.querySelector(".card__pic").setAttribute("alt", this._title);
-    this._element.querySelector(".card__title").textContent = this._title;
-  }
-
-  generateCard() {
-    this._element = this._getTemplate();
-    this._setEventListeners();
-    this._setElements();
-
-    return this._element;
-  }
-}
-
-function handleModalOpen(title, url) {
-  imgModal.src = url;
-  imgModal.setAttribute("alt", title);
-  toggleModalWindow(imgModalWindow);
-  const modalCaption = document.querySelector(".modal__caption");
-  modalCaption.textContent = title;
-}
-
-// function newCard(title, url) {
-//   const cardElement = cardTemplate.cloneNode(true);
-
-//   const cardPic = cardElement.querySelector(".card__pic");
-//   const cardTitle = cardElement.querySelector(".card__title");
-//   const cardHeart = cardElement.querySelector(".card__heart");
-//   const cardDelete = cardElement.querySelector(".card__delete-btn");
-
-//   cardPic.src = url;
-//   cardPic.setAttribute("alt", title);
-//   cardTitle.textContent = title;
-
-// cardHeart.addEventListener("click", (evt) =>
-//   evt.target.classList.toggle("card__heart_active")
-// );
-
-// cardDelete.addEventListener("click", () => {
-//   const listItem = cardDelete.closest(".card");
-//   listItem.remove();
-// });
-
-//   cardPic.addEventListener("click", () => {
-//     imgModal.src = url;
-//     imgModal.setAttribute("alt", title);
-//     toggleModalWindow(imgModalWindow);
-//     const modalCaption = document.querySelector(".modal__caption");
-//     modalCaption.textContent = title;
-//     window.addEventListener("click", closeClickModal);
-//     document.addEventListener("keydown", keydownClose);
-//   });
-
-//   return cardElement;
-// }
 
 initialCards.forEach((data) => {
   const card = new Card(data.name, data.link, "#card__template");
