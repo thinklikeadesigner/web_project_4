@@ -53,12 +53,21 @@ const cardTemplate = document.querySelector("#card__template").content;
 const imgModal = document.querySelector(".modal__img");
 
 function toggleModalWindow(modal) {
+  if (modal.classList.contains("modal_open")) {
+    window.removeEventListener("click", closeClickModal);
+    document.removeEventListener("keydown", keydownClose);
+  } else {
+    window.addEventListener("click", closeClickModal);
+    document.addEventListener("keydown", keydownClose);
+  }
   modal.classList.toggle("modal_open");
 }
 
 function AddFormSubmitHandler(evt) {
   evt.preventDefault();
-  list.prepend(newCard(inputTitle.value, inputUrl.value));
+  const card = new Card(inputTitle.value, inputUrl.value, "#card__template");
+  const cardElement = card.generateCard();
+  list.prepend(cardElement);
   toggleModalWindow(addModalWindow);
   formAdd.reset();
 }
@@ -74,13 +83,10 @@ function keydownClose(evt) {
   if (evt.key === "Escape") {
     if (addModalWindow.classList.contains("modal_open")) {
       toggleModalWindow(addModalWindow);
-      document.removeEventListener("keydown", keydownClose);
     } else if (editModalWindow.classList.contains("modal_open")) {
       toggleModalWindow(editModalWindow);
-      document.removeEventListener("keydown", keydownClose);
     } else if (imgModalWindow.classList.contains("modal_open")) {
       toggleModalWindow(imgModalWindow);
-      document.removeEventListener("keydown", keydownClose);
     }
   }
 }
@@ -88,17 +94,16 @@ function keydownClose(evt) {
 function closeClickModal(evt) {
   if (evt.target === addModalWindow) {
     toggleModalWindow(addModalWindow);
-    window.removeEventListener("click", closeClickModal);
   } else if (evt.target === editModalWindow) {
     toggleModalWindow(editModalWindow);
-    window.removeEventListener("click", closeClickModal);
   } else if (evt.target === imgModalWindow) {
     toggleModalWindow(imgModalWindow);
-    window.removeEventListener("click", closeClickModal);
   }
 }
 class Card {
-  constructor(data, cardSelector) {
+  constructor(title, url, cardSelector) {
+    this._title = title;
+    this._url = url;
     this.cardSelector = cardSelector;
   }
 
@@ -107,44 +112,90 @@ class Card {
       .querySelector("#card__template")
       .content.querySelector(".card")
       .cloneNode(true);
+
+    return cardElement;
+  }
+
+  _setEventListeners() {
+    this._element
+      .querySelector(".card__heart")
+      .addEventListener("click", (evt) =>
+        evt.target.classList.toggle("card__heart_active")
+      );
+    this._element
+      .querySelector(".card__delete-btn")
+      .addEventListener("click", () => {
+        const listItem = this._element
+          .querySelector(".card__delete-btn")
+          .closest(".card");
+        listItem.remove();
+      });
+    this._element.querySelector(".card__pic").addEventListener("click", () => {
+      handleModalOpen(this._title, this._url);
+    });
+  }
+
+  _setElements() {
+    this._element.querySelector(".card__pic").src = this._url;
+    this._element.querySelector(".card__pic").setAttribute("alt", this._title);
+    this._element.querySelector(".card__title").textContent = this._title;
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._setEventListeners();
+    this._setElements();
+
+    return this._element;
   }
 }
-function newCard(title, url) {
-  const cardElement = cardTemplate.cloneNode(true);
 
-  const cardPic = cardElement.querySelector(".card__pic");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const cardHeart = cardElement.querySelector(".card__heart");
-  const cardDelete = cardElement.querySelector(".card__delete-btn");
-
-  cardPic.src = url;
-  cardPic.setAttribute("alt", title);
-  cardTitle.textContent = title;
-
-  cardHeart.addEventListener("click", (evt) =>
-    evt.target.classList.toggle("card__heart_active")
-  );
-
-  cardDelete.addEventListener("click", () => {
-    const listItem = cardDelete.closest(".card");
-    listItem.remove();
-  });
-
-  cardPic.addEventListener("click", () => {
-    imgModal.src = url;
-    imgModal.setAttribute("alt", title);
-    toggleModalWindow(imgModalWindow);
-    const modalCaption = document.querySelector(".modal__caption");
-    modalCaption.textContent = title;
-    window.addEventListener("click", closeClickModal);
-    document.addEventListener("keydown", keydownClose);
-  });
-
-  return cardElement;
+function handleModalOpen(title, url) {
+  imgModal.src = url;
+  imgModal.setAttribute("alt", title);
+  toggleModalWindow(imgModalWindow);
+  const modalCaption = document.querySelector(".modal__caption");
+  modalCaption.textContent = title;
 }
 
+// function newCard(title, url) {
+//   const cardElement = cardTemplate.cloneNode(true);
+
+//   const cardPic = cardElement.querySelector(".card__pic");
+//   const cardTitle = cardElement.querySelector(".card__title");
+//   const cardHeart = cardElement.querySelector(".card__heart");
+//   const cardDelete = cardElement.querySelector(".card__delete-btn");
+
+//   cardPic.src = url;
+//   cardPic.setAttribute("alt", title);
+//   cardTitle.textContent = title;
+
+// cardHeart.addEventListener("click", (evt) =>
+//   evt.target.classList.toggle("card__heart_active")
+// );
+
+// cardDelete.addEventListener("click", () => {
+//   const listItem = cardDelete.closest(".card");
+//   listItem.remove();
+// });
+
+//   cardPic.addEventListener("click", () => {
+//     imgModal.src = url;
+//     imgModal.setAttribute("alt", title);
+//     toggleModalWindow(imgModalWindow);
+//     const modalCaption = document.querySelector(".modal__caption");
+//     modalCaption.textContent = title;
+//     window.addEventListener("click", closeClickModal);
+//     document.addEventListener("keydown", keydownClose);
+//   });
+
+//   return cardElement;
+// }
+
 initialCards.forEach((data) => {
-  list.prepend(newCard(data.name, data.link));
+  const card = new Card(data.name, data.link, "#card__template");
+  const cardElement = card.generateCard();
+  list.prepend(cardElement);
 });
 
 formEdit.addEventListener("submit", editFormSubmitHandler);
