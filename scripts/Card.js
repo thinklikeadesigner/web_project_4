@@ -22,7 +22,7 @@ class Card {
         evt.target.classList.toggle("card__heart_active")
       );
     this._deleteBtn.addEventListener("click", () => {
-      this._deleteBtn.closest(".card").remove();
+      this._element.remove();
     });
     this._cardPic.addEventListener("click", () => {
       handleModalOpen(this._title, this._url);

@@ -70,4 +70,4 @@ const settings = {
   errorClass: "form__input-error_visible",
 };
 
-export default formValidator;
+export default FormValidator;

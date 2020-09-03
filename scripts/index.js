@@ -7,7 +7,7 @@ import {
   imgModalWindow,
 } from "./utils.js";
 import Card from "./card.js";
-import formValidator from "./formValidator.js";
+import FormValidator from "./FormValidator.js";
 
 const initialCards = [
   {
@@ -65,8 +65,8 @@ const editButton = document.querySelector(".profile__edit-btn");
 
 const list = document.querySelector(".cards__list");
 
-const validateAdd = new formValidator(settings, formAdd);
-const validateEdit = new formValidator(settings, formEdit);
+const validateAdd = new FormValidator(settings, formAdd);
+const validateEdit = new FormValidator(settings, formEdit);
 validateEdit.enableValidation();
 validateAdd.enableValidation();
 
