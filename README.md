@@ -8,7 +8,7 @@
 
 **Pages link**
 
-- [Link to the project in Pages](https://thinklikeadesigner.github.io/web_project_6/)
+- [Link to the project in Pages](https://thinklikeadesigner.github.io/web_project_7/)
 
 **Description and Functionality**
 
