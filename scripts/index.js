@@ -1,5 +1,3 @@
-
-
 import {
   toggleModalWindow,
   addModalWindow,
