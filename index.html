@@ -8,6 +8,7 @@
       lang="en"
       content="width=device-width, initial-scale=1"
     />
+    <link rel="stylesheet" href="./pages/index.css" type="text/css" />
     <title>Around The U.S.</title>
   </head>
   <body class="black-background">
@@ -15,7 +16,7 @@
       <header class="header">
         <div class="header__container">
           <img
-            src="../images/around-white.svg"
+            src="./images/around-white.svg"
             alt="'Around' text logo"
             class="header__logo"
           />
@@ -26,7 +27,7 @@
           <div class="profile__container">
             <div class="profile__info">
               <img
-                src="../images/coustou-profile-pic.jpg"
+                src="./images/coustou-profile-pic.jpg"
                 alt="Jaques Cousteau close-up in a red beanie"
                 class="profile__pic"
               />
@@ -147,7 +148,7 @@
             class="modal__close-button modal__close-button_pic"
           ></button>
           <figure class="modal__figure">
-            <img src="../images/coustou-profile-pic.jpg" alt="" class="modal__img" />
+            <img src="" alt="" class="modal__img" />
             <figcaption class="modal__caption"></figcaption>
           </figure>
         </div>
@@ -155,9 +156,9 @@
     </div>
     <template id="card__template">
       <li class="card">
-        <img src="../images/coustou-profile-pic.jpg" alt="" class="card__pic" />
+        <img src="" alt="" class="card__pic" />
         <img
-          src="../images/delete.svg"
+          src="./images/delete.svg"
           alt=""
           aria-label="Delete Button"
           class="card__delete-btn"
@@ -168,5 +169,9 @@
         </div>
       </li>
     </template>
+    <script type="module" src="./scripts/utils.js"></script>
+    <script type="module" src="./scripts/Card.js"></script>
+    <script type="module" src="./scripts/FormValidator.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
