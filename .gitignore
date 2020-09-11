@@ -1,2 +1,6 @@
 dist
 node_modules
+.vscode
+.prettierrc
+npm-debug.log
+w-b-4.code-workspace
