@@ -1,8 +1,9 @@
 import { handleModalOpen } from "./utils.js";
+
 class Card {
-  constructor(title, url, cardSelector) {
-    this._title = title;
-    this._url = url;
+  constructor({data}, cardSelector) {
+    this._title = data.title;
+    this._url = data.url;
     this.cardSelector = cardSelector;
   }
 
@@ -49,3 +50,8 @@ class Card {
 }
 
 export default Card;
+
+const imgModal = new Popup('.modal_type_pic');
+imgModal.setEventListeners();
+
+new Cards ({title, url}, "#card__template")
