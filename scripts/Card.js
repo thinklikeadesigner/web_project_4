@@ -51,7 +51,7 @@ class Card {
 
 export default Card;
 
-const imgModal = new Popup('.modal_type_pic');
-imgModal.setEventListeners();
+// const imgModal = new Popup('.modal_type_pic');
+// imgModal.setEventListeners();
 
-new Cards ({title, url}, "#card__template")
+// new Cards ({title, url}, "#card__template")

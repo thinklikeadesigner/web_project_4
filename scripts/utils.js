@@ -9,11 +9,4 @@ function handleModalOpen(title, url) {
 
 export {
   handleModalOpen,
-  imgModal,
-  imgModalWindow,
-  toggleModalWindow,
-  closeClickModal,
-  keydownClose,
-  addModalWindow,
-  editModalWindow,
 };
