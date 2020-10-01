@@ -6,16 +6,17 @@ import {initialCards} from './constants.js';
 const cardsList = new Section({
   data: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '.cards__list');
+    const card = new Card(item,   "#card__template");
 
     const cardElement = card.generateCard();
 
     cardsList.setItem(cardElement);
     },
   },
-  "#card__template"
+  '.cards__list'
 );
 
+cardsList.renderItems();
 
 // initialCards.forEach((data) => {
 //   const card = new Card(data.name, data.link, "#card__template");

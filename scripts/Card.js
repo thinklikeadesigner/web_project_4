@@ -3,11 +3,12 @@
 
 
 
-import { handleModalOpen } from "./utils.js";
-class Card {
-  constructor(title, url, cardSelector) {
-    this._title = title;
-    this._url = url;
+// import { handleModalOpen } from "./utils.js";
+
+export default class Card {
+  constructor(data, cardSelector) {
+    this._title = data.name;
+    this._url = data.link;
     this.cardSelector = cardSelector;
   }
 
@@ -29,9 +30,9 @@ class Card {
     this._deleteBtn.addEventListener("click", () => {
       this._element.remove();
     });
-    this._cardPic.addEventListener("click", () => {
-      handleModalOpen(this._title, this._url);
-    });
+    // this._cardPic.addEventListener("click", () => {
+    //   handleModalOpen(this._title, this._url);
+    // });
   }
 
   _setElements() {
@@ -53,4 +54,4 @@ class Card {
   }
 }
 
-export default Card;
+
