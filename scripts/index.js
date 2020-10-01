@@ -6,7 +6,7 @@ import {initialCards} from './constants.js';
 const cardsList = new Section({
   data: initialCards,
   renderer: (item) => {
-    const card = new Card(item,   "#card__template");
+    const card = new Card({item, handleCardClick: () => console.log("hi")},   "#card__template");
 
     const cardElement = card.generateCard();
 
