@@ -1,14 +1,9 @@
-// Transforming the Card Class
-// Connect the Card class to the popup. Make Card take the handleCardClick() function into the constructor. When the user clicks on the card, this function will open the popup with an image. 
 
-
-
-// import { handleModalOpen } from "./utils.js";
 
 export default class Card {
-  constructor({item, handleCardClick}, cardSelector) {
-    this._title = item.name;
-    this._url = item.link;
+  constructor({name, link, handleCardClick}, cardSelector) {
+    this._title = name;
+    this._url = link;
     this.cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
   }
