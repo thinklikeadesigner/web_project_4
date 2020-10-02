@@ -1,8 +1,10 @@
 import Card from "./Card.js";
 import Section from "./Section.js";
 import {initialCards} from './constants.js';
-// import PopupWithForm from "./PopupWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
+
+import PopupWithForm from './PopupWithForm.js';
+import {UserInfo} from './UserInfo.js';
 
 const picModal = new PopupWithImage(".modal_type_pic");
 picModal.setEventListeners();
@@ -23,12 +25,19 @@ const cardsList = new Section({
 
 cardsList.renderItems();
 
-// const editModal = new PopupWithForm(".modal_type_edit");
-// editModal.setEventListeners();
+const editModal = new PopupWithForm({popupSelector: ".modal_type_edit", handleFormSubmit:
+() => {
+  const profile = new UserInfo({name: ".profile__name", job: '.profile__job'});
+  const infoArr = profile.getUserInfo();
+console.log(infoArr);
+
+
+}});
+editModal.setEventListeners();
 // const addModal = new PopupWithForm(".modal_type_add");
 // addModal.setEventListeners();
 
-// const addModal = new PopupWithForm({
+// const editModal = new PopupWithForm({
 //   popupSelector: ".modal_type_add",
 //   handleFormSubmit: (item) => {
 //     const card = new Card({item, handleCardClick: () => console.log("hello")},   "#card__template");
@@ -40,4 +49,18 @@ cardsList.renderItems();
 // });
 
 // addModal.setEventListeners();
+
+
+
+// const editModal = new PopupWithForm({
+//   popupSelector: ".modal_type_edit",
+//   handleFormSubmit: () => {
+
+
+
+//     const cardElement = card.generateCard();
+
+//     cardsList.setItem(cardElement);
+//   }
+// });
 

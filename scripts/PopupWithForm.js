@@ -7,6 +7,14 @@ import Popup from "./Popup.js";
 
 
 // It takes a callback of the form submission into the constructor, as well as the popup selector.
+
+// function editFormSubmitHandler(evt) {
+//     evt.preventDefault();
+//     profileName.textContent = inputName.value;
+//     profileJob.textContent = inputJob.value;
+//     toggleModalWindow(editModalWindow);
+//   }
+
 export default class PopupWithForm extends Popup {
     constructor({popupSelector, handleFormSubmit}) {
         super(popupSelector);
@@ -31,7 +39,7 @@ _handleEscClose(evt) {
 
 setEventListeners() {
   super.setEventListeners();
-  document.querySelector('.profile__add-btn').addEventListener("click", () => this.open())
+  document.querySelector('.profile__edit-btn').addEventListener("click", () => this.open())
   this._popupElement.addEventListener("submit", (evt) => {
     evt.preventDefault();
     this._handleFormSubmit(this._getInputValues());
