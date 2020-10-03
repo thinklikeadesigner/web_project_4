@@ -18,8 +18,8 @@ import Popup from "./Popup.js";
 export default class PopupWithForm extends Popup {
     constructor({popupSelector, handleFormSubmit}) {
         super(popupSelector);
-        this._handleEscClose = this._handleEscClose.bind(this);
         this._handleFormSubmit = handleFormSubmit;
+        this._form = document.querySelector(".form");
     }
 open() {
     super.open();
@@ -28,13 +28,11 @@ open() {
 // It modifies the close() parent method in order to reset the form once the popup is closed.
 close() {
     super.close();
+    this._form.reset();
+
 
 }
-_handleEscClose(evt) {
-    if (evt.which == 27) {
-        this.close();
-    }
-}
+
 
 
 setEventListeners() {
@@ -43,6 +41,7 @@ setEventListeners() {
   this._popupElement.addEventListener("submit", (evt) => {
     evt.preventDefault();
     this._handleFormSubmit(this._getInputValues());
+    this.close();
 
 
   })

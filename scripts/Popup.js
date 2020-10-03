@@ -28,7 +28,7 @@ _handleEscClose(evt) {
 
 setEventListeners() {
     this._popupElement.addEventListener("click", (evt) => {
-        if (evt.target.classList.contains("modal__close-button") || !evt.target.closest("modal__container"))
+        if (evt.target.classList.contains("modal__close-button"))
         this.close();
     })
 }
