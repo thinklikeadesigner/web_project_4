@@ -39,7 +39,8 @@ close() {
 
 setEventListeners() {
   super.setEventListeners();
-  document.querySelector('.profile__edit-btn').addEventListener("click", () => this.open())
+  // document.querySelector('.profile__edit-btn').addEventListener("click", () => this.open())
+  // document.querySelector('.profile__add-btn').addEventListener("click", () => this.open())
   this._popupElement.addEventListener("submit", (evt) => {
     evt.preventDefault();
     this._handleFormSubmit(this._getInputValues());
