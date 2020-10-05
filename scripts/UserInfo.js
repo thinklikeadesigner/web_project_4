@@ -18,6 +18,7 @@ class UserInfo {
    // Store a public method named getUserInfo(), which returns an object with information about the user. This method will be handy for cases when it's necessary to display the user data in the open form.
    
    getUserInfo() {
+
      this._currentUserInfoValues = {inputName: this._inputName, inputJob: this._inputJob};
 return this._currentUserInfoValues;
    }

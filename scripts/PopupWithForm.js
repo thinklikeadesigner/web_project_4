@@ -23,6 +23,8 @@ export default class PopupWithForm extends Popup {
     }
 open() {
     super.open();
+        document.querySelector(".form__input_type_job").value = document.querySelector(".profile__job").textContent
+    document.querySelector(".form__input_type_name").value = document.querySelector(".profile__name").textContent
 
 }
 // It modifies the close() parent method in order to reset the form once the popup is closed.

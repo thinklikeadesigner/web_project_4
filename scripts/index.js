@@ -25,18 +25,21 @@ const cardsList = new Section({
 
 cardsList.renderItems();
 
+
+
 const editModal = new PopupWithForm({popupSelector: ".modal_type_edit", handleFormSubmit:
 () => {
   const profile = new UserInfo({inputName: ".form__input_type_name", inputJob: '.form__input_type_job'});
   const infoArr = profile.getUserInfo();
 console.log(infoArr);
 
-profile.setUserInfo();
 
+profile.setUserInfo();
 
 
 }});
 editModal.setEventListeners();
+
 // const addModal = new PopupWithForm(".modal_type_add");
 // addModal.setEventListeners();
 
