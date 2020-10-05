@@ -27,9 +27,12 @@ cardsList.renderItems();
 
 const editModal = new PopupWithForm({popupSelector: ".modal_type_edit", handleFormSubmit:
 () => {
-  const profile = new UserInfo({name: ".profile__name", job: '.profile__job'});
+  const profile = new UserInfo({inputName: ".form__input_type_name", inputJob: '.form__input_type_job'});
   const infoArr = profile.getUserInfo();
 console.log(infoArr);
+
+profile.setUserInfo();
+
 
 
 }});
