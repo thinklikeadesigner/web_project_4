@@ -19,7 +19,8 @@ export default class PopupWithForm extends Popup {
     constructor({popupSelector, handleFormSubmit}) {
         super(popupSelector);
         this._handleFormSubmit = handleFormSubmit;
-        this._form = document.querySelector(".form");
+        this._formEdit = document.querySelector(".form_edit");
+        this._formAdd = document.querySelector(".form_add");
     }
 open() {
     super.open();
@@ -30,7 +31,8 @@ open() {
 // It modifies the close() parent method in order to reset the form once the popup is closed.
 close() {
     super.close();
-    this._form.reset();
+    this._formEdit.reset();
+    this._formAdd.reset();
 
 
 }
@@ -39,8 +41,6 @@ close() {
 
 setEventListeners() {
   super.setEventListeners();
-  // document.querySelector('.profile__edit-btn').addEventListener("click", () => this.open())
-  // document.querySelector('.profile__add-btn').addEventListener("click", () => this.open())
   this._popupElement.addEventListener("submit", (evt) => {
     evt.preventDefault();
     this._handleFormSubmit(this._getInputValues());

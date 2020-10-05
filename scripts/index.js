@@ -47,7 +47,7 @@ editModal.setEventListeners();
 
 const addModal = new PopupWithForm({
   popupSelector: ".modal_type_add",
-  handleFormSubmit: ({name, link}) => {
+  handleFormSubmit: ({name,link}) => {
     const card = new Card(
       {name, link, handleCardClick: (name, link) => picModal.open(name, link) },
       "#card__template"

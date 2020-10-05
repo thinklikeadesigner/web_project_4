@@ -5,6 +5,7 @@ export default class PopupWithImage extends Popup {
         super(popupSelector);
         this._modalCaption = document.querySelector('.modal__caption');
         this._modalImage = document.querySelector('.modal__img');
+        this._form = document.querySelector(".form");
     }
 open(name, link) {
     super.open(name, link);
@@ -18,5 +19,6 @@ close() {
     this._modalCaption.textContent = "";
     this._modalImage.src = "";
     this._modalImage.setAttribute("alt", "");
+    
 }
 }
