@@ -1,5 +1,6 @@
 
 
+
 export default class Card {
   constructor({name, link, handleCardClick}, cardSelector) {
     this._title = name;
