@@ -1,10 +1,18 @@
-import Card from "./Card.js";
-import Section from "./Section.js";
-import { initialCards } from "./constants.js";
-import PopupWithImage from "./PopupWithImage.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import { initialCards, settings } from "../utils/constants.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
-import PopupWithForm from "./PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
+
+import FormValidator from "../components/FormValidator.js";
+
+const validateAdd = new FormValidator(settings, formAdd);
+const validateEdit = new FormValidator(settings, formEdit);
+validateEdit.enableValidation();
+validateAdd.enableValidation();
+
 
 const picModal = new PopupWithImage(".modal_type_pic");
 picModal.setEventListeners();
@@ -67,3 +75,4 @@ document
 document
   .querySelector(".profile__add-btn")
   .addEventListener("click", () => addModal.open());
+

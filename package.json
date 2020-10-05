@@ -1,6 +1,26 @@
-
 {
-    "scripts": {
-      "test": "jest"
-    }
-  }
+  "name": "web_project_8",
+  "version": "1.0.0",
+  "description": "### Overview",
+  "main": "sum.js",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "build": "rm -rf dist && webpack",
+    "dev": "webpack-dev-server --open --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinklikeadesigner/web_project_8.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinklikeadesigner/web_project_8/issues"
+  },
+  "homepage": "https://github.com/thinklikeadesigner/web_project_8#readme"
+}
