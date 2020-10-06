@@ -76,3 +76,5 @@ document
   .querySelector(".profile__add-btn")
   .addEventListener("click", () => addModal.open());
 
+
+  
