@@ -2,6 +2,7 @@
   width: 173px;
   min-height: 33px;
   margin: 0 0 41px;
+  background-image: url(../../../images/around-white.svg);
 }
 
 @media screen and (max-width: 750px) {

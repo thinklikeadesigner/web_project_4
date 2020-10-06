@@ -1,8 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-// connect mini-css-extract-plugin to the project
-const MiniCssExtractPlugin = require("mini-css-extract-plugin"); 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: { main: "./src/index.js" },
@@ -15,33 +13,35 @@ module.exports = {
       {
         test: /\.js$/,
         loader: "babel-loader",
-        exclude: /node_modules/
+        exclude: "/node_modules/"
       },
       {
-        // this regular expression will search for files with the following extensions
-        test: /\.(png|svg|jpg|gif|woff2)$/,
-        // file-loader should be used when processing those files
-        loader: "file-loader"
+        test: /\.css$/,
+        loader: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1
+            }
+          },
+          "postcss-loader"
+        ],
       },
-      // add the rule for working with HTML in a similar way
       {
         test: /\.html$/,
         loader: "html-loader",
-      },    {
-        // use these rules only for CSS files
-          test: /\.css$/,
-        // use MiniCssExtractPlugin.loader and css-loader
-        // when processing these files
-          loader:  [MiniCssExtractPlugin.loader, "css-loader"]
-      }
+      },
+      {
+        test: /\.(png|svg|jpg|gif|woff2)$/,
+        loader: "file-loader",
+      },
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html"
     }),
-      new MiniCssExtractPlugin({
-        template: "src/index.css"
-      }) // connect the plugin for merging CSS files
-  ] 
-}; 
+    new MiniCssExtractPlugin()
+  ]
+};
