@@ -34,4 +34,4 @@ const settings = {
   errorClass: "form__input-error_visible",
 };
 
-export {initialCards, settings};
+export { initialCards, settings };
