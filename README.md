@@ -25,27 +25,19 @@ This project is a site that allows you to make a profile and post pictures. So f
 
 **Technologies and Techniques**
 
-I used these functions in the following ways:
+I used these functions in the following ways: 
+- Principles of OOP were applied. 
+- Functionalities are split into modules which contain classes.
 
-Principles of OOP were applied. Functionalities are split into modules which contain classes.
+## New 
 
-**querySelector()** was used to select elements from html
+- Classes are now loosely coupled for reusability
+- Project now built with webpack
 
-**addEventListener()** was used to check for user actions on page
-
-**preventDefault()** was used to prevent website from following default behavior
-
-**forEach()** was used to add cards from an array
-
-**prepend()** was used along with <template> to add an entire card to the page at once.
-
-**keydown** event handlwer was used to listen for the Esc key in order to close a modal
-
-**event.target** was used to specify what element was clicked, so that only clicking outside the modal closed it.
-
-I also used form validation techniques for a responsive UI. The user will now prompted when:
+I also used form validation techniques for a responsive UI. The user will now be prompted when:
 
 - They left a field empty when completing the form
 - They did not enter a valid URL for the image
 - They did not use at least 2 characters for the name or description
 - They did not use at least 1 character for the image title
+
