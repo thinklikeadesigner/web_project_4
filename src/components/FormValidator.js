@@ -1,7 +1,7 @@
 class FormValidator {
   constructor(settings, form) {
     this._settings = settings;
-    this._form = form;
+    this._form = document.querySelector(form);
   }
 
   _showInputError(input) {
