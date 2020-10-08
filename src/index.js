@@ -8,8 +8,9 @@ import { UserInfo } from "./components/UserInfo.js";
 import FormValidator from "./components/FormValidator.js";
 
 // adds validators for both forms, and iniates the image modal
-const validateAdd = new FormValidator(settings, formAdd);
-const validateEdit = new FormValidator(settings, formEdit);
+const validateAdd = new FormValidator(settings, '.form_add');
+
+const validateEdit = new FormValidator(settings, ".form_edit");
 const picModal = new PopupWithImage(".modal_type_pic");
 
 //adds section with initial cards

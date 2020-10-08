@@ -1,20 +1,20 @@
 import Popup from "./Popup.js";
 
+import { inputJob, inputName, profileName, profileJob } from "../utils/constants.js";
+
 export default class PopupWithForm extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._formEdit = document.querySelector(".form_edit");
     this._formAdd = document.querySelector(".form_add");
+    
+
   }
   open() {
     super.open();
-    document.querySelector(
-      ".form__input_type_job"
-    ).value = document.querySelector(".profile__job").textContent;
-    document.querySelector(
-      ".form__input_type_name"
-    ).value = document.querySelector(".profile__name").textContent;
+    inputJob.value = profileJob.textContent;
+    inputName.value = profileName.textContent;
   }
 
   close() {

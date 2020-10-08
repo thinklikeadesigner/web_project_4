@@ -34,4 +34,9 @@ const settings = {
   errorClass: "form__input-error_visible",
 };
 
-export { initialCards, settings };
+const inputJob = document.querySelector(".form__input_type_job");
+const inputName =   document.querySelector(".form__input_type_name");
+const profileJob = document.querySelector(".profile__job");
+const profileName = document.querySelector(".profile__name");
+
+export { initialCards, settings,inputJob, inputName, profileName, profileJob };
