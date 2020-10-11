@@ -22,7 +22,6 @@ export default class Card {
   _handleDeleteBtn() {
     this._element.remove();
     this._element = null;
-    console.log(this._element);
   }
 
   _setEventListeners() {
