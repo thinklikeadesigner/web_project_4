@@ -1,4 +1,12 @@
-# Project 8: Around The U.S.
+# Project 9: Around The U.S.
+
+
+## Installation
+
+1. Clone repo
+2. Run `npm install node`.
+3. Run `npm run build` followed by `npm run dev`.
+4. Visit [localhost:3000](http://localhost:3000).
 
 ### Overview
 
