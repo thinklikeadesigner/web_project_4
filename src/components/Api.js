@@ -23,8 +23,24 @@ export default class Api {
     .catch(err => console.log(err))
   }
 
+//   getAppInfo() {
+//       //function to render cards only once all card information and profile information is collected
+//   }
+
   // POST https://around.nomoreparties.co/v1/groupId/cards
-  addCard({ name, link }) {}
+  addCard({ name, link }) {
+    return fetch(this._baseUrl + "/cards", {
+        headers: this._headers,
+        method: "POST",
+        body: JSON.stringify({
+          name, link
+          })
+
+    })
+
+    .then( res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+    .catch(err => console.log(err))
+  }
 
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
   removeCard(cardID) {}

@@ -46,9 +46,13 @@ const profileConfig = {
   profileDescription : ".profile__job"
 }
 
+const popupConfig = {
+  cardFormModalWindow: ".modal_type_add",
+}
+
 const inputJob = document.querySelector(".form__input_type_job");
 const inputName =   document.querySelector(".form__input_type_name");
 const profileJob = document.querySelector(".profile__job");
 const profileName = document.querySelector(".profile__name");
 
-export { profileConfig , cardsConfig, initialCards, settings,inputJob, inputName, profileName, profileJob };
+export { profileConfig ,  popupConfig , cardsConfig, initialCards, settings,inputJob, inputName, profileName, profileJob };
