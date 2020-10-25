@@ -1,15 +1,15 @@
 export default class Card {
-  constructor({ name, link, handleCardClick }, cardSelector) {
-    this._title = name;
-    this._url = link;
+  constructor({ data, handleCardClick }, cardSelector) {
+    this._title = data.name;
+    this._url = data.link;
     this.cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
-  this._id = data.id;
+  // this._id = data.id;
   }
 
-id() { 
-  return this._id();
-}
+// id() { 
+//   return this._id();
+// }
 
   _getTemplate() {
     const cardElement = document

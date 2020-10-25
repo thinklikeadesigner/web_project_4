@@ -29,9 +29,9 @@ api.getCardList().then((res) => {
       array: res,
 
       // initiates card class with data from initial cards
-      renderer: ({ name, link }) => {
+      renderer: (data) => {
         const card = new Card(
-          { name, link, handleCardClick: () => picModal.open(name, link) },
+          { data, handleCardClick: () => picModal.open(data) },
           cardsConfig.cardSelector
         );
         //sets generates card and assigns to cardElement
@@ -51,14 +51,14 @@ const addModal = new PopupWithForm({
   popupSelector: popupConfig.cardFormModalWindow,
   handleFormSubmit: ({ name, link }) => {
 
-api.addCard({ name, link }).then( res => {
+api.addCard(data).then( res => {
   
 });
 
     const card = new Card(
-      { name, link,
+      { data,
         handleCardClick: () => {
-          picModal.open(name, link)}
+          picModal.open(data)}
          },
       cardsConfig.cardSelector
     );
