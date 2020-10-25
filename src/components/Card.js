@@ -4,7 +4,12 @@ export default class Card {
     this._url = link;
     this.cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+  this._id = data.id;
   }
+
+id() { 
+  return this._id();
+}
 
   _getTemplate() {
     const cardElement = document

@@ -22,6 +22,7 @@ const api = new Api({
 });
 
 api.getCardList().then((res) => {
+  console.log(res);
   //adds section with initial cards
   const cardsList = new Section(
     {
@@ -42,6 +43,34 @@ api.getCardList().then((res) => {
     cardsConfig.placesWrap
   );
   cardsList.renderItems();
+
+console.log(api.id());
+
+//adds form with submit logic, and the submit handler creates the cards on submit and adds the cards to the dom
+const addModal = new PopupWithForm({
+  popupSelector: popupConfig.cardFormModalWindow,
+  handleFormSubmit: ({ name, link }) => {
+
+api.addCard({ name, link }).then( res => {
+  
+});
+
+    const card = new Card(
+      { name, link,
+        handleCardClick: () => {
+          picModal.open(name, link)}
+         },
+      cardsConfig.cardSelector
+    );
+  cardsList.setItem(card.generateCard());
+  },
+});
+addModal.setEventListeners();
+
+document
+  .querySelector(".profile__add-btn")
+  .addEventListener("click", function () {addModal.open()});
+
 });
 
 const userInfo = new UserInfo(
@@ -61,25 +90,7 @@ const validateAdd = new FormValidator(settings, ".form_add");
 const validateEdit = new FormValidator(settings, ".form_edit");
 const picModal = new PopupWithImage(".modal_type_pic");
 
-//adds form with submit logic, and the submit handler creates the cards on submit and adds the cards to the dom
-const addModal = new PopupWithForm({
-  popupSelector: popupConfig.cardFormModalWindow,
-  handleFormSubmit: ({ name, link }) => {
 
-api.addCard({ name, link }).then( res => {
-  
-});
-
-  //   const card = new Card(
-  //     { name, link,
-  //       handleCardClick: () => {
-  //         picModal.open(name, link)};
-  //        },
-  //     cardsConfig.cardSelector
-  //   );
-  // cardsList.setItem(card.generateCard());
-  },
-});
 
 //initiates class for edit form
 // const editModal = new PopupWithForm({
@@ -105,12 +116,10 @@ api.addCard({ name, link }).then( res => {
 document
   .querySelector(".profile__edit-btn")
   .addEventListener("click", () => editModal.open());
-document
-  .querySelector(".profile__add-btn")
-  .addEventListener("click", () => addModal.open());
+//  
 
 // editModal.setEventListeners();
-addModal.setEventListeners();
+// addModal.setEventListeners();
 picModal.setEventListeners();
 validateEdit.enableValidation();
 validateAdd.enableValidation();
