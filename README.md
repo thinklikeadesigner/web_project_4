@@ -8,7 +8,7 @@
 
 **Pages link**
 
-- [Link to the project in Pages](https://thinklikeadesigner.github.io/web_project_8/)
+- [Live Demo](https://thinklikeadesigner.github.io/web_project_9/)
 
 **Description and Functionality**
 
