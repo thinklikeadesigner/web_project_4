@@ -32,11 +32,23 @@ const settings = {
   inactiveButtonClass: "form__button_disabled",
   inputErrorClass: "form__input_type_error",
   errorClass: "form__input-error_visible",
+
 };
+
+const cardsConfig = {
+  cardSelector: "#card__template",
+  placesWrap: ".cards__list"
+
+}
+
+const profileConfig = {
+  profileTitle : ".profile__name",
+  profileDescription : ".profile__job"
+}
 
 const inputJob = document.querySelector(".form__input_type_job");
 const inputName =   document.querySelector(".form__input_type_name");
 const profileJob = document.querySelector(".profile__job");
 const profileName = document.querySelector(".profile__name");
 
-export { initialCards, settings,inputJob, inputName, profileName, profileJob };
+export { profileConfig , cardsConfig, initialCards, settings,inputJob, inputName, profileName, profileJob };
