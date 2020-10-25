@@ -44,12 +44,12 @@ api.getCardList().then((res) => {
   );
   cardsList.renderItems();
 
-console.log(api.id());
+
 
 //adds form with submit logic, and the submit handler creates the cards on submit and adds the cards to the dom
 const addModal = new PopupWithForm({
   popupSelector: popupConfig.cardFormModalWindow,
-  handleFormSubmit: ({ name, link }) => {
+  handleFormSubmit: (data) => {
 
 api.addCard(data).then( res => {
   
@@ -79,7 +79,7 @@ const userInfo = new UserInfo(
 );
 
 api.getUserInfo().then((res) => {
-  console.log("places", res);
+  console.log("profile", res);
 
   userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
 });
