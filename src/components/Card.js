@@ -1,15 +1,16 @@
 export default class Card {
-  constructor({ data, handleCardClick }, cardSelector) {
+  constructor({ data, handleCardClick}, cardSelector) {
     this._title = data.name;
     this._url = data.link;
     this.cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
-  // this._id = data.id;
+    // this._handleDeleteClick = handleDeleteClick;
+this._id = data._id;
   }
 
-// id() { 
-//   return this._id();
-// }
+returnID() { 
+  return this._id;
+}
 
   _getTemplate() {
     const cardElement = document
@@ -24,14 +25,14 @@ export default class Card {
     this._cardLikeBtn.classList.toggle("card__heart_active");
   }
 
-  _handleDeleteBtn() {
-    this._element.remove();
-    this._element = null;
-  }
+  // _handleDeleteBtn() {
+  //   this._element.remove();
+  //   this._element = null;
+  // }
 
   _setEventListeners() {
     this._cardLikeBtn.addEventListener("click", () => this._handleLikeIcon());
-    this._deleteBtn.addEventListener("click", () => this._handleDeleteBtn());
+    // this._deleteBtn.addEventListener("click", () => this._handleDeleteClick(this.returnID));
     this._cardPic.addEventListener("click", () => this._handleCardClick());
   }
 

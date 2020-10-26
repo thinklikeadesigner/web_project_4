@@ -21,8 +21,9 @@ const api = new Api({
   },
 });
 
-api.getCardList().then((res) => {
-  console.log(res);
+api.getCardList()
+.then((res) => {
+  console.log(res[2].link);
   //adds section with initial cards
   const cardsList = new Section(
     {
@@ -30,8 +31,17 @@ api.getCardList().then((res) => {
 
       // initiates card class with data from initial cards
       renderer: (data) => {
-        const card = new Card(
-          { data, handleCardClick: () => picModal.open(data) },
+        const card = new Card({
+           data,
+            handleCardClick: () => {
+            picModal.open(data);
+          },
+          // handleDeleteClick:  (cardID) => {
+
+          //   api.removeCard(cardID);
+       
+          // }
+          },
           cardsConfig.cardSelector
         );
         //sets generates card and assigns to cardElement
@@ -52,17 +62,19 @@ const addModal = new PopupWithForm({
   handleFormSubmit: (data) => {
 
 api.addCard(data).then( res => {
-  
-});
+  const card = new Card({
+    data,
+     handleCardClick: () => {
+       picModal.open(data);
+     },
+  //    handleDeleteClick: (cardId) => {
 
-    const card = new Card(
-      { data,
-        handleCardClick: () => {
-          picModal.open(data)}
-         },
-      cardsConfig.cardSelector
-    );
-  cardsList.setItem(card.generateCard());
+  //     api.removeCard(cardId);
+  //  },
+   }, cardsConfig.cardSelector);
+   cardsList.setItem(card.generateCard());
+});
+ 
   },
 });
 addModal.setEventListeners();
@@ -79,10 +91,22 @@ const userInfo = new UserInfo(
 );
 
 api.getUserInfo().then((res) => {
-  console.log("profile", res);
+console.log(res);
 
   userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
 });
+
+
+  const editModal = new PopupWithForm({
+    popupSelector: ".modal_type_edit",
+  
+    // logic for submit button
+    handleFormSubmit: ({name, about}) => {
+      api.setUserInfo({name, about }).then((res) => {
+        userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
+    },
+      )
+}});
 
 // adds validators for both forms, and iniates the image modal
 const validateAdd = new FormValidator(settings, ".form_add");
@@ -92,7 +116,7 @@ const picModal = new PopupWithImage(".modal_type_pic");
 
 
 
-//initiates class for edit form
+// initiates class for edit form
 // const editModal = new PopupWithForm({
 //   popupSelector: ".modal_type_edit",
 
@@ -112,13 +136,13 @@ const picModal = new PopupWithImage(".modal_type_pic");
 //   },
 // });
 
-//sets event listeners and calls class methods
+// sets event listeners and calls class methods
 document
   .querySelector(".profile__edit-btn")
   .addEventListener("click", () => editModal.open());
 //  
 
-// editModal.setEventListeners();
+editModal.setEventListeners();
 // addModal.setEventListeners();
 picModal.setEventListeners();
 validateEdit.enableValidation();

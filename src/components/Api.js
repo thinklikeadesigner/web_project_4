@@ -43,27 +43,38 @@ export default class Api {
   }
 
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
-  removeCard(cardID) {
-    return fetch(this._baseUrl + "/cards/" + cardID, {
-        headers: this._headers,
-        method: "DELETE",
+  // removeCard(cardId) {
+  //   return fetch(this._baseUrl + "/cards/" + cardId, {
+  //     headers: this._headers,
+  //     method: "DELETE"
 
-    })
+  // })
 
-    .then( res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
-    .catch(err => console.log(err))
-  }
+  // .then( res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+  // .catch(err => console.log(err))
+  // }
 
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   changeCardLikeStatus(cardID, like) {}
 
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me
-  setUserInfo({ name, about }) {}
+  setUserInfo({ name, about }) {
+   return fetch(this._baseUrl + "/users/me", {
+  method: "PATCH",
+  headers: this._headers,
+  body: JSON.stringify({
+    name,
+    about
+  })
+})
+.then( res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+.catch(err => console.log(err))
+}
 
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
   setUserAvatar({ avatar }) {}
 }
 
-
+``
 
