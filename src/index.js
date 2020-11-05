@@ -23,7 +23,7 @@ const api = new Api({
 
 api.getCardList()
 .then((res) => {
-  console.log(res[2].link);
+  console.log(res);
   //adds section with initial cards
   const cardsList = new Section(
     {
@@ -36,11 +36,11 @@ api.getCardList()
             handleCardClick: () => {
             picModal.open(data);
           },
-          // handleDeleteClick:  (cardID) => {
-
-          //   api.removeCard(cardID);
+          handleDeleteClick:  (cardID) => {
+console.log("hi", cardID)
+            api.removeCard(cardID);
        
-          // }
+          }
           },
           cardsConfig.cardSelector
         );

@@ -1,0 +1,11 @@
+.card_show-delete-btn {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 300ms linear 100ms;
+  }
+  
+  .card_hide-delete-btn {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 300ms, linear 300ms;
+  }

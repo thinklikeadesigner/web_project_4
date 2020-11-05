@@ -42,17 +42,24 @@ export default class Api {
     .catch(err => console.log(err))
   }
 
-  // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
-  // removeCard(cardId) {
-  //   return fetch(this._baseUrl + "/cards/" + cardId, {
-  //     headers: this._headers,
-  //     method: "DELETE"
+  // DELETE https:around.nomoreparties.co/v1/groupId/cards/cardId
+  removeCard(cardId) {
+    return fetch(this._baseUrl + "/cards/" + cardId, {
+      headers: this._headers,
+      method: "DELETE"
 
-  // })
+  })
 
-  // .then( res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
-  // .catch(err => console.log(err))
-  // }
+  .then( res => {
+    console.log('first res' + res)
+    if (res.ok) {
+      console.log('initial res' + res)
+      res.json();
+    console.log('json res' + res)}
+    else  {Promise.reject('Error!' + res.statusText)}
+  })
+  .catch(err => console.log(err))
+  }
 
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId

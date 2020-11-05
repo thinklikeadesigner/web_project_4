@@ -6,7 +6,7 @@
 @import url("./__text/profile__text.css");
 @import url("./__container/profile__container.css");
 @import url("./__add-btn/profile__add-btn.css");
-
+@import url("./_avatar-btn/profile__avatar-btn.css");
 .profile {
   display: flex;
   width: 882px;

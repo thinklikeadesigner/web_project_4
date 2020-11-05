@@ -1,0 +1,26 @@
+.profile__avatar-btn {
+
+    position: relative;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-image: url("../../../src/images/pencil.svg");
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 26px 26px;
+    height: 120px;
+    width: 120px;
+    margin-top: -17px;
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row-span: 2;
+    grid-row: span 2;
+    -ms-grid-column-align: start;
+    justify-self: start;
+    transition: opacity .5s ease-in-out;
+}
+
+.profile__avatar-btn:hover {
+    opacity: 1;
+    z-index: 10;
+}
