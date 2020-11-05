@@ -82,7 +82,7 @@ api.getCardList()
 
 //adds form with submit logic, and the submit handler creates the cards on submit and adds the cards to the dom
 const addModal = new PopupWithForm({
-  popupSelector: popupConfig.cardFormModalWindow,
+  popupSelector: popupConfig.addFormModalWindow,
   handleFormSubmit: (data) => {
 
 api.addCard(data).then( res => {
@@ -162,8 +162,23 @@ document
   .addEventListener("click", () => editModal.open());
 //  
 
+document
+  .querySelector(".profile__pic")
+  .addEventListener("click", () => avatarModal.open());
+const avatarModal = new PopupWithForm({
+  popupSelector: ".modal_type_avatar",
+
+  // logic for submit button
+  handleFormSubmit: ({name, about}) => {
+   console.log(name, about);
+  },
+})
+
+
 editModal.setEventListeners();
 // addModal.setEventListeners();
 picModal.setEventListeners();
 validateEdit.enableValidation();
 validateAdd.enableValidation();
+avatarModal.setEventListeners();
+

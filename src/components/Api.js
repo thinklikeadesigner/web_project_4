@@ -13,14 +13,6 @@ export default class Api {
     .catch(err => console.log(err))
   }
 
-  getCardOwner() {
-    return fetch(this._baseUrl + "/cards", {
-      headers: this._headers
-
-  })
-  .then( res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
-  .catch(err => console.log(err))
-  }
 
   // GET https://around.nomoreparties.co/v1/groupId/users/me
   getUserInfo() {
@@ -85,7 +77,7 @@ Promise.reject('Error!' + res.statusText)
 
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
   setUserAvatar({ avatar }) {
-    return fetch(this._baseUrl + "/users/me", {
+    return fetch(this._baseUrl + "/users/me/avatar", {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({avatar

@@ -25,12 +25,13 @@
         <section class="profile">
           <div class="profile__container">
             <div class="profile__info">
-          
-               
-                <div class="profile__avatar-btn">   <img src="../src/images/coustou-profile-pic.jpg" alt="Jaques Cousteau close-up in a red beanie" class="profile__pic" />            </div>
- 
-                
-           
+              <div class="profile__avatar-btn">
+                <img
+                  src="https://images.unsplash.com/photo-1529504090624-2c16f5f74aca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
+                  alt="Jaques Cousteau close-up in a red beanie"
+                  class="profile__pic"
+                />
+              </div>
               <div class="profile__text">
                 <h1 class="profile__name"></h1>
                 <button
@@ -126,6 +127,36 @@
               required
             />
             <span class="form__input-error" id="url-input-error"></span>
+            <button type="submit" class="form__button">Save</button>
+          </form>
+          <button
+            type="reset"
+            aria-label="Close Button"
+            class="modal__close-button modal__close-button_add"
+          ></button>
+        </div>
+      </div>
+      <div id="modal" class="modal modal_type_avatar">
+        <div class="modal__container">
+          <form
+            id="form"
+            action=""
+            class="form form_avatar"
+            name="formAvatar"
+            novalidate
+          >
+            <h2 class="form__title">Avatar</h2>
+   
+            <span class="form__input-error" id="title-input-error"></span>
+            <input
+              id="url-input"
+              type="url"
+              name="avatar"
+              class="form__input form__input_type_url form__input_type_avatar"
+              placeholder="Image URL"
+              value=""
+              required
+            />
             <button type="submit" class="form__button">Save</button>
           </form>
           <button
