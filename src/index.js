@@ -39,6 +39,7 @@ api.getCardList()
           handleDeleteClick:  (cardID) => {
 console.log("hi", cardID)
             api.removeCard(cardID);
+            
        
           }
           },

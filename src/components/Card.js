@@ -27,11 +27,11 @@ returnID() {
 
   }
 
-  _handleDeleteBtn() {
-    this._element.remove();
-    this._element = null;
-    this._deleteBtn.classList.add("card_hide-delete-btn");
-  }
+  // _handleDeleteBtn() {
+  //   this._element.remove();
+  //   this._element = null;
+  //   this._deleteBtn.classList.add("card_hide-delete-btn");
+  // }
   
   // _showDeleteBtn(cardOwner, userOwner) {
   //   if
@@ -42,7 +42,10 @@ returnID() {
   _setEventListeners() {
     this._cardLikeBtn.addEventListener("click", () => this._handleLikeIcon());
     // this._deleteBtn.classList.add("card_show-delete-btn");
-    this._deleteBtn.addEventListener("click", () => this._handleDeleteClick(this.returnID()));
+    this._deleteBtn.addEventListener("click", () => {
+      this._element.remove();
+      this._element = null;
+      this._handleDeleteClick(this.returnID())});
     // this._deleteBtn.addEventListener("click", () => this._handleDeleteBtn(this.returnID()))
     this._cardPic.addEventListener("click", () => this._handleCardClick());
   }
