@@ -57,9 +57,6 @@ api.getCardList()
 
        
           },
-          handleShowCard: () => 
-          
-          console.log(data.owner._id,"is cool")
     
           },
           cardsConfig.cardSelector
@@ -68,6 +65,13 @@ api.getCardList()
 
         //takes cardElement and adds to dom
         cardsList.setItem(card.generateCard());
+        api.getUserInfo().then((res) => {
+          if (res._id == data.owner._id) {
+            card.showcard();
+          }
+          
+            userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
+          });
       },
     },
     cardsConfig.placesWrap
@@ -110,11 +114,7 @@ const userInfo = new UserInfo(
   profileConfig.profileDescription
 );
 
-api.getUserInfo().then((res) => {
-// console.log(res);
 
-  userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
-});
 
 
   const editModal = new PopupWithForm({

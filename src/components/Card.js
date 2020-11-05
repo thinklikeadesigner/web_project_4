@@ -1,11 +1,11 @@
 export default class Card {
-  constructor({ data, handleCardClick, handleDeleteClick, handleShowCard}, cardSelector) {
+  constructor({ data, handleCardClick, handleDeleteClick, }, cardSelector) {
     this._title = data.name;
     this._url = data.link;
     this.cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
-    this._handleShowCard = handleShowCard;
+
 this._id = data._id;
   }
 
@@ -51,10 +51,6 @@ returnID() {
     this._cardPic.setAttribute("alt", this._title);
     this._cardTitle.textContent = this._title;
 
-if (this._handleShowCard()) {
-  this.showcard();
-  
-}
 
     
   }
