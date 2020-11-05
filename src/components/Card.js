@@ -1,10 +1,11 @@
 export default class Card {
-  constructor({ data, handleCardClick, handleDeleteClick}, cardSelector) {
+  constructor({ data, handleCardClick, handleDeleteClick, handleShowCard}, cardSelector) {
     this._title = data.name;
     this._url = data.link;
     this.cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
+    this._handleShowCard = handleShowCard;
 this._id = data._id;
   }
 
@@ -27,34 +28,35 @@ returnID() {
 
   }
 
-  // _handleDeleteBtn() {
-  //   this._element.remove();
-  //   this._element = null;
-  //   this._deleteBtn.classList.add("card_hide-delete-btn");
-  // }
-  
-  // _showDeleteBtn(cardOwner, userOwner) {
-  //   if
+  showcard(){
+    this._deleteBtn.classList.add("card_show-delete-btn");
+  }
 
 
-  // }
+
 
   _setEventListeners() {
     this._cardLikeBtn.addEventListener("click", () => this._handleLikeIcon());
-    // this._deleteBtn.classList.add("card_show-delete-btn");
     this._deleteBtn.addEventListener("click", () => {
       this._element.remove();
       this._element = null;
       this._handleDeleteClick(this.returnID())});
-    // this._deleteBtn.addEventListener("click", () => this._handleDeleteBtn(this.returnID()))
     this._cardPic.addEventListener("click", () => this._handleCardClick());
+
+    
   }
 
   _setElements() {
     this._cardPic.src = this._url;
     this._cardPic.setAttribute("alt", this._title);
     this._cardTitle.textContent = this._title;
-    this._deleteBtn.classList.add("card_show-delete-btn");
+
+if (this._handleShowCard()) {
+  this.showcard();
+  
+}
+
+    
   }
 
   generateCard() {

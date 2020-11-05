@@ -20,10 +20,26 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
+let cardIds = []
+api.getCardOwner().then((res) => 
+{
+
+  for (let i = 0; i < res.length; i++) {
+
+   cardIds.push(res[i].owner._id);
+
+
+}
+return cardIds
+
+
+})
+
+console.log(cardIds)
 
 api.getCardList()
 .then((res) => {
-  console.log(res);
+  // console.log(res);
   //adds section with initial cards
   const cardsList = new Section(
     {
@@ -37,11 +53,14 @@ api.getCardList()
             picModal.open(data);
           },
           handleDeleteClick:  (cardID) => {
-console.log("hi", cardID)
             api.removeCard(cardID);
-            
+
        
-          }
+          },
+          handleShowCard: () => 
+          
+          console.log(data.owner._id,"is cool")
+    
           },
           cardsConfig.cardSelector
         );
@@ -92,7 +111,7 @@ const userInfo = new UserInfo(
 );
 
 api.getUserInfo().then((res) => {
-console.log(res);
+// console.log(res);
 
   userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
 });

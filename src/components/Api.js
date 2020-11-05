@@ -13,6 +13,15 @@ export default class Api {
     .catch(err => console.log(err))
   }
 
+  getCardOwner() {
+    return fetch(this._baseUrl + "/cards", {
+      headers: this._headers
+
+  })
+  .then( res => res.ok ? res.json() : Promise.reject('Error!' + res.statusText))
+  .catch(err => console.log(err))
+  }
+
   // GET https://around.nomoreparties.co/v1/groupId/users/me
   getUserInfo() {
     return fetch(this._baseUrl + "/users/me", {
@@ -50,14 +59,9 @@ export default class Api {
 
   })
 
-  .then( res => {
-    console.log('first res' + res)
-    if (res.ok) {
-      console.log('initial res' + res)
-      res.json();
-    console.log('json res' + res)}
-    else  {Promise.reject('Error!' + res.statusText)}
-  })
+  .then( res => res.ok ?  res.json() :
+Promise.reject('Error!' + res.statusText)
+  )
   .catch(err => console.log(err))
   }
 
