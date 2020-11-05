@@ -1,11 +1,16 @@
 .profile__pic {
   position: relative;
-  z-index: 2;
   border-radius: 100%;
   width: 122px;
   height: 122px;
   padding: 0;
-  margin-right: 32px;
+
+  
+}
+
+.profile__pic:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 750px) {
