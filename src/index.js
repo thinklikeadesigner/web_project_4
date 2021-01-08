@@ -20,22 +20,9 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-let cardIds = []
-api.getCardOwner().then((res) => 
-{
-
-  for (let i = 0; i < res.length; i++) {
-
-   cardIds.push(res[i].owner._id);
 
 
-}
-return cardIds
 
-
-})
-
-console.log(cardIds)
 
 api.getCardList()
 .then((res) => {
@@ -65,14 +52,23 @@ api.getCardList()
 
         //takes cardElement and adds to dom
         cardsList.setItem(card.generateCard());
+       
         api.getUserInfo().then((res) => {
+          // console.log(res)
           if (res._id == data.owner._id) {
-            card.showcard();
-          }
+
+            card.showDeleteButton();
+      
           
             userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
+
+          } else {
+            card.hideDeleteButton();
+          }
           });
+
       },
+      
     },
     cardsConfig.placesWrap
   );
@@ -85,18 +81,24 @@ const addModal = new PopupWithForm({
   popupSelector: popupConfig.addFormModalWindow,
   handleFormSubmit: (data) => {
 
-api.addCard(data).then( res => {
+api.addCard(data)
+.then( res => {
   const card = new Card({
     data,
      handleCardClick: () => {
        picModal.open(data);
      },
-  //    handleDeleteClick: (cardId) => {
+     
+     handleDeleteClick: (cardId) => {
 
-  //     api.removeCard(cardId);
-  //  },
+      api.removeCard(cardId);
+   },
    }, cardsConfig.cardSelector);
+   console.log(card)
+
+   
    cardsList.setItem(card.generateCard());
+   card.showDeleteButton();
 });
  
   },
@@ -109,10 +111,7 @@ document
 
 });
 
-const userInfo = new UserInfo(
-  profileConfig.profileTitle,
-  profileConfig.profileDescription
-);
+
 
 
 
@@ -165,15 +164,40 @@ document
 document
   .querySelector(".profile__pic")
   .addEventListener("click", () => avatarModal.open());
+
+
 const avatarModal = new PopupWithForm({
-  popupSelector: ".modal_type_avatar",
+  popupSelector: popupConfig.avatarFormModalWindow,
 
   // logic for submit button
-  handleFormSubmit: ({name, about}) => {
-   console.log(name, about);
+  handleFormSubmit: (avatar) => {
+    api.setUserAvatar(avatar).then((res) => {
+      // document.querySelector(".profile__pic").src = res.avatar;
+      // console.log(res);
+    });
+
+    // console.log(avatar);
   },
 })
 
+const userInfo = new UserInfo(
+{  userNameSelector : profileConfig.profileTitle,
+  userDescriptionSelector : profileConfig.profileDescription}
+)
+console.log(userInfo);
+
+api.getUserInfo().then((res) => {     
+  console.log(res);
+  userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
+});
+
+//  api.getUserInfo().then((res) => {
+//       if (res._id == data.owner._id) {
+//         card.showcard();
+//       }
+
+      //   userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
+      // });
 
 editModal.setEventListeners();
 // addModal.setEventListeners();

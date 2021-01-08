@@ -49,7 +49,7 @@ api.getCardList().then((res) => {
         cardsList.setItem(card.generateCard());
         api.getUserInfo().then((res) => {
           if (res._id == data.owner._id) {
-            card.showcard();
+            card.showDeleteButton();
           }
 
           userInfo.setUserInfo({
@@ -140,7 +140,7 @@ const avatarModal = new PopupWithForm({
 
 //  api.getUserInfo().then((res) => {
 //       if (res._id == data.owner._id) {
-//         card.showcard();
+//         card.showDeleteButton();
 //       }
 
 //         userInfo.setUserInfo({ userName: res.name, userDescription: res.about });

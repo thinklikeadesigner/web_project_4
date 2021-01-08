@@ -7,6 +7,7 @@ export default class Card {
     this._handleDeleteClick = handleDeleteClick;
 
 this._id = data._id;
+
   }
 
 returnID() { 
@@ -28,10 +29,15 @@ returnID() {
 
   }
 
-  showcard(){
+  showDeleteButton() {
     this._deleteBtn.classList.add("card_show-delete-btn");
   }
 
+  hideDeleteButton() {
+    this._deleteBtn.classList.add("card_show-hide-btn");
+  }
+
+ 
 
 
 
