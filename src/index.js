@@ -28,15 +28,26 @@ api.getCardList().then((res) => {
       array: res,
       // initiates card class with data from initial cards
       renderer: (data) => {
+        // console.log(data);
         const card = new Card(
           {
             data,
             handleCardClick: () => {
               picModal.open(data);
+              console.log(data.likes.length);
+     
             },
             handleDeleteClick: (cardID) => {
               api.removeCard(cardID);
             },
+            handleCardLike: (cardLikes) => {
+
+console.log(cardLikes.length);
+            
+            
+              
+
+            }
           },
           cardsConfig.cardSelector
         );
@@ -79,10 +90,11 @@ api.getCardList().then((res) => {
             handleDeleteClick: (cardId) => {
               api.removeCard(cardId);
             },
+            handleCardLike: () => {}
           },
           cardsConfig.cardSelector
         );
-        console.log(card);
+        // console.log(card);
 
         cardsList.setItem(card.generateCard());
         card.showDeleteButton();
@@ -146,10 +158,10 @@ const userInfo = new UserInfo({
   userDescriptionSelector: profileConfig.profileDescription,
   userAvatarSelector: profileConfig.profileAvatar,
 });
-console.log(userInfo);
+// console.log(userInfo);
 
 api.getUserInfo().then((res) => {
-  console.log(res.avatar);
+  // console.log(res.avatar);
   userInfo.setUserInfo({
     userName: res.name,
     userDescription: res.about,
