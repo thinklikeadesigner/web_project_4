@@ -21,30 +21,22 @@ const api = new Api({
   },
 });
 
-
-
-
-api.getCardList()
-.then((res) => {
-  // console.log(res);
+api.getCardList().then((res) => {
   //adds section with initial cards
   const cardsList = new Section(
     {
       array: res,
-
       // initiates card class with data from initial cards
       renderer: (data) => {
-        const card = new Card({
-           data,
+        const card = new Card(
+          {
+            data,
             handleCardClick: () => {
-            picModal.open(data);
-          },
-          handleDeleteClick:  (cardID) => {
-            api.removeCard(cardID);
-
-       
-          },
-    
+              picModal.open(data);
+            },
+            handleDeleteClick: (cardID) => {
+              api.removeCard(cardID);
+            },
           },
           cardsConfig.cardSelector
         );
@@ -52,152 +44,131 @@ api.getCardList()
 
         //takes cardElement and adds to dom
         cardsList.setItem(card.generateCard());
-       
+
         api.getUserInfo().then((res) => {
-          // console.log(res)
           if (res._id == data.owner._id) {
-
             card.showDeleteButton();
-      
-          
-            userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
 
+            userInfo.setUserInfo({
+              userName: res.name,
+              userDescription: res.about,
+              userAvatar: res.avatar,
+            });
           } else {
             card.hideDeleteButton();
           }
-          });
-
+        });
       },
-      
     },
     cardsConfig.placesWrap
   );
   cardsList.renderItems();
 
+  //adds form with submit logic, and the submit handler creates the cards on submit and adds the cards to the dom
+  const addModal = new PopupWithForm({
+    popupSelector: popupConfig.addFormModalWindow,
+    handleFormSubmit: (data) => {
+      api.addCard(data).then((res) => {
+        const card = new Card(
+          {
+            data,
+            handleCardClick: () => {
+              picModal.open(data);
+            },
 
+            handleDeleteClick: (cardId) => {
+              api.removeCard(cardId);
+            },
+          },
+          cardsConfig.cardSelector
+        );
+        console.log(card);
 
-//adds form with submit logic, and the submit handler creates the cards on submit and adds the cards to the dom
-const addModal = new PopupWithForm({
-  popupSelector: popupConfig.addFormModalWindow,
-  handleFormSubmit: (data) => {
+        cardsList.setItem(card.generateCard());
+        card.showDeleteButton();
+      });
+    },
+  });
+  addModal.setEventListeners();
 
-api.addCard(data)
-.then( res => {
-  const card = new Card({
-    data,
-     handleCardClick: () => {
-       picModal.open(data);
-     },
-     
-     handleDeleteClick: (cardId) => {
-
-      api.removeCard(cardId);
-   },
-   }, cardsConfig.cardSelector);
-   console.log(card)
-
-   
-   cardsList.setItem(card.generateCard());
-   card.showDeleteButton();
+  document
+    .querySelector(".profile__add-btn")
+    .addEventListener("click", function () {
+      addModal.open();
+    });
 });
- 
+
+const editModal = new PopupWithForm({
+  popupSelector: popupConfig.editFormModalWindow,
+
+  // logic for submit button
+  handleFormSubmit: ({ name, about }) => {
+    api.setUserInfo({ name, about }).then((res) => {
+      userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
+    });
   },
 });
-addModal.setEventListeners();
 
-document
-  .querySelector(".profile__add-btn")
-  .addEventListener("click", function () {addModal.open()});
+const avatarModal = new PopupWithForm({
+  popupSelector: popupConfig.avatarFormModalWindow,
 
+  // logic for submit button
+  handleFormSubmit: ({ avatar }) => {
+    api.setUserAvatar({ avatar }).then((res) => {
+      document.querySelector(".profile__pic").src = res.avatar;
+      api.getUserInfo().then(function (res) {
+        userInfo.setUserInfo({
+          userName: res.name,
+          userDescription: res.about,
+          userAvatar: res.avatar,
+        });
+      });
+
+      // sets event listeners and calls class methods
+      document
+        .querySelector(".profile__edit-btn")
+        .addEventListener("click", () => editModal.open());
+      //
+
+      document
+        .querySelector(".profile__pic")
+        .addEventListener("click", () => avatarModal.open());
+
+      // console.log(res);
+    });
+
+    // console.log(avatar);
+  },
 });
 
+const userInfo = new UserInfo({
+  userNameSelector: profileConfig.profileTitle,
+  userDescriptionSelector: profileConfig.profileDescription,
+  userAvatarSelector: profileConfig.profileAvatar,
+});
+console.log(userInfo);
 
-
-
-
-
-  const editModal = new PopupWithForm({
-    popupSelector: ".modal_type_edit",
-  
-    // logic for submit button
-    handleFormSubmit: ({name, about}) => {
-      api.setUserInfo({name, about }).then((res) => {
-        userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
-    },
-      )
-}});
-
+api.getUserInfo().then((res) => {
+  console.log(res.avatar);
+  userInfo.setUserInfo({
+    userName: res.name,
+    userDescription: res.about,
+    userAvatar: res.avatar,
+  });
+});
 // adds validators for both forms, and iniates the image modal
 const validateAdd = new FormValidator(settings, ".form_add");
 
 const validateEdit = new FormValidator(settings, ".form_edit");
 const picModal = new PopupWithImage(".modal_type_pic");
 
-
-
-// initiates class for edit form
-// const editModal = new PopupWithForm({
-//   popupSelector: ".modal_type_edit",
-
-//   // logic for submit button
-//   handleFormSubmit: () => {
-//     //initiates class to get and set user profile
-//     const profile = new UserInfo({
-//       inputName: ".form__input_type_name",
-//       inputJob: ".form__input_type_job",
-//     });
-
-//     // takes info from profile and fills form
-//     profile.getUserInfo();
-
-//     //takes info from input and updates profile
-//     profile.setUserInfo();
-//   },
-// });
-
-// sets event listeners and calls class methods
-document
-  .querySelector(".profile__edit-btn")
-  .addEventListener("click", () => editModal.open());
-//  
-
-document
-  .querySelector(".profile__pic")
-  .addEventListener("click", () => avatarModal.open());
-
-
-const avatarModal = new PopupWithForm({
-  popupSelector: popupConfig.avatarFormModalWindow,
-
-  // logic for submit button
-  handleFormSubmit: (avatar) => {
-    api.setUserAvatar(avatar).then((res) => {
-      // document.querySelector(".profile__pic").src = res.avatar;
-      // console.log(res);
-    });
-
-    // console.log(avatar);
-  },
-})
-
-const userInfo = new UserInfo(
-{  userNameSelector : profileConfig.profileTitle,
-  userDescriptionSelector : profileConfig.profileDescription}
-)
-console.log(userInfo);
-
-api.getUserInfo().then((res) => {     
-  console.log(res);
-  userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
-});
-
 //  api.getUserInfo().then((res) => {
 //       if (res._id == data.owner._id) {
 //         card.showcard();
 //       }
 
-      //   userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
-      // });
+//   userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
+// });
 
 editModal.setEventListeners();
 // addModal.setEventListeners();
@@ -205,4 +176,3 @@ picModal.setEventListeners();
 validateEdit.enableValidation();
 validateAdd.enableValidation();
 avatarModal.setEventListeners();
-

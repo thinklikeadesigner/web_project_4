@@ -27,8 +27,8 @@
             <div class="profile__info">
               <div class="profile__avatar-btn">
                 <img
-                  src="https://images.unsplash.com/photo-1529504090624-2c16f5f74aca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80"
-                  alt="Jaques Cousteau close-up in a red beanie"
+                  src="#"
+                  alt="profile picture"
                   class="profile__pic"
                 />
               </div>
@@ -166,7 +166,13 @@
           ></button>
         </div>
       </div>
-
+      <div id="modal" class="modal modal_type_delete">
+        <div class="modal__container">
+            <h2 class="form__title">Are you sure?</h2>
+            <button type="submit" class="form__button">Save</button>
+          </form>
+        </div>
+      </div>
       <div class="modal modal_type_pic">
         <div class="modal__container">
           <button
@@ -195,7 +201,11 @@
         <button aria-label="Delete Button" class="card__delete-btn"></button>
         <div class="card__text">
           <h2 class="card__title"></h2>
+         <div class="card__likes_container">
           <button aria-label="Like Button" class="card__heart"></button>
+           <p class="card__likes_count">2</p>
+       
+         </div>
         </div>
       </li>
     </template>

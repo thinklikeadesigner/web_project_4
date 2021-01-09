@@ -44,12 +44,13 @@ const cardsConfig = {
 const profileConfig = {
   profileTitle : ".profile__name",
   profileDescription : ".profile__job",
-  profileAvatar: ".profile_pic"
+  profileAvatar: ".profile__pic"
 }
 
 const popupConfig = {
   addFormModalWindow: ".modal_type_add",
-  avatarFormModalWindow: ".modal_type_avatar"
+  avatarFormModalWindow: ".modal_type_avatar",
+  editFormModalWindow: ".modal_type_edit"
 }
 
 const inputJob = document.querySelector(".form__input_type_job");
