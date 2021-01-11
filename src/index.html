@@ -85,7 +85,7 @@
               required
             />
             <span class="form__input-error" id="job-input-error"></span>
-            <button type="submit" class="form__button">Save</button>
+            <button type="submit" class="form__button edit-submit">Save</button>
           </form>
           <button
             aria-label="Close Button"
@@ -127,7 +127,7 @@
               required
             />
             <span class="form__input-error" id="url-input-error"></span>
-            <button type="submit" class="form__button">Save</button>
+            <button type="submit" class="form__button places-submit">Save</button>
           </form>
           <button
             type="reset"
@@ -147,9 +147,8 @@
           >
             <h2 class="form__title">Avatar</h2>
    
-            <span class="form__input-error" id="title-input-error"></span>
             <input
-              id="url-input"
+              id="avatar-input"
               type="url"
               name="avatar"
               class="form__input form__input_type_url form__input_type_avatar"
@@ -157,7 +156,9 @@
               value=""
               required
             />
-            <button type="submit" class="form__button">Save</button>
+
+            <span class="form__input-error" id="avatar-input-error"></span>
+            <button type="submit" class="form__button avatar-submit">Save</button>
           </form>
           <button
             type="reset"
@@ -169,7 +170,7 @@
       <div id="modal" class="modal modal_type_delete">
         <div class="modal__container">
             <h2 class="form__title">Are you sure?</h2>
-            <button type="submit" class="form__button">Save</button>
+            <button type="submit" class="form__button delete-submit"></button>
           </form>
         </div>
       </div>

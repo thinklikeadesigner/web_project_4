@@ -34,7 +34,7 @@ export default class Api {
         headers: this._headers,
         method: "POST",
         body: JSON.stringify({
-          name: name, link: link
+          name, link
           })
 
     })
@@ -58,8 +58,26 @@ Promise.reject('Error!' + res.statusText)
   }
 
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
+  addCardLike(cardID) {
+    return fetch(this._baseUrl + '/cards/likes/' + cardID, {
+      headers: this._headers,
+      method: "PUT"
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
+  }
+  
+  
+
+  
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  changeCardLikeStatus(cardID, like) {}
+ 
+  deleteCardLike(cardID) {
+    return fetch(this._baseUrl + '/cards/likes/' + cardID, {
+      headers: this._headers,
+      method: "DELETE"
+    })
+    .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
+  }
 
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me
   setUserInfo({ name, about }) {

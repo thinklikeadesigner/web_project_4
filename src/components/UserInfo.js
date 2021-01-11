@@ -17,7 +17,8 @@ class UserInfo {
     return {
       userName: this._userNameElement.textContent,
       userDescription: this._userDescriptionElement.textContent,
-      userAvatar: this._userAvatarElement.src
+      userAvatar: this._userAvatarElement.src,
+      userID: this._id
     };
   }
 
