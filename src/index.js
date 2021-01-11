@@ -24,10 +24,22 @@ const api = new Api({
   },
 });
 
+const piccc = document.querySelector(".profile__pic")
 
 
 
+// api.getUserInfo()
+// .then(res => {
+//   console.log("D", res);
+//   userInfo.setUserInfo(res.name,
+//     res.about,
+//  res._id,
+//  res.avatar)
+//   piccc.src = res.avatar;
 
+
+// })
+// .then(() => {
 
 api.getCardList()
 .then((res) => {
@@ -51,7 +63,7 @@ api.getCardList()
                   card.heart.classList.remove("card__heart_active");
                   api.deleteCardLike(cardID)
                   .then((res) => {
-                    
+                    console.log("hi", res);
                     card.displayLikeCount(res.likes.length)
                   })
                   .catch((error) => console.log(error))
@@ -59,7 +71,7 @@ api.getCardList()
                   card.heart.classList.add("card__heart_active");
                   api.addCardLike(cardID)
                   .then((res) => {
-                    console.log(res);
+                    console.log("hi", res);
                     card.displayLikeCount(res.likes.length)
                   })
                   .catch((error) => console.log(error))
@@ -67,14 +79,14 @@ api.getCardList()
               }
               }
               // if (data.owner)
-              
+
  
    
           },
           userInfo._id,
           cardsConfig.cardSelector
         );
-        card.displayLikeCount(card._data.likes.length)
+        // card.displayLikeCount(card._data.likes.length)
         cardsList.setItem(card.generateCard());
         api.getUserInfo().then((res) => {
           if (res._id == data.owner._id) {
@@ -99,7 +111,7 @@ api.getCardList()
     popupSelector: popupConfig.addFormModalWindow,
     handleFormSubmit: (data) => {
       document.querySelector(".places-submit").textContent = "Saving...";
-      api.addCard(data).then((res) => {
+      api.addCard(data).then(() => {
         document.querySelector(".places-submit").textContent = "Save";
         const card = new Card(
           {
@@ -107,21 +119,41 @@ api.getCardList()
             handleCardClick: () => {
               picModal.open(data);
             },
-            handleDeleteClick: (cardId) => {
-         
-              api.removeCard(cardId);
+            handleDeleteClick: (cardID) => {
+              api.removeCard(cardID);
             },
             handleCardLike: (cardID) => {
+              {
+                {
+                  if (card.heart.classList.contains("card__heart_active")) {
+                    card.heart.classList.remove("card__heart_active");
+                    api.deleteCardLike(cardID)
+                    .then((res) => {
+                      console.log(res);
+                      card.displayLikeCount(res.likes.length)
+                    })
+                    .catch((error) => console.log(error))
+                  } else {
+                    card.heart.classList.add("card__heart_active");
+                    api.addCardLike(cardID)
+                    .then((res) => {
+                      console.log(res);
+                      card.displayLikeCount(res.likes.length)
+                    })
+                    .catch((error) => console.log(error))
+                  }
+                }
+                }
              
 
       
                  
             },
-          },
+          },userInfo._id,
           cardsConfig.cardSelector
         );
         cardsList.setItem(card.generateCard());
-        card.displayLikeCount(card._data.likes.length)
+        
         card.showDeleteButton();
       })
       .catch(err => console.log(err));
@@ -134,6 +166,7 @@ api.getCardList()
       addModal.open();
     });
 });
+// })
 
 const userInfo = new UserInfo({
   userNameSelector: profileConfig.profileTitle,
@@ -144,6 +177,7 @@ api.getUserInfo().then((res) => {
   userInfo.setUserInfo({
     userName: res.name,
     userDescription: res.about,
+    userID: res._id,
     userAvatar: res.avatar,
   });
 })
@@ -158,14 +192,12 @@ const editModal = new PopupWithForm({
       document.querySelector(".edit-submit").textContent = "Save";
       profileJob.textContent = res.about;
       profileName.textContent = res.name;
-    })
-    .catch(err => console.log(err));
+    });
 
     api.setUserInfo({ name, about }).then((res) => {
 
-      userInfo.setUserInfo({ userName: res.name, userDescription: res.about });
-    })
-    .catch(err => console.log(err));
+      userInfo.setUserInfo({ userName: res.name, userDescription: res.about, userAvatar: res.avatar, });
+    });
 
   },
 });
@@ -185,8 +217,7 @@ const avatarModal = new PopupWithForm({
         });
       });
 
-    })
-    .catch(err => console.log(err));
+    });
   },
 });
 
