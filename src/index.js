@@ -28,18 +28,6 @@ const piccc = document.querySelector(".profile__pic")
 
 
 
-// api.getUserInfo()
-// .then(res => {
-//   console.log("D", res);
-//   userInfo.setUserInfo(res.name,
-//     res.about,
-//  res._id,
-//  res.avatar)
-//   piccc.src = res.avatar;
-
-
-// })
-// .then(() => {
 
 api.getCardList()
 .then((res) => {
@@ -78,7 +66,7 @@ api.getCardList()
                 }
               }
               }
-              // if (data.owner)
+
 
  
    
@@ -86,7 +74,7 @@ api.getCardList()
           userInfo._id,
           cardsConfig.cardSelector
         );
-        // card.displayLikeCount(card._data.likes.length)
+        card.displayLikeCount(card._data.likes.length);
         cardsList.setItem(card.generateCard());
         api.getUserInfo().then((res) => {
           if (res._id == data.owner._id) {
@@ -105,6 +93,7 @@ api.getCardList()
     },
     cardsConfig.placesWrap
   );
+  
   cardsList.renderItems();
 
   const addModal = new PopupWithForm({
@@ -129,7 +118,6 @@ api.getCardList()
                     card.heart.classList.remove("card__heart_active");
                     api.deleteCardLike(cardID)
                     .then((res) => {
-                      console.log(res);
                       card.displayLikeCount(res.likes.length)
                     })
                     .catch((error) => console.log(error))
@@ -137,7 +125,6 @@ api.getCardList()
                     card.heart.classList.add("card__heart_active");
                     api.addCardLike(cardID)
                     .then((res) => {
-                      console.log(res);
                       card.displayLikeCount(res.likes.length)
                     })
                     .catch((error) => console.log(error))
@@ -153,7 +140,7 @@ api.getCardList()
           cardsConfig.cardSelector
         );
         cardsList.setItem(card.generateCard());
-        
+        card.displayLikeCount(card._data.likes.length)
         card.showDeleteButton();
       })
       .catch(err => console.log(err));
@@ -166,7 +153,7 @@ api.getCardList()
       addModal.open();
     });
 });
-// })
+
 
 const userInfo = new UserInfo({
   userNameSelector: profileConfig.profileTitle,
