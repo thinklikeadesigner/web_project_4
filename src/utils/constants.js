@@ -53,9 +53,12 @@ const popupConfig = {
   editFormModalWindow: ".modal_type_edit"
 }
 
+
+
 const inputJob = document.querySelector(".form__input_type_job");
 const inputName =   document.querySelector(".form__input_type_name");
 const profileJob = document.querySelector(".profile__job");
 const profileName = document.querySelector(".profile__name");
+const profileAvatar = document.querySelector(".profile__pic")
 
-export { profileConfig ,  popupConfig , cardsConfig, settings,inputJob, inputName, profileName, profileJob };
+export { profileConfig ,  popupConfig , cardsConfig, settings,inputJob, profileAvatar, inputName, profileName, profileJob };

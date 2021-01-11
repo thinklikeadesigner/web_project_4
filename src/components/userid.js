@@ -131,10 +131,10 @@ const avatarModal = new PopupWithForm({
   handleFormSubmit: (avatar) => {
     api.setUserAvatar(avatar).then((res) => {
       document.querySelector(".profile__pic").src = res.avatar;
-      console.log(res);
+      // console.log(res);
     });
 
-    console.log(avatar);
+    // console.log(avatar);
   },
 });
 
