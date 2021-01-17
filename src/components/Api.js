@@ -30,7 +30,7 @@ export default class Api {
 
   // POST https://around.nomoreparties.co/v1/groupId/cards
   addCard({ name, link }) {
-    return fetch(this._baseUrl + "/cards", {
+    return fetch(this._baseUrl + "/cards/", {
         headers: this._headers,
         method: "POST",
         body: JSON.stringify({
@@ -58,21 +58,16 @@ Promise.reject('Error!' + res.statusText)
   }
 
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  addCardLike(cardID) {
-    return fetch(this._baseUrl + '/cards/likes/' + cardID, {
+  addCardLike(cardId) {
+    return fetch(this._baseUrl + '/cards/likes/' + cardId, {
       headers: this._headers,
       method: "PUT"
     })
     .then(res => res.ok ? res.json() : Promise.reject('Error! ' + res.statusText))
   }
-  
-  
 
-  
-  // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
- 
-  deleteCardLike(cardID) {
-    return fetch(this._baseUrl + '/cards/likes/' + cardID, {
+  deleteCardLike(cardId) {
+    return fetch(this._baseUrl + '/cards/likes/' + cardId, {
       headers: this._headers,
       method: "DELETE"
     })
