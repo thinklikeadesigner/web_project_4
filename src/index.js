@@ -47,22 +47,25 @@ api.getCardList()
             },
             handleCardLike: (cardID) => {
               {
+                
                 if (card.heart.classList.contains("card__heart_active")) {
                   card.heart.classList.remove("card__heart_active");
+
                   api.deleteCardLike(cardID)
                   .then((res) => {
-                    console.log("hi", res);
+
                     card.displayLikeCount(res.likes.length)
                   })
-                  .catch((error) => console.log(error))
+                  .catch((error) => console.log(error.type))
                 } else {
                   card.heart.classList.add("card__heart_active");
+
                   api.addCardLike(cardID)
                   .then((res) => {
-                    console.log("hi", res);
+
                     card.displayLikeCount(res.likes.length)
                   })
-                  .catch((error) => console.log(error))
+                  .catch((error) => console.log(error.type))
                 }
               }
               }
@@ -71,10 +74,10 @@ api.getCardList()
  
    
           },
-          userInfo._id,
+          
           cardsConfig.cardSelector
         );
-        card.displayLikeCount(card._data.likes.length);
+        card.displayLikeCount(card._data.likes.length)
         cardsList.setItem(card.generateCard());
         api.getUserInfo().then((res) => {
           if (res._id == data.owner._id) {
@@ -93,7 +96,6 @@ api.getCardList()
     },
     cardsConfig.placesWrap
   );
-  
   cardsList.renderItems();
 
   const addModal = new PopupWithForm({
@@ -116,18 +118,20 @@ api.getCardList()
                 {
                   if (card.heart.classList.contains("card__heart_active")) {
                     card.heart.classList.remove("card__heart_active");
+
+
                     api.deleteCardLike(cardID)
                     .then((res) => {
                       card.displayLikeCount(res.likes.length)
                     })
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.log(error.type))
                   } else {
                     card.heart.classList.add("card__heart_active");
                     api.addCardLike(cardID)
                     .then((res) => {
                       card.displayLikeCount(res.likes.length)
                     })
-                    .catch((error) => console.log(error))
+                    .catch((error) => console.log(error.type))
                   }
                 }
                 }
@@ -136,11 +140,11 @@ api.getCardList()
       
                  
             },
-          },userInfo._id,
+          },
           cardsConfig.cardSelector
         );
         cardsList.setItem(card.generateCard());
-        card.displayLikeCount(card._data.likes.length)
+        
         card.showDeleteButton();
       })
       .catch(err => console.log(err));
