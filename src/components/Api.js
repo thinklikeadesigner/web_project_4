@@ -1,3 +1,4 @@
+
 export default class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
@@ -30,7 +31,7 @@ export default class Api {
 
   // POST https://around.nomoreparties.co/v1/groupId/cards
   addCard({ name, link }) {
-    return fetch(this._baseUrl + "/cards/", {
+    return fetch(this._baseUrl + "/cards", {
         headers: this._headers,
         method: "POST",
         body: JSON.stringify({
@@ -102,4 +103,5 @@ Promise.reject('Error!' + res.statusText)
 }
 
 ``
+
 
