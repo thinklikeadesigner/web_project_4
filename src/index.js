@@ -102,11 +102,11 @@ api.getCardList()
     popupSelector: popupConfig.addFormModalWindow,
     handleFormSubmit: (data) => {
       document.querySelector(".places-submit").textContent = "Saving...";
-      api.addCard(data).then(() => {
+      api.addCard(data).then((res) => {
         document.querySelector(".places-submit").textContent = "Save";
         const card = new Card(
           {
-            data,
+            data: res,
             handleCardClick: () => {
               picModal.open(data);
             },
