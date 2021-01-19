@@ -1,4 +1,3 @@
-
 import css from "./index.css";
 import Card from "./components/Card.js";
 import Section from "./components/Section.js";
@@ -98,21 +97,22 @@ api.getCardList()
     cardsConfig.placesWrap
   );
   cardsList.renderItems();
+
   const addModal = new PopupWithForm({
     popupSelector: popupConfig.addFormModalWindow,
     handleFormSubmit: (data) => {
       document.querySelector(".places-submit").textContent = "Saving...";
-      api.addCard({ name: data.name, link: data.link }).then((res) => {
+      api.addCard(data).then(() => {
         document.querySelector(".places-submit").textContent = "Save";
         const card = new Card(
           {
-            data: res,
+            data,
             handleCardClick: () => {
               picModal.open(data);
             },
             handleDeleteClick: (cardID) => {
               api.removeCard(cardID);
-            },  
+            },
             handleCardLike: (cardID) => {
               {
                 {
@@ -233,4 +233,3 @@ validateEdit.enableValidation();
 validateAdd.enableValidation();
 validateAvatar.enableValidation();
 avatarModal.setEventListeners();
-
