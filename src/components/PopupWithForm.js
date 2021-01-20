@@ -32,6 +32,8 @@ export default class PopupWithForm extends Popup {
     });
   }
 
+
+
   _getInputValues() {
     this._inputList = this._popupElement.querySelectorAll(".form__input");
 
@@ -42,4 +44,10 @@ export default class PopupWithForm extends Popup {
 
     return this._formValues;
   }
+  
+  submitData(submit) {
+    this_handleFormSubmit = submit;
+  }
+
+
 }

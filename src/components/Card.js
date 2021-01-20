@@ -20,8 +20,11 @@ export default class Card {
     this.heart = this._card.querySelector(".card__heart");
   }
 
+
   id() {
     // console.log(this._data);
+    console.log(this._userID);
+  
     return this._data._id;
   }
 
@@ -39,7 +42,7 @@ export default class Card {
   // }
 
   displayLikeCount(numberOfLikes) {
-    
+
     this._card.querySelector(".card__likes_count").textContent = numberOfLikes;
   }
 
@@ -63,9 +66,7 @@ export default class Card {
 
 
     this._deleteBtn.addEventListener("click", () => {
-      this._element.remove();
-      this._element = null;
-      this._handleDeleteClick(this.id());
+
     });
     
     this._cardPic.addEventListener("click", () => this._handleCardClick());
@@ -76,7 +77,10 @@ export default class Card {
     // this._showMyLikes();
   }
 
-
+//put this inside the popup       
+// this._element.remove();
+//       this._element = null;
+//       this._handleDeleteClick(this.id());
 
   
 
