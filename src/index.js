@@ -24,7 +24,22 @@ const api = new Api({
   },
 });
 
-const piccc = document.querySelector(".profile__pic")
+function changeAvatar({avatar}) {
+  document.querySelector(".avatar-submit").textContent = "Saving...";
+  api.setUserAvatar({ avatar }).then((res) => {
+    document.querySelector(".avatar-submit").textContent = "Save";
+    document.querySelector(".profile__pic").src = res.avatar;
+    api.getUserInfo().then(function (res) {
+      userInfo.setUserInfo({
+        userName: res.name,
+        userDescription: res.about,
+        userAvatar: res.avatar,
+      });
+    });
+  });
+}
+
+
 
 
 
@@ -59,22 +74,15 @@ api.getCardList()
                   .catch((error) => console.log(error.type))
                 } else {
                   card.heart.classList.add("card__heart_active");
-
                   api.addCardLike(cardID)
                   .then((res) => {
-
                     card.displayLikeCount(res.likes.length)
                   })
                   .catch((error) => console.log(error.type))
                 }
               }
-              }
-
-
- 
-   
+              }   
           },
-          
           cardsConfig.cardSelector
         );
         card.displayLikeCount(card._data.likes.length)
@@ -97,7 +105,6 @@ api.getCardList()
     cardsConfig.placesWrap
   );
   cardsList.renderItems();
-
   const addModal = new PopupWithForm({
     popupSelector: popupConfig.addFormModalWindow,
     handleFormSubmit: (data) => {
@@ -134,11 +141,7 @@ api.getCardList()
                     .catch((error) => console.log(error.type))
                   }
                 }
-                }
-             
-
-      
-                 
+                }  
             },
           },
           cardsConfig.cardSelector
@@ -195,23 +198,8 @@ const editModal = new PopupWithForm({
 
 const avatarModal = new PopupWithForm({
   popupSelector: popupConfig.avatarFormModalWindow,
-  handleFormSubmit: ({ avatar }) => {
-    document.querySelector(".avatar-submit").textContent = "Saving...";
-    api.setUserAvatar({ avatar }).then((res) => {
-      document.querySelector(".avatar-submit").textContent = "Save";
-      document.querySelector(".profile__pic").src = res.avatar;
-      api.getUserInfo().then(function (res) {
-        userInfo.setUserInfo({
-          userName: res.name,
-          userDescription: res.about,
-          userAvatar: res.avatar,
-        });
-      });
-
-    });
-  },
-});
-
+  handleFormSubmit: changeAvatar
+  });
 
 
 const validateAdd = new FormValidator(settings, ".form_add");
