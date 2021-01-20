@@ -39,9 +39,8 @@ function changeAvatar({avatar}) {
   });
 }
 
-
-
-
+// api.getAppInfo().then(([userData, cardListData]) => {
+// }).catch(err => console.log(err));
 
 
 api.getCardList()
@@ -82,7 +81,7 @@ api.getCardList()
                 }
               }
               }   
-          },
+          }, userInfo._id,
           cardsConfig.cardSelector
         );
         card.displayLikeCount(card._data.likes.length)
@@ -143,7 +142,7 @@ api.getCardList()
                 }
                 }  
             },
-          },
+          }, userInfo._id,
           cardsConfig.cardSelector
         );
         cardsList.setItem(card.generateCard());
@@ -160,7 +159,6 @@ api.getCardList()
       addModal.open();
     });
 });
-
 
 const userInfo = new UserInfo({
   userNameSelector: profileConfig.profileTitle,

@@ -25,6 +25,10 @@ export default class Api {
     .catch(err => console.log(err))
   }
 
+  getAppInfo() {
+    return Promise.all([this.getUserInfo(), this.getCardList()])
+  }
+
 //   getAppInfo() {
 //       //function to render cards only once all card information and profile information is collected
 //   }
