@@ -32,33 +32,43 @@ const settings = {
   inactiveButtonClass: "form__button_disabled",
   inputErrorClass: "form__input_type_error",
   errorClass: "form__input-error_visible",
-
 };
 
 const cardsConfig = {
   cardSelector: "#card__template",
-  placesWrap: ".cards__list"
-
-}
+  placesWrap: ".cards__list",
+};
 
 const profileConfig = {
-  profileTitle : ".profile__name",
-  profileDescription : ".profile__job",
-  profileAvatar: ".profile__pic"
-}
+  profileTitle: ".profile__name",
+  profileDescription: ".profile__job",
+  profileAvatar: ".profile__pic",
+};
 
 const popupConfig = {
   addFormModalWindow: ".modal_type_add",
   avatarFormModalWindow: ".modal_type_avatar",
-  editFormModalWindow: ".modal_type_edit"
-}
+  editFormModalWindow: ".modal_type_edit",
+};
 
-
-
+const avatarModalButton = document.querySelector(".profile__pic");
+const editModalButton = document.querySelector(".profile__edit-btn");
 const inputJob = document.querySelector(".form__input_type_job");
-const inputName =   document.querySelector(".form__input_type_name");
+const inputName = document.querySelector(".form__input_type_name");
 const profileJob = document.querySelector(".profile__job");
 const profileName = document.querySelector(".profile__name");
-const profileAvatar = document.querySelector(".profile__pic")
+const profileAvatar = document.querySelector(".profile__pic");
 
-export { profileConfig ,  popupConfig , cardsConfig, settings,inputJob, profileAvatar, inputName, profileName, profileJob };
+export {
+  profileConfig,
+  avatarModalButton,
+  editModalButton,
+  popupConfig,
+  cardsConfig,
+  settings,
+  inputJob,
+  profileAvatar,
+  inputName,
+  profileName,
+  profileJob,
+};
