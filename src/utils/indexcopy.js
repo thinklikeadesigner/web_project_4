@@ -42,6 +42,13 @@ function random() {
   console.log('deleted');
 }
 
+
+
+
+
+
+
+
 function changeAvatar({ avatar }) {
   document.querySelector(".avatar-submit").textContent = "Saving...";
   api.setUserAvatar({ avatar }).then((res) => {
@@ -72,7 +79,7 @@ api
               },
               handleDeleteClick : (cardID) => {
                 deleteCardModal.open(cardID);
-                deleteCardModal.submitData(() => {
+                deleteCardModal.submitData((cardID) => {
                     api.removeCard(cardID)
                       .then(() => {
                         card.deleteCard();
