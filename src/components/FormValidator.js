@@ -44,7 +44,7 @@ class FormValidator {
     const button = this._form.querySelector(
       this._settings.submitButtonSelector
     );
-
+    this._toggleButtonState(inputs, button);
     inputs.forEach((input) => {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
@@ -56,6 +56,7 @@ class FormValidator {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
+    
 
     this._setEventListeners();
   }
