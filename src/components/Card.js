@@ -1,3 +1,5 @@
+import { DH_CHECK_P_NOT_SAFE_PRIME } from "constants";
+
 export default class Card {
   constructor(
     { data, handleCardClick, handleDeleteClick, handleCardLike },

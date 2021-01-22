@@ -32,20 +32,22 @@ const api = new Api({
   },
 });
 
-
 function changeAvatar({ avatar }) {
   avatarSubmit.textContent = "Saving...";
-  api.setUserAvatar({ avatar }).then((res) => {
-    avatarSubmit.textContent = "Save";
-    avatarModalButton.src = res.avatar;
-    api.getUserInfo().then(function (res) {
-      userInfo.setUserInfo({
-        userName: res.name,
-        userDescription: res.about,
-        userAvatar: res.avatar,
+  api
+    .setUserAvatar({ avatar })
+    .then((res) => {
+      avatarSubmit.textContent = "Save";
+      avatarModalButton.src = res.avatar;
+      api.getUserInfo().then(function (res) {
+        userInfo.setUserInfo({
+          userName: res.name,
+          userDescription: res.about,
+          userAvatar: res.avatar,
+        });
       });
-    });
-  });
+    })
+    .catch((err) => console.log(err));
 }
 
 api
@@ -103,19 +105,22 @@ api
           );
           card.displayLikeCount(card._data.likes.length);
           cardsList.setItem(card.generateCard());
-          api.getUserInfo().then((res) => {
-            if (res._id === data.owner._id) {
-              card.showDeleteButton();
+          api
+            .getUserInfo()
+            .then((res) => {
+              if (res._id === data.owner._id) {
+                card.showDeleteButton();
 
-              userInfo.setUserInfo({
-                userName: res.name,
-                userDescription: res.about,
-                userAvatar: res.avatar,
-              });
-            } else {
-              card.hideDeleteButton();
-            }
-          });
+                userInfo.setUserInfo({
+                  userName: res.name,
+                  userDescription: res.about,
+                  userAvatar: res.avatar,
+                });
+              } else {
+                card.hideDeleteButton();
+              }
+            })
+            .catch((err) => console.log(err));
         },
       },
       cardsConfig.placesWrap
@@ -125,7 +130,8 @@ api
       popupSelector: popupConfig.addFormModalWindow,
       handleFormSubmit: (data) => {
         submitButtonPlaces.textContent = "Saving...";
-        api.addCard(data)
+        api
+          .addCard(data)
           .then((res) => {
             submitButtonPlaces.textContent = "Save";
             const card = new Card(
@@ -181,10 +187,9 @@ api
       },
     });
     addModal.setEventListeners();
-    addModalButton
-      .addEventListener("click", function () {
-        addModal.open();
-      });
+    addModalButton.addEventListener("click", function () {
+      addModal.open();
+    });
   })
   .catch((err) => console.log(err));
 
@@ -194,7 +199,8 @@ const userInfo = new UserInfo({
   userAvatarSelector: profileConfig.profileAvatar,
 });
 
-api.getUserInfo()
+api
+  .getUserInfo()
   .then((res) => {
     userInfo.setUserInfo({
       userName: res.name,
@@ -210,19 +216,25 @@ const editModal = new PopupWithForm({
   handleFormSubmit: ({ name, about }) => {
     editSubmit.textContent = "Saving...";
 
-    api.getUserInfo({ name, about }).then((res) => {
-      editSubmit.textContent = "Save";
-      profileJob.textContent = res.about;
-      profileName.textContent = res.name;
-    });
+    api
+      .getUserInfo({ name, about })
+      .then((res) => {
+        editSubmit.textContent = "Save";
+        profileJob.textContent = res.about;
+        profileName.textContent = res.name;
+      })
+      .catch((err) => console.log(err));
 
-    api.setUserInfo({ name, about }).then((res) => {
-      userInfo.setUserInfo({
-        userName: res.name,
-        userDescription: res.about,
-        userAvatar: res.avatar,
-      });
-    });
+    api
+      .setUserInfo({ name, about })
+      .then((res) => {
+        userInfo.setUserInfo({
+          userName: res.name,
+          userDescription: res.about,
+          userAvatar: res.avatar,
+        });
+      })
+      .catch((err) => console.log(err));
   },
 });
 
@@ -236,7 +248,6 @@ const deleteCardModal = new PopupWithForm({
 });
 
 const picModal = new PopupWithImage(".modal_type_pic");
-
 
 editModalButton.addEventListener("click", () => editModal.open());
 avatarModalButton.addEventListener("click", () => avatarModal.open());
