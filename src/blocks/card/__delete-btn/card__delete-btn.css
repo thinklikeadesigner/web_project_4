@@ -5,7 +5,7 @@
   border: none;
   visibility: hidden;
   opacity: 0;
-  background-image: url("../../../src/images/delete.svg");
+  background-image: url("../../../images/delete.svg");
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;

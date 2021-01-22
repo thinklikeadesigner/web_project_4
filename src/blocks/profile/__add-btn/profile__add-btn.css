@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("../../../src/images/plus.svg");
+  background-image: url("../../../images/plus.svg");
   background-repeat: no-repeat;
   background-position: center;
 }

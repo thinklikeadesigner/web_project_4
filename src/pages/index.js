@@ -1,7 +1,11 @@
 import css from "./index.css";
-import Card from "./components/Card.js";
-import Section from "./components/Section.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
 import {
+  submitButtonPlaces,
+  editSubmit,
+  avatarSubmit,
+  addModalButton,
   profileConfig,
   avatarModalButton,
   editModalButton,
@@ -10,13 +14,14 @@ import {
   settings,
   profileName,
   profileJob,
-} from "./utils/constants.js";
+  deleteSubmit,
+} from "../utils/utils.js";
 
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import { UserInfo } from "./components/UserInfo.js";
-import FormValidator from "./components/FormValidator.js";
-import Api from "./components/Api.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
+import FormValidator from "../components/FormValidator.js";
+import Api from "../components/Api.js";
 import { name } from "file-loader";
 
 const api = new Api({
@@ -28,12 +33,11 @@ const api = new Api({
 });
 
 
-
 function changeAvatar({ avatar }) {
-  document.querySelector(".avatar-submit").textContent = "Saving...";
+  avatarSubmit.textContent = "Saving...";
   api.setUserAvatar({ avatar }).then((res) => {
-    document.querySelector(".avatar-submit").textContent = "Save";
-    document.querySelector(".profile__pic").src = res.avatar;
+    avatarSubmit.textContent = "Save";
+    avatarModalButton.src = res.avatar;
     api.getUserInfo().then(function (res) {
       userInfo.setUserInfo({
         userName: res.name,
@@ -60,11 +64,13 @@ api
               handleDeleteClick: (cardID) => {
                 deleteCardModal.open(cardID);
                 deleteCardModal.submitData(() => {
+                  deleteSubmit.textContent = "Deleting...";
                   api
                     .removeCard(cardID)
                     .then(() => {
                       card.deleteCard();
                       deleteCardModal.close();
+                      deleteSubmit.textContent = "Yes";
                     })
                     .catch((err) => console.log(err));
                 });
@@ -118,15 +124,27 @@ api
     const addModal = new PopupWithForm({
       popupSelector: popupConfig.addFormModalWindow,
       handleFormSubmit: (data) => {
-        document.querySelector(".places-submit").textContent = "Saving...";
+        submitButtonPlaces.textContent = "Saving...";
         api.addCard(data)
           .then((res) => {
-            document.querySelector(".places-submit").textContent = "Save";
+            submitButtonPlaces.textContent = "Save";
             const card = new Card(
               {
                 data: res,
                 handleCardClick: () => {
                   picModal.open(data);
+                },
+                handleDeleteClick: (cardID) => {
+                  deleteCardModal.open(cardID);
+                  deleteCardModal.submitData(() => {
+                    api
+                      .removeCard(cardID)
+                      .then(() => {
+                        card.deleteCard();
+                        deleteCardModal.close();
+                      })
+                      .catch((err) => console.log(err));
+                  });
                 },
                 handleCardLike: (cardID) => {
                   {
@@ -163,8 +181,7 @@ api
       },
     });
     addModal.setEventListeners();
-    document
-      .querySelector(".profile__add-btn")
+    addModalButton
       .addEventListener("click", function () {
         addModal.open();
       });
@@ -191,10 +208,10 @@ api.getUserInfo()
 const editModal = new PopupWithForm({
   popupSelector: popupConfig.editFormModalWindow,
   handleFormSubmit: ({ name, about }) => {
-    document.querySelector(".edit-submit").textContent = "Saving...";
+    editSubmit.textContent = "Saving...";
 
     api.getUserInfo({ name, about }).then((res) => {
-      document.querySelector(".edit-submit").textContent = "Save";
+      editSubmit.textContent = "Save";
       profileJob.textContent = res.about;
       profileName.textContent = res.name;
     });

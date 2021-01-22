@@ -8,7 +8,7 @@
   border: none;
   transition: 0.3s;
   outline: none;
-  background-image: url("../../../src/images/heart.svg");
+  background-image: url("../../../images/heart.svg");
   background-repeat: no-repeat;
   background-position: center;
 }

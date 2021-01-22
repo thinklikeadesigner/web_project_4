@@ -58,8 +58,17 @@ const inputName = document.querySelector(".form__input_type_name");
 const profileJob = document.querySelector(".profile__job");
 const profileName = document.querySelector(".profile__name");
 const profileAvatar = document.querySelector(".profile__pic");
+const deleteSubmit = document.querySelector(".delete-submit");
+const submitButtonPlaces = document.querySelector(".places-submit");
+const editSubmit = document.querySelector(".edit-submit");
+const avatarSubmit = document.querySelector(".avatar-submit");
+const addModalButton = document.querySelector(".profile__add-btn");
 
 export {
+  submitButtonPlaces,
+  editSubmit,
+  avatarSubmit,
+  addModalButton,
   profileConfig,
   avatarModalButton,
   editModalButton,
@@ -71,4 +80,5 @@ export {
   inputName,
   profileName,
   profileJob,
+  deleteSubmit,
 };

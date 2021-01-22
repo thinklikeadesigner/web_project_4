@@ -31,8 +31,7 @@ export default class Card {
   _showMyLikes() {
     this._likes.forEach((like) => {
       if (like._id == this._userID) {
-        this._card
-          .querySelector(".card__heart")
+        this.heart
           .classList.add("card__heart_active");
       }
     });
@@ -56,7 +55,7 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._cardLikeBtn.addEventListener("click", () => {
+    this.heart.addEventListener("click", () => {
       this._handleCardLike(this.id());
     });
 
@@ -79,7 +78,6 @@ export default class Card {
     this._cardPic = this._card.querySelector(".card__pic");
     this._cardTitle = this._card.querySelector(".card__title");
     this._deleteBtn = this._card.querySelector(".card__delete-btn");
-    this._cardLikeBtn = this._card.querySelector(".card__heart");
     this._cardCount = this._card.querySelector(".card__likes_count");
 
     this._setEventListeners();
