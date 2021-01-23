@@ -55,73 +55,25 @@ api
   .then(([userData, cardListData]) => {
     const cardsList = new Section(
       {
-        array: cardListData,
-        renderer: (data) => {
-          const card = new Card(
-            {
-              data,
-              handleCardClick: () => {
-                picModal.open(data);
-              },
-              handleDeleteClick: (cardID) => {
-                deleteCardModal.open(cardID);
-                deleteCardModal.submitData(() => {
-                  deleteSubmit.textContent = "Deleting...";
-                  api
-                    .removeCard(cardID)
-                    .then(() => {
-                      card.deleteCard();
-                      deleteCardModal.close();
-                      deleteSubmit.textContent = "Yes";
-                    })
-                    .catch((err) => console.log(err));
-                });
-              },
-              handleCardLike: (cardID) => {
-                {
-                  if (card.heart.classList.contains("card__heart_active")) {
-                    card.heart.classList.remove("card__heart_active");
+        items: cardListData,
+        renderer: addCard,
+          // api
+          //   .getUserInfo()
+          //   .then((res) => {
+          //     if (res._id === data.owner._id) {
+          //       card.showDeleteButton();
 
-                    api
-                      .deleteCardLike(cardID)
-                      .then((res) => {
-                        card.displayLikeCount(res.likes.length);
-                      })
-                      .catch((error) => console.log(error.type));
-                  } else {
-                    card.heart.classList.add("card__heart_active");
-                    api
-                      .addCardLike(cardID)
-                      .then((res) => {
-                        card.displayLikeCount(res.likes.length);
-                      })
-                      .catch((error) => console.log(error.type));
-                  }
-                }
-              },
-            },
-            userData._id,
-            cardsConfig.cardSelector
-          );
-          card.displayLikeCount(card._data.likes.length);
-          cardsList.setItem(card.generateCard());
-          api
-            .getUserInfo()
-            .then((res) => {
-              if (res._id === data.owner._id) {
-                card.showDeleteButton();
-
-                userInfo.setUserInfo({
-                  userName: res.name,
-                  userDescription: res.about,
-                  userAvatar: res.avatar,
-                });
-              } else {
-                card.hideDeleteButton();
-              }
-            })
-            .catch((err) => console.log(err));
-        },
+          //       userInfo.setUserInfo({
+          //         userName: res.name,
+          //         userDescription: res.about,
+          //         userAvatar: res.avatar,
+          //       });
+          //     } else {
+          //       card.hideDeleteButton();
+          //     }
+          //   })
+          //   .catch((err) => console.log(err));
+        
       },
       cardsConfig.placesWrap
     );
@@ -134,54 +86,7 @@ api
           .addCard(data)
           .then((res) => {
             submitButtonPlaces.textContent = "Save";
-            const card = new Card(
-              {
-                data: res,
-                handleCardClick: () => {
-                  picModal.open(data);
-                },
-                handleDeleteClick: (cardID) => {
-                  deleteCardModal.open(cardID);
-                  deleteCardModal.submitData(() => {
-                    api
-                      .removeCard(cardID)
-                      .then(() => {
-                        card.deleteCard();
-                        deleteCardModal.close();
-                      })
-                      .catch((err) => console.log(err));
-                  });
-                },
-                handleCardLike: (cardID) => {
-                  {
-                    {
-                      if (card.heart.classList.contains("card__heart_active")) {
-                        card.heart.classList.remove("card__heart_active");
-                        api
-                          .deleteCardLike(cardID)
-                          .then((res) => {
-                            card.displayLikeCount(res.likes.length);
-                          })
-                          .catch((error) => console.log(error.type));
-                      } else {
-                        card.heart.classList.add("card__heart_active");
-                        api
-                          .addCardLike(cardID)
-                          .then((res) => {
-                            card.displayLikeCount(res.likes.length);
-                          })
-                          .catch((error) => console.log(error.type));
-                      }
-                    }
-                  }
-                },
-              },
-              userData._id,
-              cardsConfig.cardSelector
-            );
-            cardsList.setItem(card.generateCard());
-
-            card.showDeleteButton();
+         addCard(res);
           })
           .catch((err) => console.log(err));
       },
@@ -190,6 +95,56 @@ api
     addModalButton.addEventListener("click", function () {
       addModal.open();
     });
+    function addCard(data) {
+      const card = new Card(
+          {
+            data,
+            handleCardClick: () => {
+              picModal.open(data);
+            },
+            handleDeleteClick: (cardID) => {
+              deleteCardModal.open(cardID);
+              deleteCardModal.submitData(() => {
+                deleteSubmit.textContent = "Deleting...";
+                api
+                  .removeCard(cardID)
+                  .then(() => {
+                    card.deleteCard();
+                    deleteCardModal.close();
+                    deleteSubmit.textContent = "Yes";
+                  })
+                  .catch((err) => console.log(err));
+              });
+            },
+            handleCardLike: (cardID) => {
+              {
+                if (card.heart.classList.contains("card__heart_active")) {
+                  card.heart.classList.remove("card__heart_active");
+      
+                  api
+                    .deleteCardLike(cardID)
+                    .then((res) => {
+                      card.displayLikeCount(res.likes.length);
+                    })
+                    .catch((error) => console.log(error.type));
+                } else {
+                  card.heart.classList.add("card__heart_active");
+                  api
+                    .addCardLike(cardID)
+                    .then((res) => {
+                      card.displayLikeCount(res.likes.length);
+                    })
+                    .catch((error) => console.log(error.type));
+                }
+              }
+            },
+          },
+          userData._id,
+          cardsConfig.cardSelector
+        );
+        card.displayLikeCount(card._data.likes.length);
+        cardsList.setItem(card.generateCard());
+    }
   })
   .catch((err) => console.log(err));
 
@@ -237,6 +192,8 @@ const editModal = new PopupWithForm({
       .catch((err) => console.log(err));
   },
 });
+
+
 
 const avatarModal = new PopupWithForm({
   popupSelector: popupConfig.avatarFormModalWindow,
