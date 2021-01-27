@@ -39,12 +39,6 @@ const cardsConfig = {
   placesWrap: ".cards__list",
 };
 
-const profileConfig = {
-  profileTitle: ".profile__name",
-  profileDescription: ".profile__job",
-  profileAvatar: ".profile__pic",
-};
-
 const popupConfig = {
   addFormModalWindow: ".modal_type_add",
   avatarFormModalWindow: ".modal_type_avatar",
@@ -55,21 +49,23 @@ const avatarModalButton = document.querySelector(".profile__pic");
 const editModalButton = document.querySelector(".profile__edit-btn");
 const inputJob = document.querySelector(".form__input_type_job");
 const inputName = document.querySelector(".form__input_type_name");
-const profileJob = document.querySelector(".profile__job");
-const profileName = document.querySelector(".profile__name");
-const profileAvatar = document.querySelector(".profile__pic");
+
 const deleteSubmit = document.querySelector(".delete-submit");
 const submitButtonPlaces = document.querySelector(".places-submit");
 const editSubmit = document.querySelector(".edit-submit");
 const avatarSubmit = document.querySelector(".avatar-submit");
 const addModalButton = document.querySelector(".profile__add-btn");
 
+
+const profileJob = document.querySelector(".profile__job");
+const profileName = document.querySelector(".profile__name");
+const profileAvatar = document.querySelector(".profile__pic");
+
 export {
   submitButtonPlaces,
   editSubmit,
   avatarSubmit,
   addModalButton,
-  profileConfig,
   avatarModalButton,
   editModalButton,
   popupConfig,

@@ -6,12 +6,14 @@ import {
   editSubmit,
   avatarSubmit,
   addModalButton,
-  profileConfig,
   avatarModalButton,
   editModalButton,
   popupConfig,
   cardsConfig,
   settings,
+  inputJob,
+  profileAvatar,
+  inputName,
   profileName,
   profileJob,
   deleteSubmit,
@@ -39,6 +41,11 @@ function changeAvatar({ avatar }) {
     .then((res) => {
       avatarSubmit.textContent = "Save";
       avatarModalButton.src = res.avatar;
+
+      //TODO
+      //NEED TO FIX:
+      // It is not quite correct that you are requesting api once again to set user's data
+      // It would be better to create another method inside UserInfo class with will only set user's avatar
       api.getUserInfo().then(function (res) {
         userInfo.setUserInfo({
           userName: res.name,
@@ -57,23 +64,6 @@ api
       {
         items: cardListData,
         renderer: addCard,
-          // api
-          //   .getUserInfo()
-          //   .then((res) => {
-          //     if (res._id === data.owner._id) {
-          //       card.showDeleteButton();
-
-          //       userInfo.setUserInfo({
-          //         userName: res.name,
-          //         userDescription: res.about,
-          //         userAvatar: res.avatar,
-          //       });
-          //     } else {
-          //       card.hideDeleteButton();
-          //     }
-          //   })
-          //   .catch((err) => console.log(err));
-        
       },
       cardsConfig.placesWrap
     );
@@ -109,30 +99,41 @@ api
                 api
                   .removeCard(cardID)
                   .then(() => {
-                    card.deleteCard();
+                
                     deleteCardModal.close();
-                    deleteSubmit.textContent = "Yes";
+                  
+                  //done
+                   // TODO
+                    //NEED TO FIX:
+                    //Removing the card in the template must be done only after sending a request to the server.
+                    // Please, fix it also for the like button (so that the background is not changed in case of an unsuccessful request).
+                    // Hint: You can set the offline mode in the network tab and try to submit forms, delete and like cards
+                  }).then(() => {
+                    card.deleteCard();
                   })
                   .catch((err) => console.log(err));
+                  deleteSubmit.textContent = "Yes";
               });
             },
             handleCardLike: (cardID) => {
               {
                 if (card.heart.classList.contains("card__heart_active")) {
-                  card.heart.classList.remove("card__heart_active");
-      
+               
+
                   api
                     .deleteCardLike(cardID)
                     .then((res) => {
                       card.displayLikeCount(res.likes.length);
-                    })
+                    }).then(() => {   card.heart.classList.remove("card__heart_active");})
                     .catch((error) => console.log(error.type));
                 } else {
-                  card.heart.classList.add("card__heart_active");
+               
                   api
                     .addCardLike(cardID)
                     .then((res) => {
                       card.displayLikeCount(res.likes.length);
+                    }).then(() => {
+                      card.heart.classList.add("card__heart_active");
                     })
                     .catch((error) => console.log(error.type));
                 }
@@ -149,11 +150,13 @@ api
   .catch((err) => console.log(err));
 
 const userInfo = new UserInfo({
-  userNameSelector: profileConfig.profileTitle,
-  userDescriptionSelector: profileConfig.profileDescription,
-  userAvatarSelector: profileConfig.profileAvatar,
+  userNameSelector: profileName,
+  userDescriptionSelector: profileJob,
+  userAvatarSelector: profileAvatar,
 });
-
+//TODO
+//NEED TO FIX:
+// You do not need to make request one again since you already requested user info with `getAppInfo`
 api
   .getUserInfo()
   .then((res) => {
@@ -170,7 +173,6 @@ const editModal = new PopupWithForm({
   popupSelector: popupConfig.editFormModalWindow,
   handleFormSubmit: ({ name, about }) => {
     editSubmit.textContent = "Saving...";
-
     api
       .getUserInfo({ name, about })
       .then((res) => {
@@ -190,6 +192,12 @@ const editModal = new PopupWithForm({
         });
       })
       .catch((err) => console.log(err));
+//TODO
+    //NEED TO FIX:
+    //This modal window is closed even if the request is not successful
+    // (you can set the offline mode in the network tab and try to submit the form).
+    // You need to move this function call inside the block `then`.
+    // Please fix this for all modal windows
   },
 });
 

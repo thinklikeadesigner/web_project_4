@@ -4,22 +4,12 @@ import PopupWithForm from "./PopupWithForm.js";
 
 class UserInfo {
   constructor( {userNameSelector, userDescriptionSelector, userAvatarSelector} ) {
-    this._userNameElement = document.querySelector(
-      userNameSelector
-    );
-    this._userDescriptionElement = document.querySelector(
-      userDescriptionSelector
-    );
-    this._userAvatarElement = document.querySelector(userAvatarSelector)
-  }
-
-  getUserInfo() {
-    return {
-      userName: this._userNameElement.textContent,
-      userDescription: this._userDescriptionElement.textContent,
-      userAvatar: this._userAvatarElement.src,
-      _id: this._id
-    };
+    this._userNameElement = 
+      userNameSelector;
+    this._userDescriptionElement = 
+      userDescriptionSelector;
+    
+    this._userAvatarElement = userAvatarSelector;
   }
 
   setUserInfo({userName, userDescription, userAvatar}) {
@@ -27,7 +17,15 @@ class UserInfo {
     this._userNameElement.textContent = userName;
     this._userDescriptionElement.textContent = userDescription;
     this._userAvatarElement.src = userAvatar;
+
   }
+
+  // setUserAvatar({userAvatar}) {
+  //   this._userAvatarElement.src = userAvatar;
+  // }
+  
+
 }
+
 
 export { UserInfo };
