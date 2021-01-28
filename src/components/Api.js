@@ -10,8 +10,7 @@ export default class Api {
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject("Error!" + res.statusText)
-      )
-      .catch((err) => console.log(err));
+      );
   }
 
   // GET https://around.nomoreparties.co/v1/groupId/users/me
@@ -21,8 +20,7 @@ export default class Api {
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject("Error!" + res.statusText)
-      )
-      .catch((err) => console.log(err));
+      );
   }
 
   getAppInfo() {
@@ -45,8 +43,7 @@ export default class Api {
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject("Error!" + res.statusText)
-      )
-      .catch((err) => console.log(err));
+      );
   }
 
   // DELETE https:around.nomoreparties.co/v1/groupId/cards/cardId
@@ -57,8 +54,7 @@ export default class Api {
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject("Error!" + res.statusText)
-      )
-      .catch((err) => console.log(err));
+      );
   }
 
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
@@ -69,8 +65,7 @@ export default class Api {
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject("Error! " + res.statusText)
-      )
-      .catch((err) => console.log(err));
+      );
   }
 
   deleteCardLike(cardId) {
@@ -80,8 +75,7 @@ export default class Api {
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject("Error! " + res.statusText)
-      )
-      .catch((err) => console.log(err));
+      );
   }
 
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me
@@ -96,8 +90,7 @@ export default class Api {
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject("Error!" + res.statusText)
-      )
-      .catch((err) => console.log(err));
+      );
   }
 
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
@@ -109,8 +102,7 @@ export default class Api {
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject("Error!" + res.statusText)
-      )
-      .catch((err) => console.log(err));
+      );
   }
 }
 

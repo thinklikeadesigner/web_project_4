@@ -2,13 +2,14 @@ import css from "./index.css";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import {
-  submitButtonPlaces,
+  addSubmit,
+  picFormModalWindow,
+  deleteFormModalWindow,
   editSubmit,
   avatarSubmit,
   addModalButton,
   avatarModalButton,
   editModalButton,
-  popupConfig,
   cardsConfig,
   settings,
   inputJob,
@@ -17,6 +18,9 @@ import {
   profileName,
   profileJob,
   deleteSubmit,
+  addFormModalWindow,
+  editFormModalWindow,
+  avatarFormModalWindow,
 } from "../utils/utils.js";
 
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -39,7 +43,6 @@ function changeAvatar({ avatar }) {
   api
     .setUserAvatar({ avatar })
     .then((res) => {
-      avatarSubmit.textContent = "Save";
       avatarModalButton.src = res.avatar;
 
       //TODO
@@ -53,6 +56,7 @@ function changeAvatar({ avatar }) {
           userAvatar: res.avatar,
         });
       });
+      this.close();
     })
     .catch((err) => console.log(err));
 }
@@ -69,82 +73,86 @@ api
     );
     cardsList.renderItems();
     const addModal = new PopupWithForm({
-      popupSelector: popupConfig.addFormModalWindow,
+      popupSelector: addFormModalWindow,
       handleFormSubmit: (data) => {
-        submitButtonPlaces.textContent = "Saving...";
+        addSubmit.textContent = "Saving...";
         api
           .addCard(data)
           .then((res) => {
-            submitButtonPlaces.textContent = "Save";
-         addCard(res);
+            addCard(res);
+            addModal.close();
+            // addSubmit.textContent = "Save";
           })
           .catch((err) => console.log(err));
       },
     });
     addModal.setEventListeners();
     addModalButton.addEventListener("click", function () {
+      addSubmit.textContent = "Save";
       addModal.open();
     });
     function addCard(data) {
       const card = new Card(
-          {
-            data,
-            handleCardClick: () => {
-              picModal.open(data);
-            },
-            handleDeleteClick: (cardID) => {
-              deleteCardModal.open(cardID);
-              deleteCardModal.submitData(() => {
-                deleteSubmit.textContent = "Deleting...";
-                api
-                  .removeCard(cardID)
-                  .then(() => {
-                
-                    deleteCardModal.close();
-                  
-                  //done
-                   // TODO
-                    //NEED TO FIX:
-                    //Removing the card in the template must be done only after sending a request to the server.
-                    // Please, fix it also for the like button (so that the background is not changed in case of an unsuccessful request).
-                    // Hint: You can set the offline mode in the network tab and try to submit forms, delete and like cards
-                  }).then(() => {
-                    card.deleteCard();
-                  })
-                  .catch((err) => console.log(err));
-                  deleteSubmit.textContent = "Yes";
-              });
-            },
-            handleCardLike: (cardID) => {
-              {
-                if (card.heart.classList.contains("card__heart_active")) {
-               
-
-                  api
-                    .deleteCardLike(cardID)
-                    .then((res) => {
-                      card.displayLikeCount(res.likes.length);
-                    }).then(() => {   card.heart.classList.remove("card__heart_active");})
-                    .catch((error) => console.log(error.type));
-                } else {
-               
-                  api
-                    .addCardLike(cardID)
-                    .then((res) => {
-                      card.displayLikeCount(res.likes.length);
-                    }).then(() => {
-                      card.heart.classList.add("card__heart_active");
-                    })
-                    .catch((error) => console.log(error.type));
-                }
-              }
-            },
+        {
+          data,
+          handleCardClick: () => {
+            deleteSubmit.textContent = "Yes";
+            // picModal.open(data);
           },
-          userData._id,
-          cardsConfig.cardSelector
-        );
-        card.displayLikeCount(card._data.likes.length);
-        cardsList.setItem(card.generateCard());
+          handleDeleteClick: (cardID) => {
+            deleteSubmit.textContent = "Yes";
+            deleteCardModal.open(cardID);
+            deleteCardModal.submitData(() => {
+              deleteSubmit.textContent = "Deleting...";
+              api
+                .removeCard(cardID)
+                .then(() => {
+                  //done
+                  // TODO
+                  //NEED TO FIX:
+                  //Removing the card in the template must be done only after sending a request to the server.
+                  // Please, fix it also for the like button (so that the background is not changed in case of an unsuccessful request).
+                  // Hint: You can set the offline mode in the network tab and try to submit forms, delete and like cards
+                })
+                .then(() => {
+                  card.deleteCard();
+                  deleteCardModal.close();
+                })
+                .catch((err) => console.log(err));
+            });
+          },
+          handleCardLike: (cardID) => {
+            {
+              if (card.heart.classList.contains("card__heart_active")) {
+                api
+                  .deleteCardLike(cardID)
+                  .then((res) => {
+                    card.displayLikeCount(res.likes.length);
+                  })
+                  .then(() => {
+                    card.heart.classList.remove("card__heart_active");
+                  })
+                  .catch((error) => console.log(error.type));
+              } else {
+                api
+                  .addCardLike(cardID)
+                  .then((res) => {
+                    card.displayLikeCount(res.likes.length);
+                  })
+                  .then(() => {
+                    card.heart.classList.add("card__heart_active");
+                  })
+                  .catch((error) => console.log(error.type));
+              }
+            }
+          },
+        },
+        userData._id,
+        cardsConfig.cardSelector
+      );
+
+      card.displayLikeCount(card._data.likes.length);
+      cardsList.setItem(card.generateCard());
     }
   })
   .catch((err) => console.log(err));
@@ -170,13 +178,12 @@ api
   .catch((err) => console.log(err));
 
 const editModal = new PopupWithForm({
-  popupSelector: popupConfig.editFormModalWindow,
+  popupSelector: editFormModalWindow,
   handleFormSubmit: ({ name, about }) => {
     editSubmit.textContent = "Saving...";
     api
       .getUserInfo({ name, about })
       .then((res) => {
-        editSubmit.textContent = "Save";
         profileJob.textContent = res.about;
         profileName.textContent = res.name;
       })
@@ -190,9 +197,11 @@ const editModal = new PopupWithForm({
           userDescription: res.about,
           userAvatar: res.avatar,
         });
+        editModal.close();
       })
       .catch((err) => console.log(err));
-//TODO
+      //done?
+    //TODO
     //NEED TO FIX:
     //This modal window is closed even if the request is not successful
     // (you can set the offline mode in the network tab and try to submit the form).
@@ -201,21 +210,27 @@ const editModal = new PopupWithForm({
   },
 });
 
-
-
 const avatarModal = new PopupWithForm({
-  popupSelector: popupConfig.avatarFormModalWindow,
+  popupSelector: avatarFormModalWindow,
   handleFormSubmit: changeAvatar,
 });
 
 const deleteCardModal = new PopupWithForm({
-  popupSelector: ".modal_type_delete",
+  popupSelector: deleteFormModalWindow,
 });
 
-const picModal = new PopupWithImage(".modal_type_pic");
+const picModal = new PopupWithImage(picFormModalWindow);
 
-editModalButton.addEventListener("click", () => editModal.open());
-avatarModalButton.addEventListener("click", () => avatarModal.open());
+editModalButton.addEventListener("click", () => {
+  editSubmit.textContent = "Save";
+  inputJob.value = profileJob.textContent;
+  inputName.value = profileName.textContent;
+  editModal.open();
+});
+avatarModalButton.addEventListener("click", () => {
+  avatarSubmit.textContent = "Save";
+  avatarModal.open();
+});
 
 avatarModal.setEventListeners();
 editModal.setEventListeners();

@@ -39,11 +39,18 @@ const cardsConfig = {
   placesWrap: ".cards__list",
 };
 
-const popupConfig = {
-  addFormModalWindow: ".modal_type_add",
-  avatarFormModalWindow: ".modal_type_avatar",
-  editFormModalWindow: ".modal_type_edit",
-};
+// const popupConfig = {
+//   addFormModalWindow: ".modal_type_add",
+//   avatarFormModalWindow: ".modal_type_avatar",
+//   editFormModalWindow: ".modal_type_edit",
+// };
+
+const addFormModalWindow =  document.querySelector(".modal_type_add");
+const avatarFormModalWindow =  document.querySelector(".modal_type_avatar");
+const editFormModalWindow =  document.querySelector(".modal_type_edit");
+const deleteFormModalWindow =  document.querySelector(".modal_type_delete");
+const picFormModalWindow =  document.querySelector(".modal_type_pic");
+
 
 const avatarModalButton = document.querySelector(".profile__pic");
 const editModalButton = document.querySelector(".profile__edit-btn");
@@ -51,7 +58,7 @@ const inputJob = document.querySelector(".form__input_type_job");
 const inputName = document.querySelector(".form__input_type_name");
 
 const deleteSubmit = document.querySelector(".delete-submit");
-const submitButtonPlaces = document.querySelector(".places-submit");
+const addSubmit = document.querySelector(".places-submit");
 const editSubmit = document.querySelector(".edit-submit");
 const avatarSubmit = document.querySelector(".avatar-submit");
 const addModalButton = document.querySelector(".profile__add-btn");
@@ -62,13 +69,14 @@ const profileName = document.querySelector(".profile__name");
 const profileAvatar = document.querySelector(".profile__pic");
 
 export {
-  submitButtonPlaces,
+  picFormModalWindow,
+  deleteFormModalWindow,
+  addSubmit,
   editSubmit,
   avatarSubmit,
   addModalButton,
   avatarModalButton,
   editModalButton,
-  popupConfig,
   cardsConfig,
   settings,
   inputJob,
@@ -77,4 +85,7 @@ export {
   profileName,
   profileJob,
   deleteSubmit,
+  addFormModalWindow,
+editFormModalWindow,
+  avatarFormModalWindow
 };
