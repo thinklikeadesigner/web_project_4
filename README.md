@@ -17,7 +17,7 @@ v0.4.9
 
 **Pages link**
 
-- [Live Demo](https://thinklikeadesigner.github.io/web_project_9/)
+- [Live Demo](https://thinklikeadesigner.github.io/web_project_4/)
 
 **Description and Functionality**
 
@@ -31,6 +31,8 @@ This project is a site that allows you to make a profile and post pictures. So f
 6. Liking a card changes the heart fill color
 7. Clicking on picture enlarges the picture
 8. Clicking outside the form/image or pressing Esc closes the modal
+9. Like counts added
+10. changes are saved
 
 **Technologies and Techniques**
 
@@ -38,7 +40,6 @@ I used these functions in the following ways:
 - Principles of OOP were applied. 
 - Functionalities are split into modules which contain classes.
 
-## New 
 
 - Classes are now loosely coupled for reusability
 - Project now built with webpack
@@ -49,4 +50,8 @@ I also used form validation techniques for a responsive UI. The user will now be
 - They did not enter a valid URL for the image
 - They did not use at least 2 characters for the name or description
 - They did not use at least 1 character for the image title
+
+
+Now, the site makes api calls to a database so if you make changes, they are saved.
+
 
