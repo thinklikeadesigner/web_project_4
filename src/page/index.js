@@ -30,6 +30,12 @@ import FormValidator from "../components/FormValidator.js";
 import Api from "../components/Api.js";
 import { name } from "file-loader";
 
+const userInfo = new UserInfo({
+  userNameSelector: profileName,
+  userDescriptionSelector: profileJob,
+  userAvatarSelector: profileAvatar,
+});
+
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-5",
   headers: {
@@ -45,25 +51,34 @@ function changeAvatar({ avatar }) {
     .then((res) => {
       avatarModalButton.src = res.avatar;
 
+      //DONE
       //TODO
       //NEED TO FIX:
       // It is not quite correct that you are requesting api once again to set user's data
       // It would be better to create another method inside UserInfo class with will only set user's avatar
-      api.getUserInfo().then(function (res) {
-        userInfo.setUserInfo({
-          userName: res.name,
-          userDescription: res.about,
-          userAvatar: res.avatar,
-        });
-      });
       this.close();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => 
+{    
+    console.log(err);
+
+    avatarSubmit.textContent = " Saving failed, try again...";}
+    
+    );
 }
 
 api
   .getAppInfo()
   .then(([userData, cardListData]) => {
+
+    userInfo.setUserInfo({
+      userName: userData.name,
+      userDescription: userData.about,
+      userID: userData._id,
+      userAvatar: userData.avatar,
+    });
+
+
     const cardsList = new Section(
       {
         items: cardListData,
@@ -83,7 +98,8 @@ api
             addModal.close();
             // addSubmit.textContent = "Save";
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {console.log(err);
+            addSubmit.textContent = "Saving failed, try again...";});
       },
     });
     addModal.setEventListeners();
@@ -118,7 +134,9 @@ api
                   card.deleteCard();
                   deleteCardModal.close();
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {console.log(err);
+                  deleteSubmit.textContent = "Deleting failed, try again...";
+                });
             });
           },
           handleCardLike: (cardID) => {
@@ -157,25 +175,11 @@ api
   })
   .catch((err) => console.log(err));
 
-const userInfo = new UserInfo({
-  userNameSelector: profileName,
-  userDescriptionSelector: profileJob,
-  userAvatarSelector: profileAvatar,
-});
+
 //TODO
 //NEED TO FIX:
 // You do not need to make request one again since you already requested user info with `getAppInfo`
-api
-  .getUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo({
-      userName: res.name,
-      userDescription: res.about,
-      userID: res._id,
-      userAvatar: res.avatar,
-    });
-  })
-  .catch((err) => console.log(err));
+
 
 const editModal = new PopupWithForm({
   popupSelector: editFormModalWindow,
@@ -199,7 +203,8 @@ const editModal = new PopupWithForm({
         });
         editModal.close();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {console.log(err);
+        editSubmit.textContent = "Saving failed, try again...";});
       //done?
     //TODO
     //NEED TO FIX:
