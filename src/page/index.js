@@ -57,23 +57,6 @@ api
       {
         items: cardListData,
         renderer: addCard,
-          // api
-          //   .getUserInfo()
-          //   .then((res) => {
-          //     if (res._id === data.owner._id) {
-          //       card.showDeleteButton();
-
-          //       userInfo.setUserInfo({
-          //         userName: res.name,
-          //         userDescription: res.about,
-          //         userAvatar: res.avatar,
-          //       });
-          //     } else {
-          //       card.hideDeleteButton();
-          //     }
-          //   })
-          //   .catch((err) => console.log(err));
-        
       },
       cardsConfig.placesWrap
     );
