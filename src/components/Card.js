@@ -34,27 +34,20 @@ export default class Card {
   _showMyLikes() {
     this._likes.forEach((like) => {
       if (like._id == this._userID) {
-        this.heart
-          .classList.add("card__heart_active");
+        this.heart.classList.add("card__heart_active");
       }
     });
   }
 
   returnCards() {
-
     return this._data;
   }
 
-
   _showMyDeletes() {
-      if (this._owner._id == this._userID) {
-        this._deleteBtn.classList.add("card_show-delete-btn");
-      }
+    if (this._owner._id == this._userID) {
+      this._deleteBtn.classList.add("card_show-delete-btn");
     }
-  
-
-  
-
+  }
 
   displayLikeCount(numberOfLikes) {
     this._card.querySelector(".card__likes_count").textContent = numberOfLikes;
@@ -73,7 +66,6 @@ export default class Card {
     this._element = null;
   }
 
-
   _setEventListeners() {
     this.heart.addEventListener("click", () => {
       this._handleCardLike(this.id());
@@ -86,7 +78,6 @@ export default class Card {
     this._cardPic.addEventListener("click", () => this._handleCardClick());
     this._showMyLikes();
     this._showMyDeletes();
-
   }
 
   _setElements() {
@@ -104,48 +95,7 @@ export default class Card {
 
     this._setEventListeners();
     this._setElements();
-  
 
     return this._card;
   }
 }
-
-
-
-
-// if (res._id === data.owner._id) {
-//   card.showDeleteButton();
-
-//   userInfo.setUserInfo({
-//     userName: res.name,
-//     userDescription: res.about,
-//     userAvatar: res.avatar,
-//   });
-// } else {
-//   card.hideDeleteButton();
-// }
-
-// if(this._owner._id === this._userId) {
-//   this._cardElement.querySelector('.elements__delete').classList.add('elements__delete_show');
-// }
-// }
-
-
-// if (this._owner._id !== this._userID) {
-// cardDeleteButton.style.display = 'none';
-// }
-
-
-
-
-// _showDeleteIcon() {
-//   // check that data.owner.userId = userId to handle showing delete button on card owner only
-//   if(this._owner._id === this._userId) {
-//     this._cardElement.querySelector('.elements__delete').classList.add('elements__delete_show');
-//   }
-// }
-
-// _showDeleteIcon() {
-// if (this._owner._id !== this._userID) {
-//   cardDeleteButton.style.display = 'none';
-// } }

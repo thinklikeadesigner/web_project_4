@@ -50,34 +50,24 @@ function changeAvatar({ avatar }) {
     .setUserAvatar({ avatar })
     .then((res) => {
       avatarModalButton.src = res.avatar;
-
-      //DONE
-      //TODO
-      //NEED TO FIX:
-      // It is not quite correct that you are requesting api once again to set user's data
-      // It would be better to create another method inside UserInfo class with will only set user's avatar
       this.close();
     })
-    .catch((err) => 
-{    
-    console.log(err);
+    .catch((err) => {
+      console.log(err);
 
-    avatarSubmit.textContent = " Saving failed, try again...";}
-    
-    );
+      avatarSubmit.textContent = " Saving failed, try again...";
+    });
 }
 
 api
   .getAppInfo()
   .then(([userData, cardListData]) => {
-
     userInfo.setUserInfo({
       userName: userData.name,
       userDescription: userData.about,
       userID: userData._id,
       userAvatar: userData.avatar,
     });
-
 
     const cardsList = new Section(
       {
@@ -96,10 +86,11 @@ api
           .then((res) => {
             addCard(res);
             addModal.close();
-            // addSubmit.textContent = "Save";
           })
-          .catch((err) => {console.log(err);
-            addSubmit.textContent = "Saving failed, try again...";});
+          .catch((err) => {
+            console.log(err);
+            addSubmit.textContent = "Saving failed, try again...";
+          });
       },
     });
     addModal.setEventListeners();
@@ -112,8 +103,7 @@ api
         {
           data,
           handleCardClick: () => {
-            deleteSubmit.textContent = "Yes";
-            // picModal.open(data);
+            picModal.open(data);
           },
           handleDeleteClick: (cardID) => {
             deleteSubmit.textContent = "Yes";
@@ -122,19 +112,13 @@ api
               deleteSubmit.textContent = "Deleting...";
               api
                 .removeCard(cardID)
-                .then(() => {
-                  //done
-                  // TODO
-                  //NEED TO FIX:
-                  //Removing the card in the template must be done only after sending a request to the server.
-                  // Please, fix it also for the like button (so that the background is not changed in case of an unsuccessful request).
-                  // Hint: You can set the offline mode in the network tab and try to submit forms, delete and like cards
-                })
+                .then(() => {})
                 .then(() => {
                   card.deleteCard();
                   deleteCardModal.close();
                 })
-                .catch((err) => {console.log(err);
+                .catch((err) => {
+                  console.log(err);
                   deleteSubmit.textContent = "Deleting failed, try again...";
                 });
             });
@@ -175,12 +159,6 @@ api
   })
   .catch((err) => console.log(err));
 
-
-//TODO
-//NEED TO FIX:
-// You do not need to make request one again since you already requested user info with `getAppInfo`
-
-
 const editModal = new PopupWithForm({
   popupSelector: editFormModalWindow,
   handleFormSubmit: ({ name, about }) => {
@@ -203,15 +181,10 @@ const editModal = new PopupWithForm({
         });
         editModal.close();
       })
-      .catch((err) => {console.log(err);
-        editSubmit.textContent = "Saving failed, try again...";});
-      //done?
-    //TODO
-    //NEED TO FIX:
-    //This modal window is closed even if the request is not successful
-    // (you can set the offline mode in the network tab and try to submit the form).
-    // You need to move this function call inside the block `then`.
-    // Please fix this for all modal windows
+      .catch((err) => {
+        console.log(err);
+        editSubmit.textContent = "Saving failed, try again...";
+      });
   },
 });
 
