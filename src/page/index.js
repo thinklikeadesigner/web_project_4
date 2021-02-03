@@ -201,8 +201,9 @@ const picModal = new PopupWithImage(picFormModalWindow);
 
 editModalButton.addEventListener("click", () => {
   editSubmit.textContent = "Save";
-  inputJob.value = profileJob.textContent;
-  inputName.value = profileName.textContent;
+  const user = userInfo.getUserInfo();
+  inputJob.value = user.desc;
+  inputName.value = user.title;
   editModal.open();
 });
 avatarModalButton.addEventListener("click", () => {
