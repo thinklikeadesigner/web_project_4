@@ -169,7 +169,7 @@ const editModal = new PopupWithForm({
       .then((res) => {
         userInfo.setUserInfo({
           userName: res.name,
-          userDescription: res.about
+          userDescription: res.about,
         });
         editModal.close();
       })

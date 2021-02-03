@@ -33,7 +33,7 @@ export default class Card {
 
   _showMyLikes() {
     this._likes.forEach((like) => {
-      if (like._id == this._userID) {
+      if (like._id === this._userID) {
         this.heart.classList.add("card__heart_active");
       }
     });
@@ -44,7 +44,7 @@ export default class Card {
   }
 
   _showMyDeletes() {
-    if (this._owner._id == this._userID) {
+    if (this._owner._id === this._userID) {
       this._deleteBtn.classList.add("card_show-delete-btn");
     }
   }
