@@ -163,21 +163,13 @@ const editModal = new PopupWithForm({
   popupSelector: editFormModalWindow,
   handleFormSubmit: ({ name, about }) => {
     editSubmit.textContent = "Saving...";
-    api
-      .getUserInfo({ name, about })
-      .then((res) => {
-        profileJob.textContent = res.about;
-        profileName.textContent = res.name;
-      })
-      .catch((err) => console.log(err));
 
     api
       .setUserInfo({ name, about })
       .then((res) => {
         userInfo.setUserInfo({
           userName: res.name,
-          userDescription: res.about,
-          userAvatar: res.avatar,
+          userDescription: res.about
         });
         editModal.close();
       })
